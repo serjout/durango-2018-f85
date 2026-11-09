@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проверка выхода BCM на K15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Та же система, что у схем F85 и C7: бумага, чернила, статусы, провода в заводских цветах */
+  --bg: #f3f4f1;
+  --panel: #ffffff;
+  --ink: #1d2328;
+  --muted: #5d6770;
+  --rule: #c9cfd3;
+  --accent: #1f62d6;
+  --dead: #c62828;
+  --ok: #2e7d32;
+  --sus: #b86e00;
+  --conn: #3f8f5a;
+  --w-brown: #8b5a2b;
+  --w-orange: #f08c1e;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13171b; --panel: #1b2126; --ink: #e5e9ec; --muted: #98a3ac; --rule: #34404a;
+    --accent: #5b9bff; --dead: #ff6f61; --ok: #62c370; --sus: #f0a630; --conn: #5fb57c; --w-brown: #b07a45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #13171b; --panel: #1b2126; --ink: #e5e9ec; --muted: #98a3ac; --rule: #34404a;
+  --accent: #5b9bff; --dead: #ff6f61; --ok: #62c370; --sus: #f0a630; --conn: #5fb57c; --w-brown: #b07a45;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body); }
+main { max-width: 1120px; margin: 0 auto; padding: 28px 20px 64px; display: grid; gap: 24px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; }
+h2 { font-size: 22px; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 76ch; }
+a { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+code, .mono { font-family: var(--mono); font-size: .92em; }
+header { display: grid; gap: 10px; }
+.meta { color: var(--muted); font-size: 14px; }
+.lead { font-size: 17px; max-width: 82ch; }
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; }
+.pad { padding: 16px 18px; display: grid; gap: 12px; }
+.figure-wrap { padding: 12px; overflow-x: auto; }
+figure { margin: 0; display: grid; gap: 10px; }
+figcaption { color: var(--muted); font-size: 14px; max-width: 92ch; padding: 0 4px; }
+.where { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.card { padding: 14px 16px; display: grid; gap: 8px; align-content: start; }
+.card dl, .step dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 3px 10px; font-size: 14px; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+.pinbig { font: 700 28px/1 var(--display); }
+.wire { display: inline-block; width: 46px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.w-bnog { background: repeating-linear-gradient(90deg, var(--w-brown) 0 9px, var(--w-orange) 9px 15px); }
+.w-bn { background: var(--w-brown); }
+.warn { border-left: 5px solid var(--dead); padding: 14px 18px; display: grid; gap: 6px; }
+.warn h2 { color: var(--dead); font-size: 19px; }
+.warn ul, .note ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.note { border-left: 5px solid var(--sus); padding: 14px 18px; display: grid; gap: 6px; }
+
+svg.d { width: 100%; min-width: 900px; height: auto; display: block; }
+.d text { font-family: var(--display); fill: var(--ink); font-size: 12.5px; }
+.d .ts { font-size: 11px; fill: var(--muted); }
+.d .tb { font-weight: 700; font-size: 14px; }
+.d .tc { font-family: var(--mono); font-size: 11px; }
+.d .mid { text-anchor: middle; }
+.d .t-ok { fill: var(--ok); }
+.d .t-dead { fill: var(--dead); }
+.d .t-sus { fill: var(--sus); }
+.d .box { fill: var(--panel); stroke: var(--ink); stroke-width: 1.4; }
+.d .box-sus { fill: color-mix(in srgb, var(--sus) 12%, var(--panel)); stroke: var(--sus); stroke-width: 2.6; }
+.d .box-ok { fill: var(--panel); stroke: var(--ok); stroke-width: 2; }
+.d .pdc { fill: var(--bg); stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 7 5; }
+.d .strip { fill: color-mix(in srgb, var(--conn) 22%, var(--panel)); stroke: var(--conn); stroke-width: 2; }
+.d .ln { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.d .w { fill: none; stroke-width: 5; stroke-linejoin: round; }
+.d .tr { fill: none; stroke-width: 5; stroke-dasharray: 10 10; stroke-linejoin: round; }
+.d .c-brown { stroke: var(--w-brown); }
+.d .c-orange { stroke: var(--w-orange); }
+.d .halo-sus { fill: none; stroke: var(--sus); stroke-opacity: .22; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+.d .halo-ok { fill: none; stroke: var(--ok); stroke-opacity: .2; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+.d .gnd { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+.d .dot { fill: var(--ink); }
+.d .cp circle { fill: var(--accent); stroke: var(--panel); stroke-width: 2.5; }
+.d .cp text { fill: #fff; font-family: var(--display); font-weight: 700; font-size: 13px; text-anchor: middle; dominant-baseline: central; }
+.d .cp:hover circle, .d .cp:focus-visible circle { fill: var(--sus); }
+
+.steps { display: grid; gap: 14px; }
+.step { padding: 14px 16px; display: grid; gap: 8px; scroll-margin-top: 16px; }
+.step:target { border-color: var(--sus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sus) 35%, transparent); }
+.step-h { display: flex; gap: 10px; align-items: center; }
+.num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 14px/28px var(--display); text-align: center; }
+.step .if { font-size: 14px; display: grid; gap: 4px; padding-top: 6px; border-top: 1px solid var(--rule); }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--display); font-weight: 600; color: var(--muted); white-space: nowrap; }
+.chip { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.chip-dead { background: color-mix(in srgb, var(--dead) 16%, transparent); color: var(--dead); }
+.chip-ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+footer { color: var(--muted); font-size: 14px; display: grid; gap: 6px; }
+@media (max-width: 420px) { main { padding: 20px 16px 48px; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Проверка выхода BCM на K15</h1>
+  <div class="meta">Dodge Durango R/T 2018 · провод K619 «IGNITION RUN CONTROL OUTPUT»: BCM C5/E, контакт 36 → PDC C7, контакт 12 → гнездо 85 реле K15 · по заводским таблицам разъёмов 2018 WD</div>
+  <p class="lead">На катушку реле K15 не приходит сигнал. Этот замер показывает, выдаёт ли его сам блок BCM. 12 В на выходе BCM — виноваты провод или блок PDC; 0 В — BCM или замыкание в цепи. Схемы: <a href="https://serjout.github.io/durango-2018-f85/diagrams/f85-power-chains.html">общая</a> и <a href="https://serjout.github.io/durango-2018-f85/diagrams/pdc-c7-connector.html">колодка C7</a>.</p>
+</header>
+
+<section class="where" aria-label="Где искать">
+  <article class="panel card">
+    <h3>Где стоит BCM</h3>
+    <p>За <b>правой боковой накладкой</b> (кик-панелью): со стороны пассажира, в ногах, на боковой стенке у передней стойки. Блок стоит вертикально, колодки смотрят в салон. Как снять накладки — <a href="#access">схема ниже</a>.</p>
+    <p><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%284%20Of%2010%29/Module-Body%20Control%20C5%2FE%20%28Standard%29%20Connector%20End%20View%20%28D3806E%29/">Заводская страница колодки C5 с рисунком расположения (Fig 2)</a></p>
+  </article>
+  <article class="panel card">
+    <h3>Главный замер: C5, контакт 36</h3>
+    <div class="pinbig">C5 · 36</div>
+    <dl>
+      <dt>Колодка</dt><dd>C5/E (D3806E), <b>чёрная</b>, жгут Body</dd>
+      <dt>Провод</dt><dd><span class="wire w-bnog"></span>K619, коричневый с оранжевой полосой, 0,50 мм²</dd>
+      <dt>Назначение</dt><dd>управление реле RUN (K15)</dd>
+      <dt>Не перепутать</dt><dd>на той же колодке <b>контакт 48</b> тоже BN/OG — это задний дворник (W12). Сверяйте номер по цифрам на колодке</dd>
+    </dl>
+  </article>
+  <article class="panel card">
+    <h3>Контрольный замер: C1, контакт 18</h3>
+    <div class="pinbig">C1 · 18</div>
+    <dl>
+      <dt>Колодка</dt><dd>C1/A (D3806A), <b>чёрная</b></dd>
+      <dt>Провод</dt><dd><span class="wire w-bn"></span>K617, коричневый, 0,50 мм²</dd>
+      <dt>Назначение</dt><dd>управление реле K08 «Run/Start», оно работает</dd>
+      <dt>Зачем</dt><dd>здесь в RUN должно быть 12 В. Если есть — щуп и метод замера правильные, и BCM видит зажигание</dd>
+    </dl>
+  </article>
+</section>
+
+<section class="panel figure-wrap" id="access" aria-labelledby="access-h">
+<figure>
+  <h2 id="access-h" style="padding:4px 4px 0">Как добраться до BCM</h2>
+<svg class="d" viewBox="0 0 920 470" role="img" aria-label="Вид в салон через открытую правую переднюю дверь: торпедо с бардачком, под ним нижняя закрывающая панель (шаг 1); накладка порога (шаг 2); уплотнитель двери (шаг 3); боковая накладка у передней стойки (шаг 4). За боковой накладкой вертикально стоит BCM, колодки смотрят в салон, снизу два крепления.">
+  <!-- торпедо -->
+  <path d="M40 60 H600 Q640 60 650 100 L660 170 H40 Z" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.6"/>
+  <rect x="300" y="95" width="200" height="55" rx="8" fill="none" stroke="var(--muted)" stroke-width="1.4"/>
+  <text class="ts mid" x="400" y="128">бардачок</text>
+  <text class="tb" x="56" y="90">торпедо</text>
+  <!-- нижняя закрывающая панель -->
+  <path d="M120 170 H640 L620 215 H140 Z" fill="color-mix(in srgb, var(--accent) 12%, var(--panel))" stroke="var(--accent)" stroke-width="2"/>
+  <text class="mid" x="380" y="198">нижняя закрывающая панель</text>
+  <!-- пол -->
+  <line x1="40" y1="410" x2="900" y2="410" stroke="var(--muted)" stroke-width="1.6"/>
+  <text class="ts" x="60" y="400">пол, ноги пассажира</text>
+  <!-- боковая стенка и кик-панель -->
+  <path d="M640 170 L700 120 V410 H600 L620 215 Z" fill="color-mix(in srgb, var(--accent) 12%, var(--panel))" stroke="var(--accent)" stroke-width="2"/>
+  <text class="mid" x="668" y="192">боковая</text>
+  <text class="mid" x="668" y="208">накладка</text>
+  <!-- BCM за накладкой -->
+  <rect x="612" y="228" width="80" height="120" rx="5" fill="none" stroke="var(--sus)" stroke-width="2.6" stroke-dasharray="7 4"/>
+  <text class="tb t-sus" x="560" y="250" text-anchor="end">BCM за накладкой</text>
+  <text class="ts" x="560" y="266" text-anchor="end">стоит вертикально,</text>
+  <text class="ts" x="560" y="280" text-anchor="end">колодки смотрят в салон</text>
+  <line x1="564" y1="256" x2="610" y2="270" stroke="var(--sus)" stroke-width="1.6"/>
+  <!-- проём двери -->
+  <path d="M700 120 Q760 70 900 70" fill="none" stroke="var(--ink)" stroke-width="1.6"/>
+  <path d="M708 128 Q764 82 900 82 M708 128 V400" fill="none" stroke="var(--muted)" stroke-width="4" stroke-dasharray="2 5" stroke-linecap="round"/>
+  <text class="ts" x="760" y="110">уплотнитель двери</text>
+  <text class="tb" x="770" y="240" style="fill:var(--muted)">проём правой</text>
+  <text class="tb" x="770" y="258" style="fill:var(--muted)">передней двери</text>
+  <!-- накладка порога -->
+  <path d="M600 410 H900 V440 H590 Z" fill="color-mix(in srgb, var(--accent) 12%, var(--panel))" stroke="var(--accent)" stroke-width="2"/>
+  <text class="mid" x="760" y="430">накладка порога</text>
+  <!-- вперёд -->
+  <path d="M60 455 H160" stroke="var(--ink)" stroke-width="2"/>
+  <path d="M60 455 l10 -5 v10 z" fill="var(--ink)"/>
+  <text class="ts" x="170" y="459">вперёд</text>
+  <!-- шаги -->
+  <a class="cp" href="#acc-steps" aria-label="Шаг 1: нижняя закрывающая панель"><circle cx="110" cy="192" r="14"/><text x="110" y="192">1</text></a>
+  <a class="cp" href="#acc-steps" aria-label="Шаг 2: накладка порога"><circle cx="575" cy="428" r="14"/><text x="575" y="428">2</text></a>
+  <a class="cp" href="#acc-steps" aria-label="Шаг 3: уплотнитель двери"><circle cx="735" cy="160" r="14"/><text x="735" y="160">3</text></a>
+  <a class="cp" href="#acc-steps" aria-label="Шаг 4: боковая накладка"><circle cx="690" cy="378" r="14"/><text x="690" y="378">4</text></a>
+</svg>
+  <figcaption>Схема-ориентир по заводским процедурам «Module, Body Control — Removal» и «Panel, Cowl Trim, Side — Removal» для 2018 Durango, не точный рисунок. Для замеров блок снимать не нужно: достаточно открыть доступ к колодкам.</figcaption>
+  <ol id="acc-steps" style="margin:0; padding-left:22px; display:grid; gap:4px; font-size:15px; max-width:90ch">
+    <li><b>Нижняя закрывающая панель</b> под торпедо со стороны пассажира — снять.</li>
+    <li><b>Накладка порога</b> правой передней двери — поддеть пластиковой лопаткой и отщёлкнуть от защёлок в пороге.</li>
+    <li><b>Уплотнитель двери</b> — снять с фланца проёма у передней стойки и отвести в сторону.</li>
+    <li><b>Боковая накладка</b> (кик-панель) — отщёлкнуть клипсы лопаткой и снять. За ней — BCM с колодками.</li>
+  </ol>
+  <p style="font-size:14px; color:var(--muted)">По заводской процедуре перед снятием BCM отключают минус АКБ. Для замеров напряжения АКБ должна быть подключена: снимите только накладки, а колодки отсоединяйте лишь при выключенном зажигании.</p>
+
+  <div class="note" style="border-left:5px solid var(--accent); padding:12px 16px; display:grid; gap:6px; font-size:15px; max-width:92ch">
+    <b>Если мешает бардачок</b>
+    <span>По заводской процедуре бардачок для доступа к BCM снимать не нужно. Если всё же снимаете ящик, личинку замка вынимать не обязательно:</span>
+    <ol style="margin:0; padding-left:22px; display:grid; gap:2px">
+      <li>отсоединить доводчик (сбоку, сдвинуть клипсу назад по ходу машины);</li>
+      <li>открыть бардачок, сжать внутрь упор-ограничитель со стороны центра и вывести его из корпуса;</li>
+      <li>то же с упором со стороны двери — ящик опустится вниз;</li>
+      <li>опустить ящик до конца и снять его с петель внизу.</li>
+    </ol>
+    <span><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Body%20%26%20Frame/Exterior%2FInterior%20Trim/Body%20-%20Interior%20%26%20Exterior/Instrument%20Panel/Glove%20Box%2C%20Instrument%20Panel/Removal/">Заводская процедура снятия бардачка с рисунками</a> · <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Gauges/Body%20-%20Interior%20%26%20Exterior/Interior/Panel%2C%20Cowl%20Trim%2C%20Side/Removal/">снятия боковой накладки</a> · <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Electronic%20Control%20Modules%20%28Service%20Information%29/Module%2C%20Body%20Control%20%28BCM%29/Removal/">снятия BCM</a></span>
+  </div>
+  <h3 style="padding:8px 4px 0">Колодка C5 с торца: где контакт 36</h3>
+<svg class="d face" viewBox="0 0 760 290" role="img" aria-label="Колодка C5 BCM с торца: 48 гнёзд. Контакт 36 (K619) выделен — нижний длинный ряд, третий слева. Контакт 48 (задний дворник, тот же цвет провода) и контакт 25 (шина CAN) отмечены как не путать." style="min-width:640px;max-width:900px;margin:0 auto">
+<rect x="70" y="30" width="660" height="230" rx="10" fill="var(--panel)" stroke="var(--ink)" stroke-width="2"/>
+<rect x="30" y="80" width="46" height="130" rx="18" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.6"/>
+<text class="ts" x="34" y="232">фиксатор</text>
+<line x1="110" y1="146" x2="720" y2="146" stroke="var(--muted)" stroke-dasharray="4 4"/>
+<rect x="636.0" y="57.0" width="58" height="26" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="665.0" y="74.0" style="font-size:11px;font-weight:700">1</text>
+<rect x="566.0" y="57.0" width="58" height="26" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="595.0" y="74.0" style="font-size:11px;font-weight:700">2</text>
+<rect x="496.0" y="57.0" width="58" height="26" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="525.0" y="74.0" style="font-size:11px;font-weight:700">3</text>
+<rect x="426.0" y="57.0" width="58" height="26" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="455.0" y="74.0" style="font-size:11px;font-weight:700">4</text>
+<rect x="340.5" y="69.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="357.5" y="84.0" style="font-size:11px;font-weight:700">5</text>
+<rect x="299.0" y="69.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="316.0" y="84.0" style="font-size:11px;font-weight:700">6</text>
+<rect x="257.5" y="69.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="274.5" y="84.0" style="font-size:11px;font-weight:700">7</text>
+<rect x="216.0" y="69.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="233.0" y="84.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">8</text>
+<rect x="174.5" y="69.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="191.5" y="84.0" style="font-size:11px;font-weight:700">9</text>
+<rect x="133.0" y="69.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="150.0" y="84.0" style="font-size:11px;font-weight:700">10</text>
+<rect x="673.0" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="690.0" y="124.0" style="font-size:11px;font-weight:700">11</text>
+<rect x="631.5" y="109.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="648.5" y="124.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">12</text>
+<rect x="590.0" y="109.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="607.0" y="124.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">13</text>
+<rect x="548.5" y="109.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="565.5" y="124.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">14</text>
+<rect x="507.0" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="524.0" y="124.0" style="font-size:11px;font-weight:700">15</text>
+<rect x="465.5" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="482.5" y="124.0" style="font-size:11px;font-weight:700">16</text>
+<rect x="424.0" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="441.0" y="124.0" style="font-size:11px;font-weight:700">17</text>
+<rect x="382.5" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="399.5" y="124.0" style="font-size:11px;font-weight:700">18</text>
+<rect x="341.0" y="109.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="358.0" y="124.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">19</text>
+<rect x="299.5" y="109.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="316.5" y="124.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">20</text>
+<rect x="258.0" y="109.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="275.0" y="124.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">21</text>
+<rect x="216.5" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="233.5" y="124.0" style="font-size:11px;font-weight:700">22</text>
+<rect x="175.0" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="192.0" y="124.0" style="font-size:11px;font-weight:700">23</text>
+<rect x="133.5" y="109.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="150.5" y="124.0" style="font-size:11px;font-weight:700">24</text>
+<rect x="673.0" y="161.0" width="34" height="22" rx="3" fill="color-mix(in srgb, var(--dead) 14%, var(--panel))" stroke="var(--dead)" stroke-width="2"/>
+<text class="mid t-dead" x="690.0" y="176.0" style="font-size:11px;font-weight:700">25</text>
+<rect x="631.5" y="161.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="648.5" y="176.0" style="font-size:11px;font-weight:700">26</text>
+<rect x="590.0" y="161.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="607.0" y="176.0" style="font-size:11px;font-weight:700">27</text>
+<rect x="548.5" y="161.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="565.5" y="176.0" style="font-size:11px;font-weight:700">28</text>
+<rect x="507.0" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="524.0" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">29</text>
+<rect x="465.5" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="482.5" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">30</text>
+<rect x="424.0" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="441.0" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">31</text>
+<rect x="382.5" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="399.5" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">32</text>
+<rect x="341.0" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="358.0" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">33</text>
+<rect x="299.5" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="316.5" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">34</text>
+<rect x="258.0" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="275.0" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">35</text>
+<rect x="216.5" y="161.0" width="34" height="22" rx="3" fill="color-mix(in srgb, var(--sus) 30%, var(--panel))" stroke="var(--sus)" stroke-width="3"/>
+<text class="mid t-sus" x="233.5" y="176.0" style="font-size:11px;font-weight:700">36</text>
+<rect x="175.0" y="161.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="192.0" y="176.0" style="font-size:11px;font-weight:700">37</text>
+<rect x="133.5" y="161.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="150.5" y="176.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">38</text>
+<rect x="636.0" y="207.0" width="58" height="26" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="665.0" y="224.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">39</text>
+<rect x="566.0" y="207.0" width="58" height="26" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="595.0" y="224.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">40</text>
+<rect x="496.0" y="207.0" width="58" height="26" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="525.0" y="224.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">41</text>
+<rect x="426.0" y="207.0" width="58" height="26" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="455.0" y="224.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">42</text>
+<rect x="340.5" y="201.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="357.5" y="216.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">43</text>
+<rect x="299.0" y="201.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="316.0" y="216.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">44</text>
+<rect x="257.5" y="201.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="274.5" y="216.0" style="font-size:11px;font-weight:700">45</text>
+<rect x="216.0" y="201.0" width="34" height="22" rx="3" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="mid " x="233.0" y="216.0" style="font-size:11px;font-weight:700" style="fill:var(--muted)">46</text>
+<rect x="174.5" y="201.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+<text class="mid " x="191.5" y="216.0" style="font-size:11px;font-weight:700">47</text>
+<rect x="133.0" y="201.0" width="34" height="22" rx="3" fill="var(--panel)" stroke="var(--sus)" stroke-width="2" stroke-dasharray="4 3"/>
+<text class="mid t-sus" x="150.0" y="216.0" style="font-size:11px;font-weight:700">48</text>
+<circle cx="233.5" cy="172" r="26" fill="none" stroke="var(--sus)" stroke-width="3"/>
+<line x1="252" y1="192" x2="300" y2="268" stroke="var(--sus)" stroke-width="1.6"/>
+<text class="tb t-sus" x="300" y="284">36 · K619 BN/OG — главный замер</text>
+<line x1="150" y1="223" x2="120" y2="270" stroke="var(--sus)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text class="ts t-sus" x="60" y="284">48 · W12 BN/OG — не путать</text>
+<line x1="700" y1="162" x2="745" y2="20" stroke="var(--dead)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text class="ts t-dead" x="750" y="14" text-anchor="end">25 · шина CAN — не нагружать</text>
+</svg>
+  <figcaption>Раскладка по заводскому рисунку колодки C5/E (D3806E): подписаны контакты 1, 4, 10, 11, 24, 25, 38, 39, 42, 48, остальные номера восстановлены по рядам. Сверяйте с цифрами на самой колодке. <b>Контакт 36</b> — нижний длинный ряд, третий слева. Рядом, в коротком ряду под ним, <b>контакт 48</b> — такой же коричнево-оранжевый провод заднего дворника. Крайний правый в том же ряду <b>контакт 25</b> — шина CAN, его не нагружать.</figcaption>
+</figure>
+</section>
+
+<section class="panel figure-wrap" aria-label="Схема цепи K619">
+<figure>
+<svg class="d" viewBox="0 0 1060 360" role="img" aria-label="Цепь управления реле: BCM C5-36 по проводу K619 BN/OG к колодке PDC C7-12 и гнезду 85 реле K15; масса катушки через C1-12 на G909A. Для сравнения: BCM C1-18 по проводу K617 к реле K08, которое работает. Точки замера 1–4.">
+  <defs>
+    <path id="k619" d="M200 90 H560"/>
+    <path id="k617" d="M200 260 H560"/>
+  </defs>
+  <rect class="box" x="30" y="40" width="170" height="270" rx="8"/>
+  <text class="tb mid" x="115" y="72">BCM</text>
+  <text class="ts mid" x="115" y="90">правая кик-панель</text>
+  <text class="tc" x="44" y="128">C5/E-36 →</text>
+  <text class="ts" x="44" y="144">выход на K15</text>
+  <text class="tc" x="44" y="236">C1/A-18 →</text>
+  <text class="ts" x="44" y="252">выход на K08</text>
+
+  <use href="#k619" class="halo-sus"/><use href="#k619" class="w c-brown"/><use href="#k619" class="tr c-orange"/>
+  <text class="tc" x="250" y="80">K619 BN/OG 0,50</text>
+  <text class="ts" x="250" y="112">жгут Body: салон → моторный отсек</text>
+
+  <use href="#k617" class="halo-ok"/><use href="#k617" class="w c-brown"/>
+  <text class="tc" x="250" y="250">K617 BN 0,50</text>
+  <text class="ts" x="250" y="282">работает: F86 под напряжением</text>
+
+  <rect class="pdc" x="560" y="30" width="470" height="310" rx="10"/>
+  <text class="tb" x="1016" y="52" text-anchor="end">PDC</text>
+  <rect class="strip" x="560" y="74" width="54" height="32" rx="4"/>
+  <text class="tc mid" x="587" y="94">C7-12</text>
+  <rect class="strip" x="560" y="244" width="54" height="32" rx="4"/>
+  <text class="tc mid" x="587" y="264">C6-10</text>
+
+  <path class="ln" d="M614 90 H700"/>
+  <rect class="box-sus" x="700" y="60" width="150" height="62" rx="5"/>
+  <text class="tb mid" x="775" y="86">K15 · Run 1</text>
+  <text class="ts mid" x="775" y="104">85: нет сигнала</text>
+  <path class="ln" d="M775 122 V160 H930"/>
+  <text class="ts" x="790" y="152">86 → C1-12 → Z909 → G909A</text>
+  <path class="gnd" d="M930 160 V170 M918 170 H942 M923 176 H937 M928 182 H932"/>
+  <text class="ts" x="860" y="80">выход 87 →</text>
+  <text class="ts" x="860" y="94">обогрев, BSM,</text>
+  <text class="ts" x="860" y="108">камера, K16, K12</text>
+
+  <path class="ln" d="M614 260 H700"/>
+  <rect class="box-ok" x="700" y="230" width="150" height="62" rx="5"/>
+  <text class="tb mid" x="775" y="256">K08 · Run/Start</text>
+  <text class="ts mid t-ok" x="775" y="274">работает</text>
+
+  <a class="cp" href="#s1" aria-label="Шаг 1: контрольный замер C1-18"><circle cx="215" cy="232" r="13"/><text x="215" y="232">1</text></a>
+  <a class="cp" href="#s2" aria-label="Шаг 2: выход BCM C5-36"><circle cx="215" cy="62" r="13"/><text x="215" y="62">2</text></a>
+  <a class="cp" href="#s3" aria-label="Шаг 3: колодка C7-12"><circle cx="587" cy="54" r="13"/><text x="587" y="54">3</text></a>
+  <a class="cp" href="#s4" aria-label="Шаг 4: проверка провода"><circle cx="400" cy="62" r="13"/><text x="400" y="62">4</text></a>
+</svg>
+<figcaption>Оба выхода BCM устроены одинаково: K617 включает реле K08, и оно работает; K619 должен включать K15, но на его катушке сигнала нет. Номера — шаги ниже.</figcaption>
+</figure>
+</section>
+
+<section class="panel figure-wrap" aria-labelledby="route-h">
+<figure>
+  <h2 id="route-h" style="padding:4px 4px 0">Как колодка C5 связана с C7</h2>
+<svg class="d" viewBox="0 0 1000 500" role="img" aria-label="Вид сверху: BCM у правой кик-панели в салоне, колодка C5 контакт 36; провод K619 жгута Body идёт через моторный щит к блоку PDC в моторном отсеке, колодка C7 контакт 12, и дальше внутри блока к гнезду 85 реле K15. Передняя левая часть отмечена как зона давней аварии.">
+  <defs>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="var(--dead)" stroke-width="2" stroke-opacity=".35"/>
+    </pattern>
+    <path id="route" d="M300 250 H330 C360 250 360 200 380 175 C395 155 410 150 430 150"/>
+  </defs>
+
+  <!-- кузов, вид сверху: перед слева -->
+  <rect x="40" y="60" width="920" height="380" rx="70" fill="none" stroke="var(--muted)" stroke-width="2"/>
+  <path d="M40 330 Q40 440 140 440 H210 V330 Z" fill="url(#hatch)" stroke="var(--dead)" stroke-opacity=".5" stroke-dasharray="4 4"/>
+  <text class="ts t-dead" x="52" y="470">переднее левое крыло: зона давней аварии</text>
+  <line x1="350" y1="64" x2="350" y2="436" stroke="var(--muted)" stroke-width="2" stroke-dasharray="8 6"/>
+  <text class="ts" x="358" y="430">моторный щит</text>
+  <text class="ts" x="60" y="52">ПЕРЕД</text>
+  <text class="ts" x="900" y="52">ЗАД</text>
+  <text class="ts" x="560" y="80">правая сторона (пассажир)</text>
+  <text class="ts" x="560" y="430">левая сторона (водитель)</text>
+  <text class="tb" x="70" y="100" style="fill:var(--muted)">моторный отсек</text>
+  <text class="tb" x="620" y="250" style="fill:var(--muted)">салон</text>
+
+  <!-- PDC -->
+  <rect class="pdc" x="150" y="205" width="150" height="95" rx="8" style="fill:var(--panel)"/>
+  <text class="tb mid" x="225" y="232">PDC</text>
+  <text class="ts mid" x="225" y="250">рядом с АКБ</text>
+  <text class="ts mid" x="225" y="265">сторона — по месту</text>
+  <rect class="strip" x="270" y="240" width="40" height="22" rx="3"/>
+  <text class="tc mid" x="290" y="256">C7</text>
+  <text class="ts" x="160" y="320">C7-12 → гнездо 85 реле K15</text>
+  <text class="ts" x="160" y="335">(внутри блока)</text>
+
+  <!-- BCM -->
+  <rect class="box" x="430" y="100" width="150" height="90" rx="8"/>
+  <text class="tb mid" x="505" y="128">BCM</text>
+  <text class="ts mid" x="505" y="146">правая кик-панель</text>
+  <rect x="430" y="139" width="34" height="22" rx="3" fill="var(--ink)"/>
+  <text class="tc mid" x="447" y="155" style="fill:var(--panel)">C5</text>
+  <text class="ts" x="470" y="178">C5-36 = K619</text>
+
+  <!-- провод K619 -->
+  <use href="#route" class="halo-sus"/><use href="#route" class="w c-brown"/><use href="#route" class="tr c-orange"/>
+  <circle cx="350" cy="234" r="9" fill="var(--panel)" stroke="var(--ink)" stroke-width="2"/>
+  <text class="ts" x="140" y="166">проход жгута Body через щит</text>
+  <text class="ts" x="140" y="181">(точное место в документах не указано)</text>
+  <text class="tc" x="600" y="130">K619 BN/OG 0,50</text>
+  <text class="ts" x="600" y="146">один провод жгута Body</text>
+  <text class="ts" x="600" y="160">промежуточных разъёмов в документах нет</text>
+
+  <!-- точки -->
+  <a class="cp" href="#s2" aria-label="Шаг 2: выход BCM C5-36"><circle cx="420" cy="120" r="13"/><text x="420" y="120">2</text></a>
+  <a class="cp" href="#s3" aria-label="Шаг 3: колодка C7-12"><circle cx="290" cy="225" r="13"/><text x="290" y="225">3</text></a>
+  <a class="cp" href="#s4" aria-label="Шаг 4: прозвонка провода"><circle cx="400" cy="250" r="13"/><text x="400" y="250">4</text></a>
+</svg>
+  <figcaption>Схема-ориентир, не масштаб. Обе колодки (C5 у BCM и C7 у блока PDC) принадлежат одному жгуту Body, поэтому K619, скорее всего, сплошной провод: из салона через моторный щит к блоку PDC. Где именно жгут проходит щит и где стоит PDC — смотрите по месту. Если блок PDC у левого крыла, провод проходит рядом с зоной аварии.</figcaption>
+
+<svg class="d" viewBox="0 0 1000 250" role="img" aria-label="Прозвонка провода K619: колодка C5 отсоединена от BCM, реле K15 вынуто; мультиметр в режиме Ом между контактом 36 колодки C5 и гнездом 85 — меньше 3 Ом; между гнездом 85 и массой — обрыв.">
+  <rect class="box" x="40" y="70" width="210" height="80" rx="8"/>
+  <text class="tb" x="54" y="96">Колодка C5</text>
+  <text class="ts" x="54" y="114">снята с BCM, контакт 36</text>
+  <text class="ts" x="54" y="130">со стороны жгута</text>
+  <rect class="pdc" x="740" y="70" width="220" height="80" rx="8" style="fill:var(--panel)"/>
+  <text class="tb" x="754" y="96">PDC: гнездо 85 K15</text>
+  <text class="ts" x="754" y="114">реле K15 вынуто</text>
+  <text class="ts" x="754" y="130">через колодку C7-12</text>
+  <path class="w c-brown" d="M250 110 H740" style="stroke-dasharray:2 0; opacity:.55"/>
+  <path class="tr c-orange" d="M250 110 H740" style="opacity:.55"/>
+  <text class="ts mid" x="495" y="132">K619 внутри жгута</text>
+
+  <rect class="box" x="440" y="10" width="110" height="44" rx="6"/>
+  <text class="tb mid" x="495" y="30">Ω</text>
+  <text class="ts mid" x="495" y="46">мультиметр</text>
+  <path class="ln" d="M440 32 H200 V70 M550 32 H850 V70" style="stroke-dasharray:5 4"/>
+  <text class="ts" x="560" y="26">норма: меньше 3 Ом = провод цел</text>
+
+  <rect class="box" x="560" y="182" width="110" height="44" rx="6"/>
+  <text class="tb mid" x="615" y="202">Ω</text>
+  <text class="ts mid" x="615" y="218">мультиметр</text>
+  <path class="ln" d="M670 204 H850 V150 M560 204 H480 V214" style="stroke-dasharray:5 4"/>
+  <path class="gnd" d="M466 214 H494 M471 220 H489 M476 226 H484"/>
+  <text class="ts" x="380" y="244">масса кузова</text>
+  <text class="ts" x="690" y="240">норма: обрыв (OL) = нет замыкания на массу</text>
+</svg>
+  <figcaption>Шаг 4: зажигание OFF, реле K15 вынуто, колодка C5 отсоединена от BCM. Сверху — проверка, что провод цел; снизу — что он не замкнут на кузов. До одного из концов понадобится длинный провод-удлинитель к щупу: от салона до моторного отсека.</figcaption>
+</figure>
+</section>
+
+<section class="panel warn" aria-labelledby="safe-h">
+  <h2 id="safe-h">Осторожно с BCM</h2>
+  <ul>
+    <li>Контакты у BCM стоят плотно. Щуп ведите строго вдоль провода со стороны проводов и не замыкайте соседние контакты: замыкание выхода может повредить блок.</li>
+    <li>Тонкий щуп с изолированным стержнем лучше голой иглы. Изоляцию не прокалывать, клеммы не распирать.</li>
+    <li>На колодке C5 есть провода шины CAN (например, контакт 25, коричневый): к ним не подключать нагрузку и лампу.</li>
+    <li>Колодки отсоединять только при выключенном зажигании, ключ подальше от машины. Надёжнее перед этим снять минусовую клемму АКБ.</li>
+  </ul>
+</section>
+
+<section class="steps" aria-labelledby="steps-h">
+  <h2 id="steps-h">Как проверять</h2>
+
+  <article class="panel step" id="s1">
+    <div class="step-h"><span class="num">1</span><h3>Контрольный замер: C1, контакт 18 (K617)</h3></div>
+    <dl>
+      <dt>Щупы</dt><dd>чёрный — минус АКБ; красный — провод K617 (коричневый) у контакта 18 колодки C1 со стороны проводов</dd>
+      <dt>Зажигание</dt><dd>RUN</dd>
+      <dt>Норма</dt><dd>напряжение АКБ, около 12 В</dd>
+    </dl>
+    <div class="if">
+      <div><b>12 В</b> — метод правильный, BCM видит зажигание. Переходите к шагу 2.</div>
+      <div><b>0 В</b> — щуп не касается клеммы или не тот контакт. Найдите правильную точку, прежде чем мерить C5-36.</div>
+    </div>
+  </article>
+
+  <article class="panel step" id="s2">
+    <div class="step-h"><span class="num">2</span><h3>Выход BCM: C5, контакт 36 (K619)</h3></div>
+    <dl>
+      <dt>Условия</dt><dd>реле K15 <b>вставлено</b> в блок PDC</dd>
+      <dt>Щупы</dt><dd>чёрный — минус АКБ; красный — провод K619 (коричневый с оранжевой полосой) у контакта 36 колодки C5 со стороны проводов</dd>
+      <dt>Зажигание</dt><dd>сначала ACC, затем RUN</dd>
+      <dt>Норма</dt><dd>ACC: меньше 3,5 В. RUN: напряжение АКБ, около 12 В</dd>
+    </dl>
+    <div class="if">
+      <div><b>RUN = 12 В</b> — BCM сигнал выдаёт. Виноваты провод K619 или блок PDC: шаг 3.</div>
+      <div><b>RUN = 0 В</b> — BCM сигнал не выдаёт. Прежде чем винить BCM — шаг 4: проверить провод на замыкание.</div>
+      <div><b>В ACC больше 3,5 В</b> — на провод попадает плюс откуда-то ещё (замыкание на питание). Это отдельная неисправность цепи.</div>
+    </div>
+  </article>
+
+  <article class="panel step" id="s3">
+    <div class="step-h"><span class="num">3</span><h3>Если у BCM 12 В: колодка PDC C7, контакт 12</h3></div>
+    <dl>
+      <dt>Условия</dt><dd>реле K15 вставлено, зажигание RUN</dd>
+      <dt>Щупы</dt><dd>минус АКБ / провод K619 у контакта 12 зелёной колодки C7 со стороны проводов (<a href="https://serjout.github.io/durango-2018-f85/diagrams/pdc-c7-connector.html">где C7 и контакт 12</a>)</dd>
+    </dl>
+    <div class="if">
+      <div><b>12 В у C7</b> — провод цел, обрыв внутри блока PDC: клемма 12 колодки или дорожка к гнезду реле.</div>
+      <div><b>0 В у C7</b> — оборван провод K619 между BCM и PDC. Ищите повреждение жгута, особенно там, где он проходит в моторный отсек.</div>
+    </div>
+  </article>
+
+  <article class="panel step" id="s4">
+    <div class="step-h"><span class="num">4</span><h3>Если у BCM 0 В: проверить провод K619 без питания</h3></div>
+    <dl>
+      <dt>Подготовка</dt><dd>зажигание OFF, реле K15 вынуто, колодка C5 отсоединена от BCM (лучше снять минус АКБ)</dd>
+      <dt>Замыкание</dt><dd>режим Ом: от гнезда 85 реле K15 до массы кузова. Норма — <b>обрыв (OL)</b></dd>
+      <dt>Целостность</dt><dd>режим Ом: от контакта 36 отсоединённой колодки C5 до гнезда 85 реле K15. Норма — <b>меньше 3 Ом</b>. Нужен длинный провод-удлинитель к щупу</dd>
+    </dl>
+    <div class="if">
+      <div><b>До массы низкое сопротивление</b> — замыкание K619 на массу. BCM мог сам отключить выход для защиты. Найдите и устраните замыкание; после этого выход может заработать без замены BCM.</div>
+      <div><b>Целостность больше 3 Ом</b> — провод оборван или плохой контакт в колодке C5 или C7.</div>
+      <div><b>Провод цел и без замыкания</b> — неисправен выход BCM. Дальше нужен сканер: коды BCM (B2121), сброс кодов и повторная проверка. Ремонт или замена BCM обычно требуют программирования дилерским сканером — уточните в мастерской.</div>
+    </div>
+  </article>
+</section>
+
+<section class="panel pad" aria-labelledby="sum-h">
+  <h2 id="sum-h">Итог по результатам</h2>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>BCM C5-36</th><th>PDC C7-12</th><th>Провод K619</th><th>Вывод</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip chip-ok">12 В</span></td><td><span class="chip chip-ok">12 В</span></td><td>—</td><td>Обрыв внутри блока PDC (клемма 12 или дорожка к гнезду 85)</td></tr>
+      <tr><td><span class="chip chip-ok">12 В</span></td><td><span class="chip chip-dead">0 В</span></td><td>—</td><td>Обрыв провода K619 между BCM и PDC</td></tr>
+      <tr><td><span class="chip chip-dead">0 В</span></td><td>—</td><td>замыкание на массу</td><td>Найти замыкание; BCM мог отключить выход защитой</td></tr>
+      <tr><td><span class="chip chip-dead">0 В</span></td><td>—</td><td>цел, без замыкания</td><td>Неисправен выход BCM: сканер, затем ремонт или замена с программированием</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="panel note" aria-labelledby="known-h">
+  <h2 id="known-h">Что уже известно</h2>
+  <ul>
+    <li>Гнездо 85 реле K15 в RUN — 0 В (мерили с вынутым реле). Гнездо 30 — 12 В, гнездо 86 — 0,3 Ом до массы. Подмена реле не помогла.</li>
+    <li>BCM в целом работает: включает реле K08 (F86 под напряжением) и реле дворников.</li>
+    <li>После давней аварии сканер показывал ошибки BCM, в том числе по датчикам слепых зон. Номера кодов неизвестны.</li>
+  </ul>
+</section>
+
+<footer>
+  <div>Источник: заводская сервисная информация FCA для 2018 Durango 5.7 AWD (зеркало LEMON Manuals): таблицы «Module-Body Control C5/E (D3806E)» и «C1/A (D3806A)», «Power Distribution Center C7 (D6630G)», процедура BCM B2121-15, схема Power Distribution 1/4.</div>
+  <div>Порог «меньше 3,5 В в ACC» и «меньше 3 Ом» — из процедуры B2121-15. Описание доступа к BCM (накладки, клипсы) — общее, не заводское.</div>
+</footer>
+
+</main>
+</body>
+</html>

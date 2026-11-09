@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Колодка PDC C7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Та же система, что у схемы цепей F85: бумага, чернила, статусы; колодка C7 зелёная, как в жизни */
+  --bg: #f3f4f1;
+  --panel: #ffffff;
+  --ink: #1d2328;
+  --muted: #5d6770;
+  --rule: #c9cfd3;
+  --accent: #1f62d6;
+  --dead: #c62828;
+  --ok: #2e7d32;
+  --sus: #b86e00;
+  --conn: #3f8f5a;
+  --w-pink: #e0679a;
+  --w-yellow: #dcb800;
+  --w-green: #2f9e55;
+  --w-brown: #8b5a2b;
+  --w-orange: #f08c1e;
+  --w-db: #2a4fb0;
+  --w-tan: #c9a77c;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13171b; --panel: #1b2126; --ink: #e5e9ec; --muted: #98a3ac; --rule: #34404a;
+    --accent: #5b9bff; --dead: #ff6f61; --ok: #62c370; --sus: #f0a630; --conn: #5fb57c;
+    --w-db: #5f84e8; --w-brown: #b07a45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #13171b; --panel: #1b2126; --ink: #e5e9ec; --muted: #98a3ac; --rule: #34404a;
+  --accent: #5b9bff; --dead: #ff6f61; --ok: #62c370; --sus: #f0a630; --conn: #5fb57c;
+  --w-db: #5f84e8; --w-brown: #b07a45;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body); }
+main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 64px; display: grid; gap: 26px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; }
+h2 { font-size: 22px; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 76ch; }
+a { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+code, .mono { font-family: var(--mono); font-size: .92em; }
+
+header { display: grid; gap: 10px; }
+.meta { color: var(--muted); font-size: 14px; }
+.lead { font-size: 17px; max-width: 82ch; }
+
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; }
+.pad { padding: 16px 18px; display: grid; gap: 12px; }
+.figure-wrap { padding: 12px; overflow-x: auto; }
+figure { margin: 0; display: grid; gap: 10px; }
+figcaption { color: var(--muted); font-size: 14px; max-width: 92ch; padding: 0 4px; }
+
+.callout { border-left: 5px solid var(--sus); padding: 14px 18px; display: grid; gap: 8px; }
+.callout ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+
+/* SVG */
+svg.d { width: 100%; height: auto; display: block; }
+svg.face { min-width: 640px; max-width: 900px; margin: 0 auto; }
+svg.circ { min-width: 980px; }
+.d text { font-family: var(--display); fill: var(--ink); font-size: 12.5px; }
+.d .ts { font-size: 11px; fill: var(--muted); }
+.d .tb { font-weight: 700; font-size: 14px; }
+.d .tc { font-family: var(--mono); font-size: 11px; }
+.d .mid { text-anchor: middle; }
+.d .end { text-anchor: end; }
+.d .t-dead { fill: var(--dead); }
+.d .t-ok { fill: var(--ok); }
+.d .t-sus { fill: var(--sus); }
+.d .t-conn { fill: var(--conn); }
+
+.d .shell { fill: color-mix(in srgb, var(--conn) 16%, var(--panel)); stroke: var(--conn); stroke-width: 2.4; }
+.d .cav { fill: var(--panel); stroke: var(--ink); stroke-width: 1.3; }
+.d .cav-none { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.d .cav-key { fill: color-mix(in srgb, var(--dead) 18%, var(--panel)); stroke: var(--dead); stroke-width: 2.6; }
+.d .cav-ctl { fill: color-mix(in srgb, var(--sus) 22%, var(--panel)); stroke: var(--sus); stroke-width: 2.6; }
+.d .cav-gnd { fill: color-mix(in srgb, var(--ink) 14%, var(--panel)); stroke: var(--ink); stroke-width: 2; }
+.d .cav-work { fill: color-mix(in srgb, var(--ok) 16%, var(--panel)); stroke: var(--ok); stroke-width: 2; }
+.d .cav-side { fill: color-mix(in srgb, var(--accent) 12%, var(--panel)); stroke: var(--accent); stroke-width: 1.6; }
+.d .pn { font-weight: 700; font-size: 12px; text-anchor: middle; }
+.d .pc { font-family: var(--mono); font-size: 9.5px; text-anchor: middle; fill: var(--muted); }
+.d .cav-none + .pn { fill: var(--muted); font-weight: 400; }
+
+.d .pdc { fill: var(--bg); stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 7 5; }
+.d .box { fill: var(--panel); stroke: var(--ink); stroke-width: 1.4; }
+.d .box-dead { fill: var(--panel); stroke: var(--dead); stroke-width: 2.4; }
+.d .box-ok { fill: var(--panel); stroke: var(--ok); stroke-width: 2; }
+.d .relay-sus { fill: color-mix(in srgb, var(--sus) 14%, var(--panel)); stroke: var(--sus); stroke-width: 3; }
+.d .fuse { fill: var(--panel); stroke: var(--ink); stroke-width: 1.4; }
+.d .fuse-q { fill: color-mix(in srgb, var(--sus) 10%, var(--panel)); stroke: var(--sus); stroke-width: 2; stroke-dasharray: 5 3; }
+.d .strip { fill: color-mix(in srgb, var(--conn) 22%, var(--panel)); stroke: var(--conn); stroke-width: 2.4; }
+.d .spin { fill: var(--panel); stroke: var(--conn); stroke-width: 1.6; }
+.d .dot { fill: var(--ink); }
+.d .ln { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.d .run1 { fill: none; stroke: var(--sus); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.d .w { fill: none; stroke-width: 4.5; stroke-linejoin: round; }
+.d .tr { fill: none; stroke-width: 4.5; stroke-dasharray: 9 9; stroke-linejoin: round; }
+.d .halo-dead { fill: none; stroke: var(--dead); stroke-opacity: .2; stroke-width: 15; stroke-linecap: round; stroke-linejoin: round; }
+.d .halo-ok { fill: none; stroke: var(--ok); stroke-opacity: .2; stroke-width: 15; stroke-linecap: round; stroke-linejoin: round; }
+.d .c-pink { stroke: var(--w-pink); }
+.d .c-yellow { stroke: var(--w-yellow); }
+.d .c-green { stroke: var(--w-green); }
+.d .c-brown { stroke: var(--w-brown); }
+.d .c-orange { stroke: var(--w-orange); }
+.d .c-db { stroke: var(--w-db); }
+.d .c-tan { stroke: var(--w-tan); }
+.d .c-ink { stroke: var(--ink); }
+.d .gnd { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+.d .cp circle { fill: var(--accent); stroke: var(--panel); stroke-width: 2.5; }
+.d .cp text { fill: #fff; font-family: var(--display); font-weight: 700; font-size: 13px; text-anchor: middle; dominant-baseline: central; }
+.d .cp:hover circle, .d .cp:focus-visible circle { fill: var(--sus); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px 20px; font-size: 14px; color: var(--muted); padding: 2px 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 26px; height: 14px; border-radius: 3px; display: inline-block; border: 2px solid; }
+.sw-key { border-color: var(--dead); background: color-mix(in srgb, var(--dead) 18%, transparent); }
+.sw-ctl { border-color: var(--sus); background: color-mix(in srgb, var(--sus) 22%, transparent); }
+.sw-gnd { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 14%, transparent); }
+.sw-work { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 16%, transparent); }
+.sw-side { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.sw-none { border: 1px dashed var(--muted); }
+.sw-cp { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 12px/20px var(--display); text-align: center; }
+
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--display); font-weight: 600; color: var(--muted); white-space: nowrap; }
+td.pin { font: 700 15px var(--display); white-space: nowrap; }
+.chip { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 12.5px; font-weight: 600; white-space: nowrap; margin: 1px 2px 1px 0; }
+.chip-dead { background: color-mix(in srgb, var(--dead) 16%, transparent); color: var(--dead); }
+.chip-sus { background: color-mix(in srgb, var(--sus) 18%, transparent); color: var(--sus); }
+.chip-ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.chip-any { background: color-mix(in srgb, var(--muted) 16%, transparent); color: var(--muted); }
+
+.checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.check { padding: 14px 16px; display: grid; gap: 8px; align-content: start; scroll-margin-top: 16px; }
+.check:target { border-color: var(--sus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sus) 35%, transparent); }
+.check-h { display: flex; gap: 10px; align-items: center; }
+.num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 14px/28px var(--display); text-align: center; }
+.check dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 3px 10px; font-size: 14px; }
+.check dt { color: var(--muted); }
+.check dd { margin: 0; }
+.check .if { font-size: 14px; display: grid; gap: 3px; padding-top: 6px; border-top: 1px solid var(--rule); }
+.warn { border-left: 5px solid var(--dead); padding: 14px 18px; display: grid; gap: 6px; }
+.warn h2 { color: var(--dead); font-size: 19px; }
+.warn ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+footer { color: var(--muted); font-size: 14px; display: grid; gap: 6px; }
+@media (max-width: 420px) { main { padding: 20px 16px 48px; } .checks { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Колодка PDC C7</h1>
+  <div class="meta">Dodge Durango R/T 2018 · разъём D6630G, жгут Body, зелёный, female, PN 7287-8883-60 · по заводской таблице «Power Distribution Center C7 Connector End View» и схемам 2018 WD</div>
+  <p class="lead">C7 — единственный физический разъём, через который проходят сразу четыре нужные цепи: питание BSM и камеры (13), питание мотора вентилятора (21), масса реле вентилятора K16 (16) и сигнал BCM на реле K15 (12). После аварии и ремонта в передней части её стоит проверить первой. Синие буквы на схемах — проверки ниже. Общая схема цепей — <a href="https://serjout.github.io/durango-2018-f85/diagrams/f85-power-chains.html">здесь</a>.</p>
+</header>
+
+<section class="panel figure-wrap" aria-label="Вид колодки C7">
+<figure>
+<svg class="d face" viewBox="0 0 760 300" role="img" aria-label="Колодка C7 со стороны контактов: 42 гнезда в четыре ряда. Выделены 12 (K619, управление K15), 13 (F923, BSM и камера), 16 (масса K16), 21 (питание вентилятора), а также контакты дворников 18, 31, 37 как индикатор того, что колодка на месте.">
+  <rect class="shell" x="36" y="46" width="688" height="210" rx="10"/>
+  <rect class="shell" x="330" y="30" width="100" height="18" rx="4"/>
+  <rect class="shell" x="330" y="254" width="100" height="18" rx="4"/>
+  <text class="ts mid" x="380" y="43">защёлка</text>
+  <line x1="44" y1="151" x2="716" y2="151" stroke="var(--conn)" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Ряд 1: 1..21 нечётные, справа налево -->
+  <rect class="cav" x="652" y="63" width="56" height="34" rx="4"/><text class="pn" x="680" y="78">1</text><text class="pc" x="680" y="91">A906</text>
+  <rect class="cav-side" x="595" y="65" width="50" height="30" rx="4"/><text class="pn" x="620" y="78">3</text><text class="pc" x="620" y="90">C51</text>
+  <rect class="cav" x="535" y="65" width="50" height="30" rx="4"/><text class="pn" x="560" y="78">5</text><text class="pc" x="560" y="90">F983</text>
+  <rect class="cav" x="475" y="65" width="50" height="30" rx="4"/><text class="pn" x="500" y="78">7</text><text class="pc" x="500" y="90">F985</text>
+  <rect class="cav" x="415" y="65" width="50" height="30" rx="4"/><text class="pn" x="440" y="78">9</text><text class="pc" x="440" y="90">F986</text>
+  <rect class="cav" x="355" y="65" width="50" height="30" rx="4"/><text class="pn" x="380" y="78">11</text><text class="pc" x="380" y="90">A195</text>
+  <rect class="cav-key" x="295" y="65" width="50" height="30" rx="4"/><text class="pn t-dead" x="320" y="78">13</text><text class="pc" x="320" y="90">F923</text>
+  <rect class="cav-side" x="235" y="65" width="50" height="30" rx="4"/><text class="pn" x="260" y="78">15</text><text class="pc" x="260" y="90">F928</text>
+  <rect class="cav-side" x="175" y="65" width="50" height="30" rx="4"/><text class="pn" x="200" y="78">17</text><text class="pc" x="200" y="90">F919</text>
+  <rect class="cav-side" x="115" y="65" width="50" height="30" rx="4"/><text class="pn" x="140" y="78">19</text><text class="pc" x="140" y="90">F921</text>
+  <rect class="cav-key" x="52" y="63" width="56" height="34" rx="4"/><text class="pn t-dead" x="80" y="78">21</text><text class="pc" x="80" y="91">C7 DB</text>
+
+  <!-- Ряд 2: 2..20 чётные -->
+  <rect class="cav-none" x="625" y="107" width="50" height="30" rx="4"/><text class="pn" x="650" y="126">2</text>
+  <rect class="cav-gnd" x="565" y="107" width="50" height="30" rx="4"/><text class="pn" x="590" y="120">4</text><text class="pc" x="590" y="132">Z919</text>
+  <rect class="cav" x="505" y="107" width="50" height="30" rx="4"/><text class="pn" x="530" y="120">6</text><text class="pc" x="530" y="132">P307</text>
+  <rect class="cav-side" x="445" y="107" width="50" height="30" rx="4"/><text class="pn" x="470" y="120">8</text><text class="pc" x="470" y="132">F931</text>
+  <rect class="cav" x="385" y="107" width="50" height="30" rx="4"/><text class="pn" x="410" y="120">10</text><text class="pc" x="410" y="132">T110</text>
+  <rect class="cav-ctl" x="325" y="107" width="50" height="30" rx="4"/><text class="pn t-sus" x="350" y="120">12</text><text class="pc" x="350" y="132">K619</text>
+  <rect class="cav-none" x="265" y="107" width="50" height="30" rx="4"/><text class="pn" x="290" y="126">14</text>
+  <rect class="cav-key" x="205" y="107" width="50" height="30" rx="4"/><text class="pn t-dead" x="230" y="120">16</text><text class="pc" x="230" y="132">Z919</text>
+  <rect class="cav-work" x="145" y="107" width="50" height="30" rx="4"/><text class="pn t-ok" x="170" y="120">18</text><text class="pc" x="170" y="132">W8</text>
+  <rect class="cav-none" x="85" y="107" width="50" height="30" rx="4"/><text class="pn" x="110" y="126">20</text>
+
+  <!-- Ряд 3: 23..41 нечётные -->
+  <rect class="cav" x="625" y="165" width="50" height="30" rx="4"/><text class="pn" x="650" y="178">23</text><text class="pc" x="650" y="190">L111</text>
+  <rect class="cav" x="565" y="165" width="50" height="30" rx="4"/><text class="pn" x="590" y="178">25</text><text class="pc" x="590" y="190">P305</text>
+  <rect class="cav" x="505" y="165" width="50" height="30" rx="4"/><text class="pn" x="530" y="178">27</text><text class="pc" x="530" y="190">L658</text>
+  <rect class="cav" x="445" y="165" width="50" height="30" rx="4"/><text class="pn" x="470" y="178">29</text><text class="pc" x="470" y="190">L657</text>
+  <rect class="cav-work" x="385" y="165" width="50" height="30" rx="4"/><text class="pn t-ok" x="410" y="178">31</text><text class="pc" x="410" y="190">W12</text>
+  <rect class="cav" x="325" y="165" width="50" height="30" rx="4"/><text class="pn" x="350" y="178">33</text><text class="pc" x="350" y="190">L656</text>
+  <rect class="cav-none" x="265" y="165" width="50" height="30" rx="4"/><text class="pn" x="290" y="184">35</text>
+  <rect class="cav-work" x="205" y="165" width="50" height="30" rx="4"/><text class="pn t-ok" x="230" y="178">37</text><text class="pc" x="230" y="190">W2</text>
+  <rect class="cav-gnd" x="145" y="165" width="50" height="30" rx="4"/><text class="pn" x="170" y="178">39</text><text class="pc" x="170" y="190">Z919</text>
+  <rect class="cav" x="85" y="165" width="50" height="30" rx="4"/><text class="pn" x="110" y="178">41</text><text class="pc" x="110" y="190">A194</text>
+
+  <!-- Ряд 4: 22..42 чётные -->
+  <rect class="cav" x="652" y="203" width="56" height="34" rx="4"/><text class="pn" x="680" y="218">22</text><text class="pc" x="680" y="231">A903</text>
+  <rect class="cav" x="595" y="205" width="50" height="30" rx="4"/><text class="pn" x="620" y="218">24</text><text class="pc" x="620" y="230">L76</text>
+  <rect class="cav-none" x="535" y="205" width="50" height="30" rx="4"/><text class="pn" x="560" y="224">26</text>
+  <rect class="cav-none" x="475" y="205" width="50" height="30" rx="4"/><text class="pn" x="500" y="224">28</text>
+  <rect class="cav" x="415" y="205" width="50" height="30" rx="4"/><text class="pn" x="440" y="218">30</text><text class="pc" x="440" y="230">L614</text>
+  <rect class="cav" x="355" y="205" width="50" height="30" rx="4"/><text class="pn" x="380" y="218">32</text><text class="pc" x="380" y="230">A929</text>
+  <rect class="cav" x="295" y="205" width="50" height="30" rx="4"/><text class="pn" x="320" y="218">34</text><text class="pc" x="320" y="230">A140</text>
+  <rect class="cav" x="235" y="205" width="50" height="30" rx="4"/><text class="pn" x="260" y="218">36</text><text class="pc" x="260" y="230">A938</text>
+  <rect class="cav" x="175" y="205" width="50" height="30" rx="4"/><text class="pn" x="200" y="218">38</text><text class="pc" x="200" y="230">A100</text>
+  <rect class="cav-none" x="115" y="205" width="50" height="30" rx="4"/><text class="pn" x="140" y="224">40</text>
+  <rect class="cav-none" x="52" y="203" width="56" height="34" rx="4"/><text class="pn" x="80" y="224">42</text>
+
+  <text class="ts" x="40" y="290">Вид со стороны контактов, как на заводском рисунке GCWD1006545. Углы 1, 21, 22, 42 — по рисунку.</text>
+</svg>
+<figcaption>Углы колодки (1 справа сверху, 21 слева сверху, 22 справа снизу, 42 слева снизу), а также 4 и 25 подписаны на заводском рисунке. Остальные номера восстановлены по шагу рядов: верхняя половина — 1–21 зигзагом, нижняя — 22–42. Перед замером сверяйте номер с цифрами, отлитыми на самой колодке. Толстые контакты 1, 21, 22 — провода 4,0 мм².</figcaption>
+<div class="legend">
+  <span><i class="sw sw-key"></i>питание BSM и камеры, вентилятор</span>
+  <span><i class="sw sw-ctl"></i>K619: сигнал BCM на реле K15</span>
+  <span><i class="sw sw-gnd"></i>масса Z919</span>
+  <span><i class="sw sw-work"></i>дворники: если работают, колодка на месте</span>
+  <span><i class="sw sw-side"></i>косвенная проверка (сиденья, задний вентилятор)</span>
+  <span><i class="sw sw-none"></i>гнездо не используется</span>
+</div>
+</figure>
+</section>
+
+<section class="panel callout" aria-labelledby="how-h">
+  <h2 id="how-h">Сколько отказов объясняет C7</h2>
+  <ul>
+    <li><b>Если F95 действительно жив</b> (держит лампу): плохой контакт на клеммах 13, 16 или 21 объясняет BSM, камеру и вентилятор сразу. Предохранитель F95 стоит внутри блока до колодки, поэтому на нём напряжение есть. 0 В на F85 этим не объясняется: тогда это вторая неисправность, в реле K12 или его гнезде.</li>
+    <li><b>Если F95 под лампой проваливается</b>: плохой контакт на клемме 12 (K619) не даёт включиться реле K15. Это гасит все четыре системы, включая SRS через K12.</li>
+    <li><b>Если работают дворники и задний дворник</b> (клеммы 18, 37, 31), колодка не снята целиком. Ищите отдельные клеммы: вытолкнутые назад, разжатые, окисленные.</li>
+  </ul>
+</section>
+
+<section class="panel figure-wrap" aria-label="Цепи через C7">
+<figure>
+<svg class="d circ" viewBox="0 0 1100 580" role="img" aria-label="Цепи через C7: внутри PDC реле K15 и его шина RUN 1 питают F95, F96, F97, F98 и катушку K16; K16 через F13 питает C7-21; масса K16 выходит через C7-16. Снаружи: C7-12 к BCM, C7-13 к S2442 и далее к BSM и камере, C7-16 к S2505 и G919A, C7-21 к силовому модулю вентилятора.">
+  <defs>
+    <path id="w12" d="M470 70 H880"/>
+    <path id="w13" d="M470 150 H620 M620 150 V115 H880 M620 150 V185 H880"/>
+    <path id="w21" d="M470 410 H760"/>
+    <path id="w16" d="M470 350 H620"/>
+  </defs>
+
+  <rect class="pdc" x="20" y="20" width="400" height="540" rx="10"/>
+  <text class="tb" x="36" y="44">PDC</text>
+
+  <!-- K15 -->
+  <rect class="relay-sus" x="60" y="56" width="120" height="58" rx="5"/>
+  <text class="tb mid" x="120" y="82">K15 · Run 1</text>
+  <text class="ts mid" x="120" y="100">катушка 85 ← C7-12</text>
+  <path class="ln" d="M180 70 H420"/>
+  <text class="ts" x="190" y="62">85 · сигнал BCM</text>
+
+  <!-- RUN 1 bus -->
+  <path class="run1" d="M120 114 V350 H180 M120 150 H200 M120 200 H200 M120 245 H200 M120 290 H200"/>
+  <circle class="dot" cx="120" cy="150" r="4"/><circle class="dot" cx="120" cy="200" r="4"/><circle class="dot" cx="120" cy="245" r="4"/><circle class="dot" cx="120" cy="290" r="4"/>
+  <text class="ts t-sus" x="70" y="226">RUN 1</text>
+
+  <rect class="fuse-q" x="200" y="139" width="64" height="22" rx="3"/><text class="mid" x="232" y="155">F95 10A</text>
+  <path class="ln" d="M264 150 H420"/>
+  <rect class="fuse" x="200" y="189" width="64" height="22" rx="3"/><text class="mid" x="232" y="205">F96 10A</text>
+  <path class="ln" d="M264 200 H420"/>
+  <rect class="fuse" x="200" y="234" width="64" height="22" rx="3"/><text class="mid" x="232" y="250">F97 20A</text>
+  <path class="ln" d="M264 245 H420"/>
+  <rect class="fuse" x="200" y="279" width="64" height="22" rx="3"/><text class="mid" x="232" y="295">F98 20A</text>
+  <path class="ln" d="M264 290 H420"/>
+
+  <!-- K16 -->
+  <rect class="box" x="180" y="330" width="120" height="96" rx="5"/>
+  <text class="tb mid" x="240" y="374">K16 · Blower</text>
+  <text class="ts" x="186" y="346">85</text>
+  <text class="ts end" x="294" y="346">86</text>
+  <text class="ts end" x="294" y="404">87</text>
+  <text class="ts" x="186" y="404">30 ← B+</text>
+  <path class="ln" d="M300 350 H420"/>
+  <text class="ts" x="306" y="342">масса катушки</text>
+  <path class="ln" d="M300 410 H322 M386 410 H420"/>
+  <rect class="fuse" x="322" y="398" width="64" height="24" rx="3"/><text class="mid" x="354" y="415">F13 40A</text>
+
+  <!-- F103 -->
+  <text class="ts" x="40" y="474">от шины RUN 2 (K12)</text>
+  <path class="ln" d="M150 470 H200"/>
+  <rect class="fuse" x="200" y="459" width="64" height="22" rx="3"/><text class="mid" x="232" y="475">F103 10A</text>
+  <path class="ln" d="M264 470 H420"/>
+  <text class="ts" x="270" y="492">через C6-28 петлёй</text>
+
+  <!-- реле дворников -->
+  <rect class="box-ok" x="200" y="510" width="130" height="34" rx="5"/>
+  <text class="mid" x="265" y="532">реле дворников</text>
+  <path class="ln" d="M330 527 H420"/>
+
+  <!-- полоса колодки C7 -->
+  <rect class="strip" x="420" y="30" width="50" height="530" rx="6"/>
+  <text class="tb mid t-conn" x="445" y="22">C7</text>
+  <g>
+    <rect class="spin" x="426" y="61" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="74">12</text>
+    <rect class="spin" x="426" y="141" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="154">13</text>
+    <rect class="spin" x="426" y="191" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="204">15</text>
+    <rect class="spin" x="426" y="236" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="249">17</text>
+    <rect class="spin" x="426" y="281" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="294">19</text>
+    <rect class="spin" x="426" y="341" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="354">16</text>
+    <rect class="spin" x="426" y="401" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="414">21</text>
+    <rect class="spin" x="426" y="461" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="474">8</text>
+    <rect class="spin" x="426" y="518" width="38" height="18" rx="3"/><text class="mid tc" x="445" y="531" style="font-size:8.5px">18 31 37</text>
+  </g>
+
+  <!-- 12: K619 → BCM -->
+  <use href="#w12" class="w c-brown"/><use href="#w12" class="tr c-orange"/>
+  <text class="tc" x="484" y="61">K619 BN/OG 0,50</text>
+  <rect class="box" x="880" y="50" width="200" height="40" rx="5"/>
+  <text x="890" y="67">BCM · C5/E-36</text>
+  <text class="ts" x="890" y="83">правая кик-панель</text>
+
+  <!-- 13: F923 → S2442 → камера, BSM -->
+  <use href="#w13" class="halo-dead"/><use href="#w13" class="w c-pink"/><use href="#w13" class="tr c-yellow"/>
+  <circle class="dot" cx="620" cy="150" r="5.5"/>
+  <text class="tc" x="484" y="141">F923 PK/YE 0,50</text>
+  <text class="ts" x="630" y="155">S2442 · правый передний порог</text>
+  <rect class="box-dead" x="880" y="97" width="200" height="36" rx="5"/>
+  <text x="890" y="119">Камера заднего вида</text>
+  <rect class="box-dead" x="880" y="167" width="200" height="36" rx="5"/>
+  <text x="890" y="189">BSM левый и правый, конт. 5</text>
+
+  <!-- 15/17/19: сиденья -->
+  <path class="w c-pink" d="M470 200 H560"/><path class="tr c-yellow" d="M470 200 H560"/>
+  <text class="ts" x="570" y="204">F928 PK/YE 0,35 → выключатели обогрева задних сидений</text>
+  <path class="w c-pink" d="M470 245 H560"/><path class="tr c-tan" d="M470 245 H560"/>
+  <text class="ts" x="570" y="249">F919 PK/BG 1,0 → модуль обогрева сидений и руля</text>
+  <path class="w c-pink" d="M470 290 H560"/><path class="tr c-yellow" d="M470 290 H560"/>
+  <text class="ts" x="570" y="294">F921 PK/YE 1,0 → вентиляция передних сидений</text>
+
+  <!-- 16: Z919 → S2505 → G919A -->
+  <use href="#w16" class="halo-dead"/><use href="#w16" class="w c-ink"/>
+  <circle class="dot" cx="620" cy="350" r="5"/>
+  <path class="ln" d="M620 350 V372"/>
+  <path class="gnd" d="M606 372 H634 M611 378 H629 M616 384 H624"/>
+  <text class="tc" x="484" y="341">Z919 BK 1,0</text>
+  <text class="ts" x="632" y="345">S2505 → масса G919A</text>
+  <text class="ts" x="640" y="370">та же Z919 на контактах 4 и 39</text>
+
+  <!-- 21: C7 DB → модуль вентилятора -->
+  <use href="#w21" class="halo-dead"/><use href="#w21" class="w c-db"/>
+  <text class="tc" x="484" y="401">C7 DB 4,0 · XY5020A-29</text>
+  <rect class="box" x="760" y="390" width="150" height="42" rx="5"/>
+  <text x="770" y="408">Силовой модуль</text>
+  <text class="ts" x="770" y="424">вентилятора · C1-6</text>
+  <path class="ln" d="M910 411 H950"/>
+  <circle class="box-dead" cx="975" cy="411" r="24"/>
+  <text class="tb mid" x="975" y="416">M</text>
+
+  <!-- 8: F931 -->
+  <path class="w c-pink" d="M470 470 H560"/><path class="tr c-yellow" d="M470 470 H560"/>
+  <text class="ts" x="570" y="474">F931 PK/YE 0,50 → катушка K13 (задний вентилятор)</text>
+
+  <!-- дворники -->
+  <path class="halo-ok" d="M470 527 H560"/><path class="w c-brown" d="M470 527 H560"/>
+  <text class="ts t-ok" x="570" y="531">W8, W12, W2 ← BCM: дворники работают — значит, колодка в целом на месте</text>
+
+  <!-- проверки -->
+  <a class="cp" href="#check-a" aria-label="Проверка А: осмотр колодки"><circle cx="445" cy="44" r="13"/><text x="445" y="44">А</text></a>
+  <a class="cp" href="#check-b" aria-label="Проверка Б: C7-13"><circle cx="500" cy="168" r="13"/><text x="500" y="168">Б</text></a>
+  <a class="cp" href="#check-v" aria-label="Проверка В: C7-21"><circle cx="500" cy="428" r="13"/><text x="500" y="428">В</text></a>
+  <a class="cp" href="#check-g" aria-label="Проверка Г: C7-16"><circle cx="500" cy="368" r="13"/><text x="500" y="368">Г</text></a>
+  <a class="cp" href="#check-d" aria-label="Проверка Д: C7-12"><circle cx="500" cy="88" r="13"/><text x="500" y="88">Д</text></a>
+  <a class="cp" href="#check-e" aria-label="Проверка Е: дворники"><circle cx="500" cy="545" r="13"/><text x="500" y="545">Е</text></a>
+</svg>
+<figcaption>Слева — внутренности PDC, по центру — колодка C7 (зелёная полоса), справа — куда уходят провода. Красная подсветка — цепи отказавших систем, зелёная — работающих. Провода в заводских цветах: K619 коричневый с оранжевым, F923 розовый с жёлтым, C7 синий 4,0 мм², Z919 чёрный.</figcaption>
+</figure>
+</section>
+
+<section class="panel warn" aria-labelledby="safe-h">
+  <h2 id="safe-h">Перед тем как трогать колодку</h2>
+  <ul>
+    <li>Отщёлкивать и вставлять C7 только при выключенном зажигании. Цепей подушек на C7 нет.</li>
+    <li>Замеры со стороны проводов делать тонким щупом вдоль провода, не прокалывая изоляцию и не разжимая клеммы. Ответные клеммы щупами не распирать.</li>
+    <li>Чёрный щуп — на минус АКБ (саму клемму).</li>
+  </ul>
+</section>
+
+<section aria-labelledby="checks-h" style="display:grid; gap:14px">
+  <h2 id="checks-h">Проверки колодки C7</h2>
+  <div class="checks">
+
+    <article class="panel check" id="check-a">
+      <div class="check-h"><span class="num">А</span><h3>Осмотр и пересадка</h3></div>
+      <dl>
+        <dt>Где</dt><dd>зелёная колодка жгута Body на блоке PDC (D6630G)</dd>
+        <dt>Зажигание</dt><dd>OFF</dd>
+        <dt>Смотреть</dt><dd>защёлка до щелчка, фиксатор цела; вода, зелень, следы перегрева; клеммы 12, 13, 16, 21 не утоплены назад; провода у колодки не натянуты и не пережаты после ремонта</dd>
+        <dt>После аварии</dt><dd>удар был давно, в переднее левое крыло. Если PDC стоит у левого крыла, проверьте подкрылок, уплотнение крышки PDC и следы воды под ней: окисел на клеммах копится годами, а отказ наступает внезапно</dd>
+        <dt>Дальше</dt><dd>отщёлкнуть, осмотреть обе половины, вставить до упора, включить RUN</dd>
+      </dl>
+      <div class="if">
+        <div><b>Ожили BSM, камера, вентилятор</b> — дело в колодке. Клеммы, которые выглядят плохо, заменить, иначе отказ вернётся.</div>
+        <div><b>Ничего не изменилось</b> — проверки Б–Д.</div>
+      </div>
+    </article>
+
+    <article class="panel check" id="check-b">
+      <div class="check-h"><span class="num">Б</span><h3>C7-13: питание BSM и камеры</h3></div>
+      <dl>
+        <dt>Щупы</dt><dd>чёрный — минус АКБ; красный — провод F923 (PK/YE 0,50) у клеммы 13 со стороны проводов, колодка вставлена</dd>
+        <dt>Зажигание</dt><dd>RUN</dd>
+        <dt>Норма</dt><dd>напряжение АКБ, как на F95</dd>
+      </dl>
+      <div class="if">
+        <div><b>На F95 есть, на проводе 13 нет</b> — плохой контакт клеммы 13 в колодке.</div>
+        <div><b>На проводе 13 есть</b> — колодка в порядке, ищите дальше: S2442 у правого переднего порога (шаг 10 общей схемы).</div>
+      </div>
+    </article>
+
+    <article class="panel check" id="check-v">
+      <div class="check-h"><span class="num">В</span><h3>C7-21: питание вентилятора</h3></div>
+      <dl>
+        <dt>Щупы</dt><dd>чёрный — минус АКБ; красный — синий провод C7 4,0 у клеммы 21 со стороны проводов</dd>
+        <dt>Зажигание</dt><dd>RUN</dd>
+        <dt>Норма</dt><dd>напряжение АКБ</dd>
+      </dl>
+      <div class="if">
+        <div><b>F13 под напряжением, провод 21 — нет</b> — клемма 21. Это толстый силовой контакт: ищите следы перегрева.</div>
+        <div><b>F13 тоже без напряжения</b> — не включается K16, проверка Г.</div>
+      </div>
+    </article>
+
+    <article class="panel check" id="check-g">
+      <div class="check-h"><span class="num">Г</span><h3>C7-16: масса реле K16</h3></div>
+      <dl>
+        <dt>Щупы</dt><dd>режим Ом: провод Z919 (BK 1,0) у клеммы 16 со стороны проводов — минус АКБ</dd>
+        <dt>Зажигание</dt><dd>OFF</dd>
+        <dt>Норма</dt><dd>меньше 3 Ом (практический ориентир)</dd>
+      </dl>
+      <div class="if">
+        <div><b>Больше</b> — обрыв на пути S2505 → G919A: проверить точку массы G919A, затяжку и окисел.</div>
+        <div><b>Норма на проводе, а K16 не щёлкает</b> — контакт клеммы 16 в колодке или само реле.</div>
+      </div>
+    </article>
+
+    <article class="panel check" id="check-d">
+      <div class="check-h"><span class="num">Д</span><h3>C7-12: сигнал BCM на K15</h3></div>
+      <dl>
+        <dt>Щупы</dt><dd>чёрный — минус АКБ; красный — провод K619 (BN/OG 0,50) у клеммы 12 со стороны проводов, реле K15 стоит</dd>
+        <dt>Зажигание</dt><dd>ACC, затем RUN</dd>
+        <dt>Норма</dt><dd>ACC: меньше 3,5 В. RUN: напряжение АКБ</dd>
+      </dl>
+      <div class="if">
+        <div><b>На проводе есть, а гнездо 85 реле K15 без напряжения</b> — контакт клеммы 12 в колодке.</div>
+        <div><b>На проводе 0 В</b> — обрыв K619 до BCM или BCM не даёт команду (шаг 6 общей схемы).</div>
+      </div>
+    </article>
+
+    <article class="panel check" id="check-e">
+      <div class="check-h"><span class="num">Е</span><h3>Индикатор: дворники</h3></div>
+      <dl>
+        <dt>Что</dt><dd>включить передние дворники (обе скорости) и задний дворник</dd>
+        <dt>Зажигание</dt><dd>RUN</dd>
+      </dl>
+      <div class="if">
+        <div><b>Работают</b> — клеммы 18, 37, 31 в контакте, колодка не снята целиком. Подозрение на отдельные клеммы 12, 13, 16, 21.</div>
+        <div><b>Не работают тоже</b> — колодка C7 не на месте целиком или повреждена: начинать с проверки А.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="panel pad" aria-labelledby="tbl-h">
+  <h2 id="tbl-h">Все контакты C7</h2>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Конт.</th><th>Цепь</th><th>Цвет, мм²</th><th>Назначение</th><th>Что откажет при плохом контакте</th></tr></thead>
+    <tbody>
+      <tr><td class="pin">12</td><td class="mono">K619</td><td>BN/OG 0,50</td><td>Сигнал BCM на катушку K15 «Run 1»</td><td><span class="chip chip-sus">всё на K15</span><span class="chip chip-dead">SRS</span><span class="chip chip-dead">BSM</span><span class="chip chip-dead">камера</span><span class="chip chip-dead">вентилятор</span></td></tr>
+      <tr><td class="pin">13</td><td class="mono">F923</td><td>PK/YE 0,50</td><td>Выход F95 → S2442 → BSM, камера</td><td><span class="chip chip-dead">BSM</span><span class="chip chip-dead">камера</span></td></tr>
+      <tr><td class="pin">16</td><td class="mono">Z919</td><td>BK 1,0</td><td>Масса катушки K16 → S2505 → G919A</td><td><span class="chip chip-dead">вентилятор</span></td></tr>
+      <tr><td class="pin">21</td><td class="mono">C7</td><td>DB 4,0</td><td>Выход F13 → силовой модуль вентилятора</td><td><span class="chip chip-dead">вентилятор</span></td></tr>
+      <tr><td class="pin">15</td><td class="mono">F928</td><td>PK/YE 0,35</td><td>F96: обогрев задних сидений</td><td><span class="chip chip-any">косвенно</span></td></tr>
+      <tr><td class="pin">17</td><td class="mono">F919</td><td>PK/BG 1,0</td><td>F97: модуль обогрева сидений и руля</td><td><span class="chip chip-any">косвенно</span></td></tr>
+      <tr><td class="pin">19</td><td class="mono">F921</td><td>PK/YE 1,0</td><td>F98: вентиляция передних сидений</td><td><span class="chip chip-any">косвенно</span></td></tr>
+      <tr><td class="pin">8</td><td class="mono">F931</td><td>PK/YE 0,50</td><td>F103 (RUN 2) → катушка K13, задний вентилятор</td><td><span class="chip chip-any">задний вентилятор</span></td></tr>
+      <tr><td class="pin">3</td><td class="mono">C51</td><td>BU/BN 1,5</td><td>Выход реле заднего вентилятора</td><td><span class="chip chip-any">задний вентилятор</span></td></tr>
+      <tr><td class="pin">4, 39</td><td class="mono">Z919</td><td>BK 1,0</td><td>Та же масса Z919</td><td><span class="chip chip-any">не установлено</span></td></tr>
+      <tr><td class="pin">18, 37, 31</td><td class="mono">W8, W2, W12</td><td>BN/YE, BN/GN, BN/OG 0,50</td><td>Управление реле дворников от BCM</td><td><span class="chip chip-ok">индикатор: дворники</span></td></tr>
+      <tr><td class="pin">5, 7, 9</td><td class="mono">F983, F985, F986</td><td>PK/YE 1,0 / 0,75 / 1,0</td><td>Питание RUN-ACC</td><td><span class="chip chip-any">другие системы</span></td></tr>
+      <tr><td class="pin">6, 25</td><td class="mono">P307, P305</td><td>GN/GY, GN/BU 0,50</td><td>Реле задержки аксессуаров</td><td><span class="chip chip-any">другие системы</span></td></tr>
+      <tr><td class="pin">10</td><td class="mono">T110</td><td>DG/YE 0,50</td><td>Реле вакуумного насоса</td><td><span class="chip chip-any">другие системы</span></td></tr>
+      <tr><td class="pin">1, 11, 22, 32, 34, 38, 41</td><td class="mono">A906, A195, A903, A929, A140, A100, A194</td><td>RD и RD/… 0,35–4,0</td><td>Постоянный плюс B+ с предохранителей</td><td><span class="chip chip-any">другие системы</span></td></tr>
+      <tr><td class="pin">36</td><td class="mono">A938</td><td>RD 0,50</td><td>Коммутируемый B+</td><td><span class="chip chip-any">другие системы</span></td></tr>
+      <tr><td class="pin">23, 24, 27, 29, 30, 33</td><td class="mono">L111, L76, L658, L657, L614, L656</td><td>WH/…, GN 0,50–1,0</td><td>Прицеп, правый задний поворот</td><td><span class="chip chip-any">другие системы</span></td></tr>
+      <tr><td class="pin">2, 14, 20, 26, 28, 35, 40, 42</td><td>—</td><td>—</td><td>Не используются</td><td></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<footer>
+  <div>Источник: заводская сервисная информация FCA для 2018 Durango 5.7 AWD (зеркало LEMON Manuals): «Assembly-Power Distribution Center C7 (Standard) Connector End View (D6630G)», рисунок GCWD1006545, схемы Power Distribution 1/4 и A/C 1/4.</div>
+  <div>Расположение промежуточных номеров на торце восстановлено по рисунку. Допуск «меньше 3 Ом на массе» — практический, не заводской.</div>
+</footer>
+
+</main>
+</body>
+</html>

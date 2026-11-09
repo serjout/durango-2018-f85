@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цепи питания F85 Durango 2018</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Схема в стиле заводского wiring diagram: бумага, чернила, статусы; провода в своих реальных цветах */
+  --bg: #f3f4f1;
+  --panel: #ffffff;
+  --ink: #1d2328;
+  --muted: #5d6770;
+  --rule: #c9cfd3;
+  --accent: #1f62d6;
+  --dead: #c62828;
+  --ok: #2e7d32;
+  --sus: #b86e00;
+  --w-pink: #e0679a;
+  --w-yellow: #dcb800;
+  --w-green: #2f9e55;
+  --w-brown: #8b5a2b;
+  --w-orange: #f08c1e;
+  --w-db: #2a4fb0;
+  --w-red: #d32f2f;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13171b; --panel: #1b2126; --ink: #e5e9ec; --muted: #98a3ac; --rule: #34404a;
+    --accent: #5b9bff; --dead: #ff6f61; --ok: #62c370; --sus: #f0a630;
+    --w-db: #5f84e8; --w-brown: #b07a45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #13171b; --panel: #1b2126; --ink: #e5e9ec; --muted: #98a3ac; --rule: #34404a;
+  --accent: #5b9bff; --dead: #ff6f61; --ok: #62c370; --sus: #f0a630;
+  --w-db: #5f84e8; --w-brown: #b07a45;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.55 var(--body);
+}
+main { max-width: 1240px; margin: 0 auto; padding: 28px 20px 64px; display: grid; gap: 28px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; }
+h2 { font-size: 22px; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 72ch; }
+code, .mono { font-family: var(--mono); font-size: .92em; }
+a { color: var(--accent); }
+a:focus-visible, .step:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+header { display: grid; gap: 10px; }
+.meta { color: var(--muted); font-size: 14px; }
+.lead { font-size: 17px; max-width: 80ch; }
+.lead b { color: var(--sus); }
+
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; }
+.figure-wrap { padding: 12px; overflow-x: auto; }
+figure { margin: 0; display: grid; gap: 10px; }
+figcaption { color: var(--muted); font-size: 14px; max-width: 90ch; padding: 0 4px; }
+svg.d { width: 100%; min-width: 1080px; height: auto; display: block; }
+
+/* SVG typography */
+.d text { font-family: var(--display); fill: var(--ink); font-size: 12.5px; }
+.d .ts { font-size: 11px; fill: var(--muted); }
+.d .tb { font-weight: 700; font-size: 14px; }
+.d .tc { font-family: var(--mono); font-size: 11px; }
+.d .t-dead { fill: var(--dead); }
+.d .t-ok { fill: var(--ok); }
+.d .t-sus { fill: var(--sus); }
+.d .mid { text-anchor: middle; }
+.d .end { text-anchor: end; }
+
+/* SVG shapes */
+.d .pdc { fill: var(--bg); stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 7 5; }
+.d .box { fill: var(--panel); stroke: var(--ink); stroke-width: 1.4; }
+.d .box-dead { fill: var(--panel); stroke: var(--dead); stroke-width: 2.4; }
+.d .box-ok { fill: var(--panel); stroke: var(--ok); stroke-width: 2; }
+.d .relay { fill: var(--panel); stroke: var(--ink); stroke-width: 1.6; }
+.d .relay-sus { fill: color-mix(in srgb, var(--sus) 14%, var(--panel)); stroke: var(--sus); stroke-width: 3; }
+.d .fuse { fill: var(--panel); stroke: var(--ink); stroke-width: 1.4; }
+.d .fuse-dead { fill: color-mix(in srgb, var(--dead) 12%, var(--panel)); stroke: var(--dead); stroke-width: 2.4; }
+.d .fuse-ok { fill: color-mix(in srgb, var(--ok) 10%, var(--panel)); stroke: var(--ok); stroke-width: 2; }
+.d .fuse-q { fill: color-mix(in srgb, var(--sus) 10%, var(--panel)); stroke: var(--sus); stroke-width: 2; stroke-dasharray: 5 3; }
+.d .pin { fill: var(--ink); }
+.d .dot { fill: var(--ink); }
+.d .gnd { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+
+/* wiring */
+.d .ln { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.d .ln-thin { fill: none; stroke: var(--muted); stroke-width: 1.6; }
+.d .bplus { fill: none; stroke: var(--w-red); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.d .bstub { fill: none; stroke: var(--w-red); stroke-width: 3.2; }
+.d .run1 { fill: none; stroke: var(--sus); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.d .w { fill: none; stroke-width: 4.5; stroke-linecap: butt; stroke-linejoin: round; }
+.d .tr { fill: none; stroke-width: 4.5; stroke-dasharray: 9 9; stroke-linejoin: round; }
+.d .halo-dead, .d .halo-ok, .d .halo-sus { fill: none; stroke-width: 15; stroke-linecap: round; stroke-linejoin: round; stroke-opacity: .2; }
+.d .halo-dead { stroke: var(--dead); }
+.d .halo-ok { stroke: var(--ok); }
+.d .halo-sus { stroke: var(--sus); }
+.d .c-pink { stroke: var(--w-pink); }
+.d .c-yellow { stroke: var(--w-yellow); }
+.d .c-green { stroke: var(--w-green); }
+.d .c-brown { stroke: var(--w-brown); }
+.d .c-orange { stroke: var(--w-orange); }
+.d .c-db { stroke: var(--w-db); }
+
+/* checkpoints */
+.d .cp circle { fill: var(--accent); stroke: var(--panel); stroke-width: 2.5; transition: r .15s; }
+.d .cp text { fill: #fff; font-family: var(--display); font-weight: 700; font-size: 13px; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.d .cp { cursor: pointer; }
+.d .cp:hover circle, .d .cp.hl circle { r: 16; fill: var(--sus); }
+.d .cp:focus-visible circle { stroke: var(--ink); stroke-width: 3; }
+
+/* legend */
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; color: var(--muted); padding: 2px 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 26px; height: 12px; border-radius: 3px; display: inline-block; }
+.sw-dead { background: color-mix(in srgb, var(--dead) 30%, transparent); border: 2px solid var(--dead); }
+.sw-ok { background: color-mix(in srgb, var(--ok) 25%, transparent); border: 2px solid var(--ok); }
+.sw-sus { background: color-mix(in srgb, var(--sus) 25%, transparent); border: 2px solid var(--sus); }
+.sw-q { border: 2px dashed var(--sus); }
+.sw-cp { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 12px/20px var(--display); text-align: center; }
+.sw-pkye { background: repeating-linear-gradient(90deg, var(--w-pink) 0 7px, var(--w-yellow) 7px 12px); }
+.sw-pkgn { background: repeating-linear-gradient(90deg, var(--w-pink) 0 7px, var(--w-green) 7px 12px); }
+.sw-bnog { background: repeating-linear-gradient(90deg, var(--w-brown) 0 7px, var(--w-orange) 7px 12px); }
+.sw-db { background: var(--w-db); }
+.sw-b { background: var(--w-red); }
+
+/* safety */
+.safety { border-left: 5px solid var(--dead); padding: 16px 18px; display: grid; gap: 8px; }
+.safety h2 { color: var(--dead); font-size: 19px; }
+.safety ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
+.step { padding: 14px 16px; display: grid; gap: 8px; align-content: start; scroll-margin-top: 16px; transition: border-color .15s, box-shadow .15s; }
+.step:target, .step.hl { border-color: var(--sus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sus) 35%, transparent); }
+.step-h { display: flex; gap: 10px; align-items: center; }
+.num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 14px/28px var(--display); text-align: center; }
+.step dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 3px 10px; font-size: 14px; }
+.step dt { color: var(--muted); }
+.step dd { margin: 0; }
+.step .if { font-size: 14px; display: grid; gap: 3px; padding-top: 4px; border-top: 1px solid var(--rule); }
+.tag { display: inline-block; font: 600 11px/1 var(--display); text-transform: uppercase; letter-spacing: .04em; padding: 3px 6px; border-radius: 4px; }
+.tag-srs { background: color-mix(in srgb, var(--dead) 15%, transparent); color: var(--dead); }
+.tag-tool { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+
+/* patterns */
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--display); font-weight: 600; color: var(--muted); white-space: nowrap; }
+.chip { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.chip-dead { background: color-mix(in srgb, var(--dead) 16%, transparent); color: var(--dead); }
+.chip-ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.chip-any { background: color-mix(in srgb, var(--muted) 16%, transparent); color: var(--muted); }
+
+.two { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+.pad { padding: 16px 18px; display: grid; gap: 10px; }
+svg.row { width: 100%; height: auto; max-width: 560px; }
+footer { color: var(--muted); font-size: 14px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+@media (max-width: 420px) { main { padding: 20px 16px 48px; } .steps { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Цепи питания F85 Durango 2018</h1>
+  <div class="meta">Dodge Durango R/T 5.7 AWD · VIN 1C4SDJCT3JCXXXXXX · по заводским схемам Power Distribution 1/4 и 3/4, SRS 1/3, A/C 1/4, BSM, Rear Camera (2018 WD)</div>
+  <p class="lead">Все четыре отказа сходятся в одной точке: на выходе реле <b>K15 «Run 1»</b>. От него питаются F95 (радары BSM и камера), катушка K16 (передний вентилятор) и катушка K12, которое питает F85 (подушки). Синие номера на схеме — точки проверки; нажмите номер, чтобы открыть шаг ниже. Начинайте с <a href="#step-1">шага 1</a>. Отдельная схема колодки PDC C7, через которую идут питание BSM, камеры и вентилятора, — <a href="https://serjout.github.io/durango-2018-f85/diagrams/pdc-c7-connector.html">здесь</a>.</p>
+</header>
+
+<section class="panel figure-wrap" aria-label="Схема цепей">
+<figure>
+<svg class="d" viewBox="0 0 1400 900" role="img" aria-label="Схема: АКБ питает шину B+ в PDC; BCM включает реле K15 Run 1; выход K15 питает F95 (BSM и камера) и катушки реле K12 и K16; K12 питает F85 и ORC C2-104; K16 питает F13 и вентилятор; реле K08 Run/Start отдельно питает F86 (ORC C2-103) и F99 (модуль климата).">
+  <defs>
+    <path id="p-k619" d="M120 85 H305 V120"/>
+    <path id="p-k617" d="M120 640 H179 A6 6 0 0 1 191 640 H305 V680"/>
+    <path id="p-f923a" d="M710 120 H800"/>
+    <path id="p-f923cam" d="M800 120 V75 H1000"/>
+    <path id="p-f923bsm" d="M800 120 V165 H920 H1000 M920 165 V215 H1000"/>
+    <path id="p-f929" d="M710 350 H1200"/>
+    <path id="p-c7" d="M710 555 H900"/>
+    <path id="p-f945" d="M710 690 H1200"/>
+    <path id="p-f948" d="M710 740 H800 V760 H900 M800 760 V820 H900"/>
+  </defs>
+
+  <!-- ===== Внешние блоки слева ===== -->
+  <rect class="box" x="20" y="60" width="100" height="600" rx="6"/>
+  <text class="tb mid" x="70" y="330">BCM</text>
+  <text class="ts mid" x="70" y="350">правая</text>
+  <text class="ts mid" x="70" y="364">кик-панель</text>
+  <text class="ts mid" x="70" y="394">включает</text>
+  <text class="ts mid" x="70" y="408">реле по запросу</text>
+  <text class="ts mid" x="70" y="422">RF Hub</text>
+  <text class="tc end" x="114" y="78">C5/E-36</text>
+  <text class="tc end" x="114" y="633">C1/A-18</text>
+
+  <rect class="box" x="30" y="785" width="90" height="60" rx="6"/>
+  <text class="tb mid" x="75" y="812">АКБ +</text>
+  <text class="ts mid" x="75" y="830">14,6 В на ходу</text>
+
+  <!-- ===== PDC ===== -->
+  <rect class="pdc" x="150" y="40" width="560" height="835" rx="10"/>
+  <text class="tb end" x="700" y="62">PDC · подкапотный блок</text>
+
+  <!-- шина B+ -->
+  <path class="bplus" d="M120 815 H185 V120"/>
+  <text class="ts t-dead" transform="translate(174 560) rotate(-90)">шина B+ · HOT AT ALL TIMES</text>
+  <path class="bstub" d="M185 165 H245 M185 375 H245 M185 565 H245 M185 725 H245"/>
+
+  <!-- управление K15 (K619) -->
+  <use href="#p-k619" class="halo-sus"/>
+  <use href="#p-k619" class="w c-brown"/>
+  <use href="#p-k619" class="tr c-orange"/>
+  <rect class="pin" x="146" y="81" width="8" height="8"/>
+  <text class="tc" x="198" y="76">K619 BN/OG</text>
+  <text class="tc" x="157" y="104">C7-12</text>
+
+  <!-- управление K08 (K617) -->
+  <use href="#p-k617" class="halo-ok"/>
+  <use href="#p-k617" class="w c-brown"/>
+  <rect class="pin" x="146" y="636" width="8" height="8"/>
+  <text class="tc" x="198" y="631">K617 BN</text>
+  <text class="tc" x="157" y="659">C6-10</text>
+
+  <!-- выход K15: шина RUN 1 и питание катушек K12, K16 -->
+  <path class="run1" d="M365 155 H420 M420 110 V500 H305 V520 M420 300 H305 V330 M420 120 H500 M420 200 H460"/>
+  <circle class="dot" cx="420" cy="155" r="4"/>
+  <circle class="dot" cx="420" cy="200" r="4"/>
+  <circle class="dot" cx="420" cy="300" r="4"/>
+  <text class="ts t-sus" x="428" y="262">RUN 1</text>
+  <text class="ts t-sus" x="315" y="292">от K15-87</text>
+  <text class="ts t-sus" x="315" y="492">от K15-87</text>
+
+  <!-- Реле K15 -->
+  <rect class="relay-sus" x="245" y="120" width="120" height="70" rx="5"/>
+  <text class="tb mid" x="305" y="152">K15 · Run 1</text>
+  <text class="ts mid" x="305" y="169">D842A</text>
+  <text class="ts mid" x="305" y="133">85</text>
+  <text class="ts mid" x="305" y="186">86</text>
+  <text class="ts" x="250" y="162">30</text>
+  <text class="ts end" x="360" y="146">87</text>
+  <path class="ln-thin" d="M305 190 V202"/>
+  <text class="ts" x="312" y="212">86 → Z909</text>
+
+  <!-- F95 -->
+  <rect class="fuse-q" x="500" y="109" width="60" height="22" rx="3"/>
+  <text class="mid" x="530" y="125">F95 10A</text>
+  <path class="ln" d="M560 120 H710"/>
+  <rect class="pin" x="706" y="116" width="8" height="8"/>
+  <text class="tc end" x="702" y="112">C7-13</text>
+  <text class="ts t-sus" x="470" y="148">норма без нагрузки?</text>
+
+  <!-- F96 / F97 / F98 -->
+  <rect class="fuse" x="460" y="189" width="170" height="22" rx="3"/>
+  <text class="mid" x="545" y="205">F96 10A · F97 20A · F98 20A</text>
+  <text class="ts" x="460" y="228">→ обогрев и вентиляция сидений, руль</text>
+
+  <!-- Реле K12 -->
+  <rect class="relay" x="245" y="330" width="120" height="70" rx="5"/>
+  <text class="tb mid" x="305" y="362">K12 · Run 2</text>
+  <text class="ts mid" x="305" y="379">D842B</text>
+  <text class="ts mid" x="305" y="343">85</text>
+  <text class="ts mid" x="305" y="396">86</text>
+  <text class="ts" x="250" y="372">30</text>
+  <text class="ts end" x="360" y="356">87</text>
+  <path class="ln-thin" d="M305 400 V412"/>
+  <text class="ts" x="312" y="422">86 → Z909</text>
+
+  <!-- выход K12: шина RUN 2 -->
+  <path class="ln" d="M365 365 H414 A6 6 0 0 1 426 365 H460 M460 345 V420 M460 350 H500 M460 420 H480"/>
+  <circle class="dot" cx="460" cy="365" r="4"/>
+  <text class="ts" x="466" y="392">RUN 2</text>
+
+  <!-- F85 -->
+  <path class="halo-dead" d="M500 350 H1200"/>
+  <rect class="fuse-dead" x="500" y="339" width="60" height="22" rx="3"/>
+  <text class="mid t-dead" x="530" y="355">F85 10A</text>
+  <path class="ln" d="M560 350 H710"/>
+  <rect class="pin" x="706" y="346" width="8" height="8"/>
+  <text class="tc end" x="702" y="342">C6-15</text>
+  <text class="ts t-dead" x="500" y="377">0 В с обеих сторон</text>
+
+  <!-- F40 / F101 / F103 / F100 -->
+  <rect class="fuse" x="480" y="409" width="160" height="22" rx="3"/>
+  <text class="mid" x="560" y="425">F40 · F101 · F103 · F100</text>
+  <text class="ts" x="480" y="448">→ ДХО и корректор фар, датчики салона,</text>
+  <text class="ts" x="480" y="462">катушка K13 (задний вентилятор), подвеска</text>
+
+  <!-- Реле K16 -->
+  <rect class="relay" x="245" y="520" width="120" height="70" rx="5"/>
+  <text class="tb mid" x="305" y="552">K16 · Blower</text>
+  <text class="ts mid" x="305" y="569">D876</text>
+  <text class="ts mid" x="305" y="533">85</text>
+  <text class="ts mid" x="305" y="586">86</text>
+  <text class="ts" x="250" y="562">30</text>
+  <text class="ts end" x="360" y="546">87</text>
+  <path class="ln-thin" d="M305 590 V602"/>
+  <text class="ts" x="312" y="612">86 → C7-16 → G919A</text>
+
+  <!-- F13 -->
+  <path class="ln" d="M365 555 H500"/>
+  <rect class="fuse" x="500" y="542" width="74" height="26" rx="3"/>
+  <text class="mid" x="537" y="560">F13 40A</text>
+  <path class="ln" d="M574 555 H710"/>
+  <rect class="pin" x="706" y="551" width="8" height="8"/>
+  <text class="tc end" x="702" y="547">C7-21</text>
+  <text class="ts" x="500" y="584">цел визуально</text>
+
+  <!-- Реле K08 -->
+  <rect class="relay" x="245" y="680" width="120" height="70" rx="5" style="stroke: var(--ok)"/>
+  <text class="tb mid" x="305" y="712" style="font-size:12.5px">K08 · Run/Start</text>
+  <text class="ts mid" x="305" y="729">D893</text>
+  <text class="ts mid" x="305" y="693">85</text>
+  <text class="ts mid" x="305" y="746">86</text>
+  <text class="ts" x="250" y="722">30</text>
+  <text class="ts end" x="360" y="706">87</text>
+  <path class="ln-thin" d="M305 750 V762"/>
+  <text class="ts" x="312" y="772">86 → Z909</text>
+
+  <!-- выход K08: шина RUN/START -->
+  <path class="ln" d="M365 715 H460 M460 690 V790 M460 690 H500 M460 740 H500 M460 790 H480"/>
+  <circle class="dot" cx="460" cy="715" r="4"/>
+  <circle class="dot" cx="460" cy="740" r="4"/>
+  <text class="ts" x="466" y="768">RUN/START</text>
+
+  <rect class="fuse-ok" x="500" y="679" width="60" height="22" rx="3"/>
+  <text class="mid t-ok" x="530" y="695">F86 10A</text>
+  <path class="ln" d="M560 690 H710"/>
+  <rect class="pin" x="706" y="686" width="8" height="8"/>
+  <text class="tc end" x="702" y="682">C6-13</text>
+
+  <rect class="fuse-ok" x="500" y="729" width="60" height="22" rx="3"/>
+  <text class="mid t-ok" x="530" y="745">F99 10A</text>
+  <path class="ln" d="M560 740 H710"/>
+  <rect class="pin" x="706" y="736" width="8" height="8"/>
+  <text class="tc end" x="702" y="732">C6-36</text>
+
+  <rect class="fuse-ok" x="480" y="779" width="220" height="22" rx="3"/>
+  <text class="mid" x="590" y="795">F77 · F78 · F76 · F75 · F88</text>
+  <text class="ts" x="480" y="818">→ PCM, ABS, EPS, SGW, щиток: работают</text>
+
+  <!-- общая масса катушек -->
+  <text class="ts" x="245" y="846">Общая масса катушек K15, K12, K08: C1-12 → Z909 BK → S2547 → G909A.</text>
+  <text class="ts t-ok" x="245" y="862">Раз K08 работает, эта внешняя масса исправна.</text>
+
+  <!-- ===== Снаружи PDC: BSM и камера ===== -->
+  <use href="#p-f923a" class="w c-pink"/>
+  <use href="#p-f923a" class="tr c-yellow"/>
+  <use href="#p-f923cam" class="halo-dead"/>
+  <use href="#p-f923cam" class="w c-pink"/>
+  <use href="#p-f923cam" class="tr c-yellow"/>
+  <use href="#p-f923bsm" class="halo-dead"/>
+  <use href="#p-f923bsm" class="w c-pink"/>
+  <use href="#p-f923bsm" class="tr c-yellow"/>
+  <circle class="dot" cx="800" cy="120" r="5.5"/>
+  <circle class="dot" cx="920" cy="165" r="4.5"/>
+  <text class="tc" x="722" y="111">F923 PK/YE</text>
+  <text class="ts" x="810" y="140">S2442 · правый передний порог</text>
+  <text class="tc" x="812" y="67">XY2120A-6 · I6742A-1</text>
+  <text class="tc" x="812" y="158">XY4000A-12 · I701-J</text>
+  <text class="ts" x="928" y="190">S04A</text>
+
+  <rect class="box-dead" x="1000" y="55" width="170" height="42" rx="5"/>
+  <text x="1010" y="72">Камера заднего вида</text>
+  <text class="ts t-dead" x="1010" y="89">синий экран · масса G923A</text>
+
+  <rect class="box-dead" x="1000" y="146" width="170" height="40" rx="5"/>
+  <text x="1010" y="162">BSM левый (master)</text>
+  <text class="ts" x="1010" y="178">конт. 5 · масса G917A</text>
+
+  <rect class="box-dead" x="1000" y="196" width="170" height="40" rx="5"/>
+  <text x="1010" y="212">BSM правый</text>
+  <text class="ts" x="1010" y="228">конт. 5 · масса G917A</text>
+
+  <!-- ORC -->
+  <use href="#p-f929" class="w c-pink"/>
+  <use href="#p-f929" class="tr c-yellow"/>
+  <text class="tc" x="730" y="341">F929 PK/YE 0,50</text>
+  <text class="ts" x="880" y="341">сплошной провод, без разъёмов по схеме</text>
+
+  <use href="#p-f945" class="halo-ok"/>
+  <use href="#p-f945" class="w c-pink"/>
+  <use href="#p-f945" class="tr c-green"/>
+  <text class="tc" x="730" y="681">F945 PK/GN 0,50</text>
+
+  <rect class="box" x="1200" y="320" width="175" height="410" rx="6"/>
+  <text class="tc t-dead" x="1210" y="355">C2-104 · Run only</text>
+  <text class="ts t-dead" x="1210" y="372">0 В (от F85)</text>
+  <text class="tb mid" x="1287" y="430" style="font-size:17px">ORC</text>
+  <text class="ts mid" x="1287" y="448">модуль подушек</text>
+  <text class="ts mid" x="1287" y="463">под задней частью</text>
+  <text class="ts mid" x="1287" y="477">центральной консоли</text>
+  <text class="mid t-dead" x="1287" y="520">лампа SRS горит</text>
+  <text class="ts mid" x="1287" y="537">ожидается B212D-13</text>
+  <text class="tc mid" x="1287" y="590">C2-101 → G913A</text>
+  <text class="tc mid" x="1287" y="607">C2-54/53 · CAN-C</text>
+  <text class="tc t-ok" x="1210" y="685">C2-103 · Run/Start</text>
+  <text class="ts t-ok" x="1210" y="704">норма (от F86)</text>
+
+  <!-- вентилятор -->
+  <use href="#p-c7" class="w c-db"/>
+  <text class="tc" x="722" y="546">C7 DB 4,0 · XY5020A-29</text>
+  <rect class="box" x="900" y="525" width="160" height="70" rx="5"/>
+  <text x="980" y="553" class="mid">Силовой модуль</text>
+  <text x="980" y="569" class="mid">вентилятора</text>
+  <text class="tc" x="904" y="520">C1-6</text>
+  <path class="ln" d="M1060 560 H1101"/>
+  <path class="halo-dead" d="M1125 560 m-24 0 a24 24 0 1 0 48 0 a24 24 0 1 0 -48 0"/>
+  <circle class="box-dead" cx="1125" cy="560" r="24"/>
+  <text class="tb mid" x="1125" y="565">M</text>
+  <text class="ts mid" x="1125" y="600">мотор</text>
+  <text class="ts mid t-dead" x="1125" y="614">не крутится</text>
+  <path class="ln" d="M930 595 V628"/>
+  <path class="gnd" d="M930 628 M918 628 H942 M923 634 H937 M928 640 H932"/>
+  <text class="tc" x="938" y="612">C1-5</text>
+  <text class="ts" x="946" y="640">G911A</text>
+
+  <!-- модуль климата и C56 -->
+  <use href="#p-f948" class="halo-ok"/>
+  <use href="#p-f948" class="w c-pink"/>
+  <use href="#p-f948" class="tr c-green"/>
+  <circle class="dot" cx="800" cy="760" r="4.5"/>
+  <text class="tc" x="722" y="731">F948 PK/GN</text>
+  <text class="ts" x="806" y="778">S2448</text>
+  <rect class="box-ok" x="900" y="735" width="160" height="50" rx="5"/>
+  <text class="mid" x="980" y="757">Модуль A/C</text>
+  <text class="ts mid t-ok" x="980" y="774">интерфейс работает</text>
+  <text class="ts" x="906" y="824">ParkSense, фронт. камера, ACC</text>
+  <path class="ln" d="M1030 735 V696 A6 6 0 0 1 1030 684 V595"/>
+  <text class="tc" x="1038" y="626">C56 ШИМ</text>
+  <text class="tc" x="1038" y="640">C1-15 → C1-3</text>
+
+  <!-- ===== Точки проверки ===== -->
+  <a class="cp" href="#step-1" data-step="1" aria-label="Шаг 1: F95 под нагрузкой"><circle cx="584" cy="106" r="13"/><text x="584" y="106">1</text></a>
+  <a class="cp" href="#step-2" data-step="2" aria-label="Шаг 2: соседи по RUN 1"><circle cx="648" cy="200" r="13"/><text x="648" y="200">2</text></a>
+  <a class="cp" href="#step-2" data-step="2" aria-label="Шаг 2: F13"><circle cx="594" cy="534" r="13"/><text x="594" y="534">2</text></a>
+  <a class="cp" href="#step-3" data-step="3" aria-label="Шаг 3: соседи по RUN 2"><circle cx="658" cy="420" r="13"/><text x="658" y="420">3</text></a>
+  <a class="cp" href="#step-3" data-step="3" aria-label="Шаг 3: F85 только мультиметром"><circle cx="584" cy="336" r="13"/><text x="584" y="336">3</text></a>
+  <a class="cp" href="#step-4" data-step="4" aria-label="Шаг 4: контрольная группа RUN/START"><circle cx="584" cy="676" r="13"/><text x="584" y="676">4</text></a>
+  <a class="cp" href="#step-5" data-step="5" aria-label="Шаг 5: гнездо K15"><circle cx="236" cy="112" r="13"/><text x="236" y="112">5</text></a>
+  <a class="cp" href="#step-6" data-step="6" aria-label="Шаг 6: провод K619 и BCM"><circle cx="135" cy="62" r="13"/><text x="135" y="62">6</text></a>
+  <a class="cp" href="#step-7" data-step="7" aria-label="Шаг 7: подмена реле K15"><circle cx="376" cy="112" r="13"/><text x="376" y="112">7</text></a>
+  <a class="cp" href="#step-8" data-step="8" aria-label="Шаг 8: гнездо K12"><circle cx="376" cy="322" r="13"/><text x="376" y="322">8</text></a>
+  <a class="cp" href="#step-9" data-step="9" aria-label="Шаг 9: путь вентилятора, F13"><circle cx="622" cy="534" r="13"/><text x="622" y="534">9</text></a>
+  <a class="cp" href="#step-9" data-step="9" aria-label="Шаг 9: силовой модуль вентилятора"><circle cx="1072" cy="516" r="13"/><text x="1072" y="516">9</text></a>
+  <a class="cp" href="#step-10" data-step="10" aria-label="Шаг 10: S2442"><circle cx="782" cy="148" r="13"/><text x="782" y="148">10</text></a>
+  <a class="cp" href="#step-10" data-step="10" aria-label="Шаг 10: камера"><circle cx="1184" cy="76" r="13"/><text x="1184" y="76">10</text></a>
+  <a class="cp" href="#step-10" data-step="10" aria-label="Шаг 10: датчики BSM"><circle cx="1184" cy="191" r="13"/><text x="1184" y="191">10</text></a>
+  <a class="cp" href="#step-12" data-step="12" aria-label="Шаг 12: вход ORC C2-104, только в мастерской"><circle cx="1186" cy="328" r="13"/><text x="1186" y="328">12</text></a>
+</svg>
+<figcaption>Провода нарисованы в своих заводских цветах: розовый с жёлтым — PK/YE, розовый с зелёным — PK/GN, коричневый с оранжевым — K619 BN/OG, синий — C7 DB. Порядок отводов на шине RUN 1 внутри PDC условный, как на заводской схеме; реальная разводка платы не опубликована. Видео камеры идёт на радио C1-31/32 и в питании не участвует.</figcaption>
+<div class="legend">
+  <span><i class="sw sw-dead"></i>0 В по замеру или не работает</span>
+  <span><i class="sw sw-ok"></i>норма по замеру, работает</span>
+  <span><i class="sw sw-sus"></i>главный подозреваемый: K15 и его выход</span>
+  <span><i class="sw sw-q"></i>F95: норма без нагрузки, перепроверить</span>
+  <span><i class="sw-cp">1</i>точка проверки = шаг ниже</span>
+  <span><i class="sw sw-b"></i>B+</span>
+  <span><i class="sw sw-pkye"></i>PK/YE</span>
+  <span><i class="sw sw-pkgn"></i>PK/GN</span>
+  <span><i class="sw sw-bnog"></i>BN/OG</span>
+  <span><i class="sw sw-db"></i>DB</span>
+</div>
+</figure>
+</section>
+
+<section class="panel safety" aria-labelledby="srs-h">
+  <h2 id="srs-h">Безопасность SRS: что нельзя делать</h2>
+  <ul>
+    <li>Никаких перемычек с F86 на F85, fuse tap, внешних реле и никакой подачи питания на ORC C2-104 или C2-103.</li>
+    <li>Контрольную лампу не подключать к F85, F86 и разъёмам ORC: только мультиметр. Лампой нагружать можно F95, F96, F40, F101.</li>
+    <li>Реле в PDC вынимать и вставлять только при выключенном зажигании.</li>
+    <li>Чёрный щуп всегда на минус АКБ (саму клемму), а не на массу G909A у PDC: через неё идёт масса катушек.</li>
+    <li>Разъёмы ORC (шаг 12) — только в мастерской: отключить IBS и минус АКБ, ждать 2 минуты, мультиметр с током не более 20 мА, щупы Miller 10159-6.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="steps-h" style="display:grid; gap:14px">
+  <h2 id="steps-h">Шаги проверки</h2>
+  <div class="steps">
+
+    <article class="panel step" id="step-1" data-step="1" tabindex="-1">
+      <div class="step-h"><span class="num">1</span><h3>F95 под нагрузкой</h3></div>
+      <dl>
+        <dt>Где</dt><dd>PDC, F95 10A (красный micro). Гнездо сверить по легенде на крышке</dd>
+        <dt>Щупы</dt><dd>чёрный — минус АКБ; красный — обе контрольные точки F95</dd>
+        <dt>Нагрузка</dt><dd>лампа около 2 A между точкой F95 и минусом АКБ, напряжение мерить одновременно</dd>
+        <dt>Зажигание</dt><dd>OFF → ACC → RUN → двигатель работает</dd>
+        <dt>Норма</dt><dd>OFF и ACC: 0 В. RUN: напряжение АКБ, под лампой падение не больше 0,5 В</dd>
+      </dl>
+      <div class="if">
+        <div><b>Провал или лампа тусклая:</b> плохой контакт K15 или внутренней шины. Это объясняет ваш «нормальный» замер. Дальше шаги 2, 3, 5–7.</div>
+        <div><b>Держит нагрузку:</b> K15 замыкается, неисправностей несколько. Дальше шаги 2, 3, 8–10.</div>
+        <div><b>Есть напряжение в OFF/ACC:</b> это не то гнездо.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-2" data-step="2" tabindex="-1">
+      <div class="step-h"><span class="num">2</span><h3>Соседи по RUN 1 (K15)</h3></div>
+      <dl>
+        <dt>Что</dt><dd>F96 10A, F97 20A, F98 20A (если гнёзда заняты) и F13 40A — выход K16, картридж с точками сверху</dd>
+        <dt>Щупы</dt><dd>минус АКБ / обе контрольные точки</dd>
+        <dt>Зажигание</dt><dd>RUN, затем двигатель работает</dd>
+        <dt>Норма</dt><dd>напряжение АКБ</dd>
+      </dl>
+      <div class="if">
+        <div><b>Всё мёртвое:</b> выход K15 не работает (картина A).</div>
+        <div><b>F96 жив, F97/F98 и F13 мертвы:</b> обрыв шины RUN 1 внутри PDC (картина B).</div>
+        <div>Без приборов: если не греются сиденья и руль, это тоже указывает на K15.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-3" data-step="3" tabindex="-1">
+      <div class="step-h"><span class="num">3</span><h3>Соседи по RUN 2 (K12)</h3></div>
+      <dl>
+        <dt>Что</dt><dd>F40 10A, F101 15A, F103 10A, F100 10A (если есть). F85 — <span class="tag tag-srs">только мультиметр</span></dd>
+        <dt>Щупы</dt><dd>минус АКБ / обе контрольные точки</dd>
+        <dt>Зажигание</dt><dd>RUN</dd>
+        <dt>Норма</dt><dd>напряжение АКБ</dd>
+      </dl>
+      <div class="if">
+        <div><b>Все мертвы, а RUN 1 жив:</b> K12 не включается (картина C), шаг 8.</div>
+        <div><b>Все живы, мёртв только F85:</b> гнездо F85 или дорожка к нему, то есть PDC (картина D).</div>
+        <div>Без приборов: задний вентилятор, ДХО, автозатемнение зеркала.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-4" data-step="4" tabindex="-1">
+      <div class="step-h"><span class="num">4</span><h3>Контроль: RUN/START (K08)</h3></div>
+      <dl>
+        <dt>Что</dt><dd>F86, F99, F77, F78, F76, F88</dd>
+        <dt>Щупы</dt><dd>минус АКБ / контрольные точки</dd>
+        <dt>Зажигание</dt><dd>RUN</dd>
+        <dt>Норма</dt><dd>напряжение АКБ (F86 у вас уже в норме)</dd>
+      </dl>
+      <div class="if">
+        <div>Если всё живо, исправны шина B+ PDC, внешняя масса катушек Z909 → G909A и выходы BCM в целом. Поиск сужается до K15 и того, что внутри PDC.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-5" data-step="5" tabindex="-1">
+      <div class="step-h"><span class="num">5</span><h3>Гнездо K15 без реле</h3></div>
+      <dl>
+        <dt>Где</dt><dd>нижний ряд реле PDC, четвёртое слева (K12 · K13 · K14 · <b>K15</b> · K16)</dd>
+        <dt>Гнездо 30</dt><dd>минус АКБ / гнездо, OFF: напряжение АКБ всегда</dd>
+        <dt>Гнездо 85</dt><dd>ACC: меньше 3,5 В; RUN: напряжение АКБ (это K619 от BCM)</dd>
+        <dt>Гнездо 86</dt><dd>OFF, режим Ом, на минус АКБ: меньше 3,0 Ом</dd>
+        <dt>Гнездо 87</dt><dd>OFF, режим Ом: около 0 Ом до точек F95, F96, F97, F98 и гнёзд 85 реле K12 и K16</dd>
+      </dl>
+      <div class="if">
+        <div><b>30 = 0 В:</b> обрыв подвода B+ внутри PDC.</div>
+        <div><b>85 = 0 В в RUN:</b> шаг 6.</div>
+        <div><b>86 больше 3 Ом:</b> внутренняя ветка массы, PDC.</div>
+        <div><b>87 не звонится до части точек:</b> внутренний обрыв шины RUN 1, PDC.</div>
+        <div><b>Всё в норме:</b> виновато само реле, шаг 7.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-6" data-step="6" tabindex="-1">
+      <div class="step-h"><span class="num">6</span><h3>Сигнал K619 от BCM</h3></div>
+      <dl>
+        <dt>Где</dt><dd>колодка PDC C7, контакт 12 (BN/OG, 0,50), реле стоит на месте; затем BCM C5/E, контакт 36 у правой кик-панели</dd>
+        <dt>Щупы</dt><dd>минус АКБ / обратное прокалывание со стороны проводов</dd>
+        <dt>Зажигание</dt><dd>RUN</dd>
+        <dt>Норма</dt><dd>напряжение АКБ на обоих концах</dd>
+      </dl>
+      <div class="if">
+        <div><b>На BCM есть, на C7-12 нет:</b> обрыв провода K619 (при снятых колодках больше 3 Ом).</div>
+        <div><b>На BCM 0 В:</b> BCM не даёт команду, нужен сканер (шаг 11).</div>
+        <div>Осмотрите колодку C7: коррозия, вода, перегрев, утопленные клеммы 12, 13, 16, 21.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-7" data-step="7" tabindex="-1">
+      <div class="step-h"><span class="num">7</span><h3>Подмена реле K15</h3></div>
+      <dl>
+        <dt>Донор</dt><dd>K13 (задний вентилятор): его катушка всё равно на мёртвом RUN 2. Если K13 нет — K14. Только при одинаковой маркировке на корпусе</dd>
+        <dt>Порядок</dt><dd>зажигание OFF → переставить → RUN → повторить шаги 1–3</dd>
+      </dl>
+      <div class="if">
+        <div><b>Ожило всё</b> (F95 под лампой, F13, F40…F85): неисправно реле K15. Лампу SRS и коды потом гасит только сканер.</div>
+        <div><b>Не ожило:</b> гнездо или PDC (вернуться к шагу 5).</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-8" data-step="8" tabindex="-1">
+      <div class="step-h"><span class="num">8</span><h3>Гнездо K12 (картина C)</h3></div>
+      <dl>
+        <dt>Гнездо 30</dt><dd>напряжение АКБ всегда</dd>
+        <dt>Гнездо 85</dt><dd>RUN: напряжение АКБ, оно идёт с шины K15</dd>
+        <dt>Гнездо 86</dt><dd>меньше 3,0 Ом на минус АКБ</dd>
+        <dt>Гнездо 87</dt><dd>около 0 Ом до точек F40, F101, F103, F100, F85</dd>
+      </dl>
+      <div class="if">
+        <div><b>85 обесточено при живом F95:</b> внутренний обрыв в PDC.</div>
+        <div><b>Гнёзда в норме:</b> подменить K12 донором K13. Ожил RUN 2 — реле, нет — гнездо или PDC.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-9" data-step="9" tabindex="-1">
+      <div class="step-h"><span class="num">9</span><h3>Путь переднего вентилятора</h3></div>
+      <dl>
+        <dt>F13</dt><dd>обе точки в RUN: напряжение АКБ. 0 В — K16 не включается: гнездо 85 (АКБ в RUN), 86 (масса через C7-16 → G919A), подменить реле</dd>
+        <dt>Модуль C1-6</dt><dd>синий провод 4,0, обратное прокалывание, RUN: напряжение АКБ. 0 В при живом F13 — контакт C7-21 или провод</dd>
+        <dt>Модуль C1-5</dt><dd>масса G911A под передней частью консоли: падение 0,1–0,2 В на максимальной скорости</dd>
+        <dt>Модуль C1-3</dt><dd>сигнал C56 от модуля A/C: среднее напряжение меняется вместе со скоростью</dd>
+      </dl>
+    </article>
+
+    <article class="panel step" id="step-10" data-step="10" tabindex="-1">
+      <div class="step-h"><span class="num">10</span><h3>Питание BSM и камеры</h3></div>
+      <dl>
+        <dt>Когда</dt><dd>если F95 держит нагрузку (шаг 1)</dd>
+        <dt>Камера</dt><dd>колодка в левой нижней части двери багажника. Провод F923 искать по цвету (красный в перемычке, PK/YE в жгуте), не по номеру контакта. RUN: напряжение АКБ; масса Z923 меньше 5 Ом</dd>
+        <dt>BSM</dt><dd>контакт 5 на левом и правом датчиках за краями заднего бампера: напряжение АКБ в RUN; масса G917A</dd>
+      </dl>
+      <div class="if">
+        <div><b>Оба потребителя без питания при живом F95:</b> обрыв между C7-13 и S2442 у правого переднего порога. Осмотреть S2442 на воду и коррозию, проверить XY4000A-12 и XY2120A-6.</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-11" data-step="11" tabindex="-1">
+      <div class="step-h"><span class="num">11</span><h3>Когда будет сканер</h3><span class="tag tag-tool">сканер</span></div>
+      <div class="if" style="border-top:0; padding-top:0">
+        <div><b>Топология:</b> ORC отвечает (у него остаётся F86), датчики BSM не отвечают.</div>
+        <div><b>ORC:</b> ожидается B212D-13 или B212D-16, без B212C.</div>
+        <div><b>BCM:</b> B2121-15 = обрыв или замыкание в цепи управления K15.</div>
+        <div><b>Стирание кодов:</b> через шлюз SGW нужен авторизованный сканер (AutoAuth).</div>
+      </div>
+    </article>
+
+    <article class="panel step" id="step-12" data-step="12" tabindex="-1">
+      <div class="step-h"><span class="num">12</span><h3>Вход ORC C2-104</h3><span class="tag tag-srs">мастерская</span></div>
+      <dl>
+        <dt>Когда</dt><dd>только если F85 ожил, а лампа SRS всё равно горит</dd>
+        <dt>Что</dt><dd>ORC отключён, предохранитель стоит: напряжение на C2-104 со стороны жгута</dd>
+        <dt>Норма</dt><dd>больше 6,0 В — виноват ORC; меньше — обрыв провода F929</dd>
+      </dl>
+      <div class="if"><div>В заводском тексте B212D-13 ошибки: вместо «F6» читать F85, вместо «C1» — C2-104, «Rear PDC» — это подкапотный PDC.</div></div>
+    </article>
+
+  </div>
+</section>
+
+<section class="two">
+  <div class="panel pad">
+    <h2>Что значат результаты шагов 1–3</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Картина</th><th>F95 под лампой</th><th>F96–F98</th><th>F13</th><th>F40–F100</th><th>Вывод</th></tr></thead>
+      <tbody>
+        <tr><td><b>A</b></td><td><span class="chip chip-dead">0 / провал</span></td><td><span class="chip chip-dead">0</span></td><td><span class="chip chip-dead">0</span></td><td><span class="chip chip-dead">0</span></td><td>Выход K15: реле, гнездо, K619 или внутренности PDC. Шаги 5 → 6 → 7</td></tr>
+        <tr><td><b>B</b></td><td><span class="chip chip-ok">норма</span></td><td>F96 <span class="chip chip-ok">норма</span>, F97/98 <span class="chip chip-dead">0</span></td><td><span class="chip chip-dead">0</span></td><td><span class="chip chip-dead">0</span></td><td>Обрыв шины RUN 1 внутри PDC; BSM и камера — отдельный дефект. Шаги 5, 10</td></tr>
+        <tr><td><b>C</b></td><td><span class="chip chip-ok">норма</span></td><td><span class="chip chip-ok">норма</span></td><td><span class="chip chip-ok">норма</span></td><td><span class="chip chip-dead">0</span></td><td>K12 не включается; плюс отдельные дефекты вентилятора и BSM/камеры. Шаги 8, 9, 10</td></tr>
+        <tr><td><b>D</b></td><td><span class="chip chip-ok">норма</span></td><td><span class="chip chip-ok">норма</span></td><td><span class="chip chip-any">любое</span></td><td><span class="chip chip-ok">норма</span></td><td>Только гнездо F85 или дорожка к нему, то есть PDC. Шаги 9, 10</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="panel pad">
+    <h2>Где реле в PDC</h2>
+    <svg class="row d" viewBox="0 0 520 170" role="img" aria-label="Нижний ряд реле PDC слева направо: K12, K13, K14, K15, K16; K15 выделено как главный подозреваемый.">
+      <rect class="pdc" x="6" y="6" width="508" height="158" rx="8"/>
+      <text class="ts" x="20" y="28">нижний (передний) ряд реле, вид сверху</text>
+      <rect class="relay" x="20" y="48" width="84" height="62" rx="4"/>
+      <text class="tb mid" x="62" y="76">K12</text><text class="ts mid" x="62" y="94">Run 2</text>
+      <rect class="relay" x="118" y="48" width="84" height="62" rx="4"/>
+      <text class="tb mid" x="160" y="76">K13</text><text class="ts mid" x="160" y="94">зад. вент.</text>
+      <rect class="relay" x="216" y="48" width="84" height="62" rx="4"/>
+      <text class="tb mid" x="258" y="76">K14</text><text class="ts mid" x="258" y="94">Run/Acc 2</text>
+      <rect class="relay-sus" x="314" y="48" width="84" height="62" rx="4"/>
+      <text class="tb mid" x="356" y="76">K15</text><text class="ts mid t-sus" x="356" y="94">Run 1</text>
+      <rect class="relay" x="412" y="48" width="84" height="62" rx="4"/>
+      <text class="tb mid" x="454" y="76">K16</text><text class="ts mid" x="454" y="94">Blower</text>
+      <text class="ts" x="20" y="136">K08 Run/Start стоит левее центра блока.</text>
+      <text class="ts" x="20" y="152">Позиции по рисунку раскладки PDC; сверяйте с легендой на крышке.</text>
+    </svg>
+    <p style="font-size:14px; color:var(--muted)">Реле в документации описаны как сменные Relay_Micro. Прежде чем менять, убедитесь, что они вынимаются и маркировка донора совпадает. PDC отдельно не ремонтируется и меняется в сборе со жгутом моторного отсека; для 2018 года дилер согласует замену со STAR Center (GPOP 9003816).</p>
+  </div>
+</section>
+
+<footer>
+  <div>Источник: заводская сервисная информация FCA для 2018 Durango 5.7 AWD (зеркало LEMON Manuals), схемы Power Distribution VA586498–VA586501, A/C VA585297, таблицы PDC C1/C6/C7 и ORC C2. Полный отчёт со ссылками и метками VERIFIED / INFERENCE — в репозитории <a href="https://github.com/serjout/durango-2018-f85-diagnostics">serjout/durango-2018-f85-diagnostics</a> (приватный).</div>
+  <div>Допуски «падение не больше 0,5 В под лампой» и «0,1–0,2 В на массе» — практические, не заводские.</div>
+</footer>
+
+</main>
+<script>
+(function () {
+  var cps = document.querySelectorAll('.d .cp');
+  var steps = document.querySelectorAll('.step');
+  function mark(n, on) {
+    cps.forEach(function (c) { if (c.getAttribute('data-step') === n) c.classList.toggle('hl', on); });
+    steps.forEach(function (s) { if (s.getAttribute('data-step') === n) s.classList.toggle('hl', on); });
+  }
+  steps.forEach(function (s) {
+    var n = s.getAttribute('data-step');
+    s.addEventListener('mouseenter', function () { mark(n, true); });
+    s.addEventListener('mouseleave', function () { mark(n, false); });
+  });
+  cps.forEach(function (c) {
+    var n = c.getAttribute('data-step');
+    c.addEventListener('mouseenter', function () { mark(n, true); });
+    c.addEventListener('mouseleave', function () { mark(n, false); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1374 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Диагностика одновременного отказа SRS, BSM, камеры и вентилятора на Dodge Durango R/T 2018">
+      
+      
+      
+        <link rel="canonical" href="https://serjout.github.io/durango-2018-f85/notes/durango-2018-pitanie-f85/field-cases-tsb/">
+      
+      
+        <link rel="prev" href="../connectors-orc-dtc/">
+      
+      
+        <link rel="next" href="../power-distribution-f85-f86/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Реальные случаи и TSB - Durango 2018 · питание F85</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#field-cases-tsbs-and-recalls-simultaneous-multi-system-failure-0-v-at-an-ignition-run-fuse-f85-orc-on-2018-dodge-durango-wd-and-the-related-jeep-grand-cherokee-wk2" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../.." title="Durango 2018 · питание F85" class="md-header__button md-logo" aria-label="Durango 2018 · питание F85" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.96 16.45c.01-.15.04-.3.04-.45v.5zM11 16c0 .71.15 1.39.42 2H6v1c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-8l2.08-6c.2-.58.76-1 1.42-1h11c.66 0 1.22.42 1.42 1L21 11v5c0-2.76-2.24-5-5-5s-5 2.24-5 5m-3-2.5c0-.83-.67-1.5-1.5-1.5S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10l-1.5-4.5h-11L5 10zm3.87 11.19-4.11-4.11c.41-1.04.18-2.26-.68-3.11-.9-.91-2.25-1.09-3.34-.59l1.94 1.94-1.35 1.36-1.99-1.95c-.54 1.09-.29 2.44.59 3.35a2.91 2.91 0 0 0 3.12.68l4.11 4.1c.18.19.45.19.63 0l1.04-1.03c.22-.18.22-.5.04-.64"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Durango 2018 · питание F85
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Реальные случаи и TSB
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Тёмная тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Светлая тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Durango 2018 · питание F85" class="md-nav__button md-logo" aria-label="Durango 2018 · питание F85" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.96 16.45c.01-.15.04-.3.04-.45v.5zM11 16c0 .71.15 1.39.42 2H6v1c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-8l2.08-6c.2-.58.76-1 1.42-1h11c.66 0 1.22.42 1.42 1L21 11v5c0-2.76-2.24-5-5-5s-5 2.24-5 5m-3-2.5c0-.83-.67-1.5-1.5-1.5S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10l-1.5-4.5h-11L5 10zm3.87 11.19-4.11-4.11c.41-1.04.18-2.26-.68-3.11-.9-.91-2.25-1.09-3.34-.59l1.94 1.94-1.35 1.36-1.99-1.95c-.54 1.09-.29 2.44.59 3.35a2.91 2.91 0 0 0 3.12.68l4.11 4.1c.18.19.45.19.63 0l1.04-1.03c.22-.18.22-.5.04-.64"/></svg>
+
+    </a>
+    Durango 2018 · питание F85
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../diagrams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Схемы цепей
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Отчёты
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Отчёты
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reports/durango-2018-pitanie-f85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Цепочка реле K15→K12 объясняет все четыре отказа
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Заметки исследования
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Заметки исследования
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Durango 2018 питание F85
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Durango 2018 питание F85
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blower-bsm-camera-power/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Питание вентилятора, BSM и камеры
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../can-network-gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сеть CAN и шлюз
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connectors-orc-dtc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Разъёмы PDC C6, ORC и DTC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Реальные случаи и TSB
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Реальные случаи и TSB
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q1-are-there-documented-durango-20142020-wk2-cases-with-this-exact-symptom-cluster-and-a-confirmed-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1. Are there documented Durango 2014–2020 / WK2 cases with this exact symptom cluster and a confirmed fix?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q1. Are there documented Durango 2014–2020 / WK2 cases with this exact symptom cluster and a confirmed fix?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q2-what-explains-0-v-at-an-ignition-run-fuse-like-f85-and-what-do-b212db212c-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2. What explains 0 V at an ignition-RUN fuse like F85, and what do B212D/B212C mean?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q2. What explains 0 V at an ignition-RUN fuse like F85, and what do B212D/B212C mean?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q3-which-tsbs-recalls-and-nhtsa-complaints-apply-to-2018-durango-pdc-ignition-relays-orc-power-blower-camera-bsm-water-intrusion-harness-and-accessories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3. Which TSBs, recalls and NHTSA complaints apply to 2018 Durango PDC, ignition relays, ORC power, blower, camera, BSM, water intrusion, harness and accessories?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q3. Which TSBs, recalls and NHTSA complaints apply to 2018 Durango PDC, ignition relays, ORC power, blower, camera, BSM, water intrusion, harness and accessories?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q4-does-each-sources-architecture-match-the-2018-durango-pdcrelay-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q4. Does each source's architecture match the 2018 Durango PDC/relay design?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q4. Does each source's architecture match the 2018 Durango PDC/relay design?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saved-files-docssourcesfield-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saved files (docs/sources/field-cases/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power-distribution-f85-f86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Путь питания F85 и F86
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    История автомобиля
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            История автомобиля
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../istoriya-avtomobilya/vehicle-history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    История автомобиля: факты от владельца
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Источники
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q1-are-there-documented-durango-20142020-wk2-cases-with-this-exact-symptom-cluster-and-a-confirmed-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q1. Are there documented Durango 2014–2020 / WK2 cases with this exact symptom cluster and a confirmed fix?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q1. Are there documented Durango 2014–2020 / WK2 cases with this exact symptom cluster and a confirmed fix?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q2-what-explains-0-v-at-an-ignition-run-fuse-like-f85-and-what-do-b212db212c-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q2. What explains 0 V at an ignition-RUN fuse like F85, and what do B212D/B212C mean?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q2. What explains 0 V at an ignition-RUN fuse like F85, and what do B212D/B212C mean?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q3-which-tsbs-recalls-and-nhtsa-complaints-apply-to-2018-durango-pdc-ignition-relays-orc-power-blower-camera-bsm-water-intrusion-harness-and-accessories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3. Which TSBs, recalls and NHTSA complaints apply to 2018 Durango PDC, ignition relays, ORC power, blower, camera, BSM, water intrusion, harness and accessories?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q3. Which TSBs, recalls and NHTSA complaints apply to 2018 Durango PDC, ignition relays, ORC power, blower, camera, BSM, water intrusion, harness and accessories?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q4-does-each-sources-architecture-match-the-2018-durango-pdcrelay-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q4. Does each source's architecture match the 2018 Durango PDC/relay design?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q4. Does each source's architecture match the 2018 Durango PDC/relay design?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saved-files-docssourcesfield-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saved files (docs/sources/field-cases/)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="field-cases-tsbs-and-recalls-simultaneous-multi-system-failure-0-v-at-an-ignition-run-fuse-f85-orc-on-2018-dodge-durango-wd-and-the-related-jeep-grand-cherokee-wk2">Field cases, TSBs and recalls: simultaneous multi-system failure / 0 V at an ignition-RUN fuse (F85 ORC) on 2018 Dodge Durango WD and the related Jeep Grand Cherokee WK2<a class="headerlink" href="#field-cases-tsbs-and-recalls-simultaneous-multi-system-failure-0-v-at-an-ignition-run-fuse-f85-orc-on-2018-dodge-durango-wd-and-the-related-jeep-grand-cherokee-wk2" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Локальные копии документов</p>
+<p>Пути вида <code>docs/sources/...</code> указывают на копии документов в приватном репозитории, на сайте их нет. Пользуйтесь ссылками на оригинальные страницы или <a href="/durango-2018-f85/sources/">указателем источников</a>.</p>
+</div>
+<p>Vehicle in question: 2018 Durango R/T 5.7 AWD, VIN 1C4SDJCT3JCXXXXXX. Faults that appeared at once and stayed: Service BSM, SRS light, front blower dead (controls still work), rear camera blue screen. Measured: underhood PDC F85 (10 A ORC) = 0 V on both sides. F86 (ORC) and F95 (camera/ParkSense) are normal.</p>
+<p>Local archive of sources: <code>docs/sources/field-cases/</code>. Files are listed under "Saved files" at the end of Q4.</p>
+<p>Labels used: <strong>CONFIRMED FIX</strong> means the owner or technician says a specific repair cured it. <strong>PLAUSIBLE</strong> means the mechanism fits but no confirmed outcome was posted. <strong>SPECULATION</strong> means guesses only.</p>
+<hr />
+<h2 id="q1-are-there-documented-durango-20142020-wk2-cases-with-this-exact-symptom-cluster-and-a-confirmed-fix">Q1. Are there documented Durango 2014–2020 / WK2 cases with this exact symptom cluster and a confirmed fix?<a class="headerlink" href="#q1-are-there-documented-durango-20142020-wk2-cases-with-this-exact-symptom-cluster-and-a-confirmed-fix" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway">Takeaway<a class="headerlink" href="#takeaway" title="Permanent link">&para;</a></h3>
+<p>I found no public case that matches the full cluster (SRS + BSM + front blower + camera blue screen, permanent, with 0 V at F85) on a 2014–2020 WD or 2014+ WK2 and has a confirmed fix. The closest WD cases with confirmed fixes are PDC replacements for a dead HVAC output (2016 Citadel) and a dead fuse cavity (2023). The airbag-light-plus-blower pairing is well documented only on older WK (2005–2010) and TJ Jeeps. There the cause was a shared, non-serviceable RUN relay (or the ORC itself) that fed both the ORC run input and the HVAC blower relay.</p>
+<h3 id="cited-findings">Cited Findings<a class="headerlink" href="#cited-findings" title="Permanent link">&para;</a></h3>
+<p><strong>Durango WD (2014–2020 and close years)</strong>
+- <strong>2016 Durango Citadel. CONFIRMED FIX (owner report, search snippet).</strong> A dealer diagnosed a failing PDC after an intermittent rear A/C blower fault. A second 2016 Citadel owner reports "Replaced the distribution center" in June 2020, costing $75 for diagnosis plus $615 for the repair. No airbag, BSM or camera symptoms appear in the snippet. Architecture: same PDC family as 2018 (2016–2017 PDC part numbers 68251629A_ / 68253444A_). — <a href="https://www.dodgedurango.net/threads/bad-power-distribution-center-2016-citidal.70202/">dodgedurango.net thread 70202</a>; PDC part numbers: <a href="https://parts.chryslerjeepdodgecityofmckinney.com/p/Dodge_2016_Durango/POWER-DISTRIBUTION-CENTER-Intelligent-Power-Stop-Start-Dual-Battery-System/78262716/68251629AD.html">Mopar dealer listing 68251629AD</a>, <a href="https://www.dodgeparts.com/oem-parts/mopar-intelligent-power-power-distribution-center-68253444ad">dodgeparts 68253444AD</a>
+- <strong>2023 Durango. CONFIRMED FIX per owner (snippet).</strong> An A/C technician found the A/C fuse cavity had no power. Changing fuses did nothing, and the shop then "replaced the Power Distribution Center." This is the same failure pattern as F85: a dead fuse cavity caused by an internal PDC output failure. It is MY2023, though, and the PDC revision is not proven to match 2018. — <a href="https://www.dodgedurango.net/threads/a-c-fuse-port-no-power-has-anyone-encountered-this-issue.91668/">dodgedurango.net thread 91668</a>
+- <strong>2017 Durango R/T. SPECULATION.</strong> Front and rear blowers stopped, along with backup camera and seat-belt-light problems, all at once. The JustAnswer expert said to check the underhood fuses and, if no power reaches a fuse, to suspect the "Power Distribution box". No outcome was posted. Of all WD 2014–2020 reports found, this is the closest match. — <a href="https://www.justanswer.com/dodge/p4q1d-2017-dodge-durango-r-t-ac-blower-motors-front-rear-not.html">JustAnswer p4q1d</a> (HTTP 403 to automated fetch; content from search snippet)
+- <strong>2014 Durango, intermittent front blower. PLAUSIBLE.</strong> The blower worked only after reseating F13 (40 A). A new motor did not fix it. Other owners report blower relays replaced under warranty, and one reports the blower harness "melted up under the fuse box" (~$3,000 estimate). — <a href="https://www.dodgedurango.net/threads/front-blower-motor-intermittently-not-working.74490/">dodgedurango.net 74490</a>, <a href="https://www.dodgedurango.net/threads/front-blower-motor-intermittently-not-working.74490/page-2">page 2</a>
+- <strong>Durango, year not visible in snippet. SPECULATION.</strong> BSM failed first, then a transmission indication, then the airbag light, then the backup camera. Replies only suggested checking battery voltage. — <a href="https://www.dodgedurango.net/threads/wiring-problem.76353">dodgedurango.net 76353 "Wiring problem?"</a>
+- <strong>2014 Durango, NHTSA ODI 10838081. PARTIAL / not resolved.</strong> After a key cycle: wipers would not shut off, no turn signals, BSM not working, steering-wheel buttons dead, TC and CEL lamps on. The dealer replaced a fuse but "cannot find a reason why the fuse failed", and the fault recurred. — <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2014">NHTSA complaints API, Durango 2014</a>
+- <strong>2016 Durango, ODI 11010515.</strong> Five dealer visits for headliner problems, including interior lights, rear A/C vents, "pinched wires in the wiring harness" and airbag lights. This is relevant as a harness-damage precedent. — <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2016">NHTSA complaints API, Durango 2016</a>
+- <strong>2011–2013 Durango (TIPM-era architecture, NOT the 2018 PDC).</strong> BSM, camera and FCW dropping out together has been traced to fuses live on one side only, a blown M34 (10 A) shared by rear HVAC, park assist, camera and BSM, a rear radar bracket shorting the bus, and radars installed backwards by a body shop. A 2013 case showed U0232/U0159 with good fuses. — <a href="https://www.dodgedurango.net/threads/blind-spot-unavailable-and-other-issues-looking-for-help.21989/">dodgedurango.net 21989</a>; <a href="https://dodgeforum.com/forum/3rd-gen-durango/413008-service-park-assist-system.html">dodgeforum 413008</a></p>
+<p><strong>Jeep Grand Cherokee WK2</strong>
+- <strong>2012 WK2 (TIPM-era, 2011–2013). CONFIRMED (owner).</strong> No power from the TIPM to the blower. The TIPM was replaced "and all worked properly". Another owner reports a TIPM relay not pulling in fully. — <a href="https://www.jeepgarage.org/threads/2012-grand-cherokee-no-power-to-blower-motor-resistor.235255/">jeepgarage 235255</a>, <a href="https://www.jeepgarage.org/threads/2012-no-power-to-blower-resistor.204817/">jeepgarage 204817</a>
+- <strong>2014 WK2.</strong> The dealer measured 0 V supply to the blower while it was dead, which points to a supply-side fault. No airbag link was reported. — <a href="https://www.jeepgarage.org/threads/2014-grand-cherokee-ac-blower-intermittent.89693/">jeepgarage 89693</a>
+- <strong>2015 WK2.</strong> Blower-only fault. Tapping the blower housing restored it, so this is a motor or power-module problem and unrelated. — <a href="https://www.jeepgarage.org/threads/2015-grand-cherokee-ac-fan-stopped-blowing.235238/">jeepgarage 235238</a>
+- I found no 2014–2020 WK2 thread with airbag light, dead blower and 0 V at F85 together.</p>
+<p><strong>Older WK (2005–2010) and TJ: airbag light plus blower together (shared RUN feed; DIFFERENT architecture)</strong>
+- <strong>2006 WK Laredo 3.7. CONFIRMED FIX (thread marked [FIXED]).</strong> A/C/blower dropped out whenever the airbag/OCS light came on. DTCs B212D, B1206, B1204. Measured at the ORC: pin 24 (fused run-relay output, circuit F100) fell to 0 V while pin 16 stayed at 12 V. The final repair was a new ORC: "It was the ORC that was at fault !!!" — <a href="https://www.scannerdanner.com/forum/post-your-repair-questions-here/4804-fixed-2006-jeep-grand-cherokee-laredo-3-7l.html">ScannerDanner forum 4804</a>
+  - Same thread, 2008 WK. <strong>Not confirmed.</strong> When pin 24 lost 14 V the blower shut off and the airbag light came on. The tech suspected a hot-soak internal short in the feeding module. — same URL
+  - Same thread, 2005 WK. <strong>Counter-example.</strong> A new ORC plus dealer reflash did not fix it; the symptom returned the next day. — same URL
+- <strong>2005 WK. PLAUSIBLE, workaround only.</strong> B212D was read as "ignition run only input"; the poster says "the relay controls air bags and HVAC fan". The fix was a fuse tap plus a 16 ga jumper to the HVAC relay in the underhood box, using a switched source only. Another poster blamed an intermittent internal (non-replaceable) relay in the under-dash Junction Block. — <a href="https://www.jeepgarage.org/threads/air-bag-light-going-on-and-off.48675/">jeepgarage 48675</a>
+- <strong>WK. CONFIRMED (owner "solved").</strong> An intermittent fault in the under-dash junction block, which feeds the HVAC relay in the underhood box with ignition on, was repaired. The airbag light went off and the heater fan worked again. — <a href="https://www.allpar.com/threads/ok-got-another-wk-jeep-electronic-issue-question-update-solved.247088/">allpar 247088</a>
+- <strong>Jeep (model per thread). SPECULATION.</strong> Airbag light and no HVAC, worse in heat and humidity. One owner changed the ignition switch and the ORC before concluding the cause was the Run Relay inside the Junction Block. — <a href="https://www.jeepforum.com/threads/very-very-odd-issue-airbag-light-no-hvac.4364927/">jeepforum 4364927</a>
+- <strong>1998 TJ.</strong> HVAC, rear wiper, airbag and back-up lights all share fuse 2 in the PDC. This shows the shared-feed principle only. — <a href="https://www.jeepforum.com/threads/heater-blower-back-up-lights-rear-wiper-and-airbag-lights-not-working.1494186/">jeepforum 1494186</a></p>
+<h3 id="inferences">Inferences<a class="headerlink" href="#inferences" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Across Chrysler platforms the recurring pattern is: SRS light plus dead blower at the same time means a shared ignition-RUN source has dropped out. That source is a RUN relay or its output trace inside a non-serviceable box (JB/TIPM/PDC), or occasionally the ORC itself (2006 WK). A dead output that is intact on the load side is fixed by replacing the box, not the fuse.</li>
+<li>For 2018 WD, 0 V on <strong>both</strong> sides of F85 while F86 has power means the F85 supply bus inside the PDC is dead. That is upstream of the fuse, so the fault is the internal RUN relay or trace, the relay's coil control, or the PDC feed. A short downstream of F85 would normally blow the fuse and leave one side live. The 2016 and 2023 WD cases show that FCA dealers do replace the PDC for a dead output cavity.</li>
+<li>Front blower dead with HVAC controls alive fits loss of RUN power to the blower relay coil or the blower power module on the same internal RUN output. Confirm against the 2018 WD wiring diagram, which is covered by another research stream.</li>
+<li>The 2011–2013 cases (TIPM, M34) and the 2005–2010 WK cases (JB/IPM) show the mechanism but are <strong>not</strong> the same hardware as the 2018 PDC.</li>
+</ul>
+<h3 id="gaps">Gaps<a class="headerlink" href="#gaps" title="Permanent link">&para;</a></h3>
+<ul>
+<li>VerticalScope forums (dodgedurango.net, jeepgarage.org, jeepforum.com, allpar.com) redirect automated fetches to TollBit (HTTP 402). JustAnswer and CarGurus returned 403/406. Those cases come from search-engine snippets only, so post-level details (dates, DTC lists, final confirmations) could not be checked. Opening these URLs in a normal browser should confirm the details.</li>
+<li>I found no Diagnostic Network, iATN or YouTube case for WD/WK2 2014–2020 with 0 V at F85. Reddit searches returned nothing relevant.</li>
+</ul>
+<hr />
+<h2 id="q2-what-explains-0-v-at-an-ignition-run-fuse-like-f85-and-what-do-b212db212c-mean">Q2. What explains 0 V at an ignition-RUN fuse like F85, and what do B212D/B212C mean?<a class="headerlink" href="#q2-what-explains-0-v-at-an-ignition-run-fuse-like-f85-and-what-do-b212db212c-mean" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway_1">Takeaway<a class="headerlink" href="#takeaway_1" title="Permanent link">&para;</a></h3>
+<p>B212D, "Ignition Run Only Input Circuit Open", is the ORC DTC expected when F85 has no voltage. In the 2010 WK service procedure (the closest one publicly available), if the RUN relay output is missing at the fuse supply side and the wiring checks out, the fix is to <strong>replace the box containing the relay ("the relay is not replaceable")</strong>. A 2017 FCA dealer notice for MY18 WD requires a STAR Center call and preauthorization before any PDC replacement.</p>
+<h3 id="cited-findings_1">Cited Findings<a class="headerlink" href="#cited-findings_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2010 WK procedure: B212D is monitored with ignition in RUN and sets when the F100 Fused Run Relay Output circuit "drops below 6.5 ± 0.25 volts". — <a href="https://charm.li/Jeep/2010/Grand%20Cherokee%204WD%20V8-5.7L/Repair%20and%20Diagnosis/A%20L%20L%20%20Diagnostic%20Trouble%20Codes%20%28%20DTC%20%29/Testing%20and%20Inspection/B%20Code%20Charts/B212D/">CHARM: 2010 Grand Cherokee B212D</a></li>
+<li>Same procedure:</li>
+<li>Step 3: inspect the Airbag Run Circuit fuse.</li>
+<li>Steps 4–5: if the fuse is open, check F100 for a short to ground (&lt;100 Ω) with the ORC connected and then disconnected. If the short disappears with the ORC disconnected, replace the ORC.</li>
+<li>Step 6: if the fuse is good, measure the Run Relay Output (F923) at the fuse supply side with ignition on.</li>
+<li>Step 8: if that is below 6.5 V, check F923 between IPM and JB, then "Replace the Junction Block (the relay is not replaceable)".</li>
+<li>Caveat: the archived step 8 Yes/No branches look inverted ("below 5.0 Ohms → repair open"), so read that branch with care. — same CHARM URL</li>
+<li>Other Chrysler service manuals give B212D thresholds of below 6.0 V or 5.0 V depending on platform, so thresholds vary by model year. — <a href="https://manuals.autorepairshq.com/Dodge/2008/Caliber%20L4-1.8L/Repair%20and%20Diagnosis/A%20L%20L%20%20Diagnostic%20Trouble%20Codes%20%28%20DTC%20%29/Testing%20and%20Inspection/B%20Code%20Charts/B212D">autorepairshq B212D (Caliber 2008)</a> (search-result summary)</li>
+<li>B212C is described as a BCM DTC for an open or invalid ignition <strong>run/start</strong> input. That makes it a BCM-side code, while B212D is ORC-side. — <a href="https://www.tat.net.au/scandata/codes/code-view.php?id=8759">tat.net.au code view</a> (search-result summary; which result produced this definition is uncertain; generic definition, not WD-specific, not verified on the page)</li>
+<li><strong>TSB/GPOP 9003816 (11/01/2017, MY18 WD), Power Distribution Center, parts 68320920A$ and 68320923A$:</strong> "prior to replacing the Power Distribution Center (PDC), you MUST contact the STAR Center … for diagnostic assistance and pre-authorization. Failure to do so WILL result in your warranty claim being rejected." — <a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">NHTSA MC-10216108-9999.pdf</a>; index: <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-9003816.shtml">carcomplaints TSB 9003816</a></li>
+<li>A PDC repair vendor lists WK2 2014–2022 PDC part numbers that include 68320918A_, 68320919A_, 68320921A_ and 68320922A_. These sit next to the 2018 WD numbers 68320920/68320923. The vendor names only "Fuel Pump Relay Failure" as the symptom it repairs. — <a href="https://circuitboardmedics.com/2014-2022-jeep-grand-cherokee-power-distribution-center-repair/">Circuit Board Medics, 2014–2022 GC PDC</a></li>
+<li>WD/WK2 PDC relays are cascaded. On a 2014 Durango, fuse #3 drives the start/run crank relay, which powers the A/C clutch relay, which feeds F62. — <a href="https://www.justanswer.com/dodge/guhug-no-a-c-clutch-no-power-62-fuse-2014-dodge-durango-check.html">JustAnswer guhug</a> (search snippet)</li>
+<li>A third-party guide says some WD PDC relays are printed on the circuit board and that a failed on-board relay means replacing the whole PDC. This is a secondary, SEO-type source. — <a href="https://www.go-parts.com/garage/fuse-box-dodge-durango-2016-2026">go-parts Durango 2016–2026 fuse box</a></li>
+<li>Fuse maps agree that F85 and F86 are ORC/airbag micro fuses (10 A), F95 is Rear Camera/ParkSense (2016–2018; 2019 adds Blind Spot), F13 is the front blower (40 A) and F37 is the rear blower. Numbering differs between sources and years. — <a href="https://fuse-box.info/dodge/dodge-durango-2011-2018-fuses">fuse-box.info Durango 2011–2019</a>; <a href="https://fuseandrelay.com/jeep/grand-cherokee-wk2.html">fuseandrelay WK2</a>; <a href="https://www.startmycar.com/dodge/durango/info/fusebox/2018">startmycar 2018 Durango</a></li>
+</ul>
+<h3 id="inferences_1">Inferences<a class="headerlink" href="#inferences_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The MY18-WD-specific GPOP notice (Nov 2017, early in the model year) shows FCA tracked PDC replacements on 2018 WD closely. That is consistent with a known PDC failure or over-replacement pattern, but the notice gives no failure mode. Practically, for a car in warranty or goodwill, a dealer must open a STAR case before a PDC swap, and the documented F85 0 V (both sides) with F86 present is exactly the evidence to bring.</li>
+<li>Using the CHARM logic: if the RUN feed is missing at the fuse <strong>supply</strong> side and the box connector/feed checks out, the remedy is replacing the box that contains the relay. On 2018 WD that box is the PDC (68320920A_/68320923A_ by option content).</li>
+<li>If the ORC logs B212D (not B212C), that confirms the ORC sees the loss on its F85 run input. A BCM B212C would instead point to the ignition-state input or command chain rather than one PDC output.</li>
+</ul>
+<h3 id="gaps_1">Gaps<a class="headerlink" href="#gaps_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No 2018 WD-specific B212D procedure or WD PDC internal schematic could be retrieved: CHARM covers only up to 2013, and lemon-manuals was not accessed. Which internal RUN relay feeds F85, and whether the same relay feeds the front blower relay coil, needs the 2018 WD wiring diagram (see the parallel wiring/CAN research).</li>
+<li>The exact B212D threshold for 2018 WD was not found.</li>
+</ul>
+<hr />
+<h2 id="q3-which-tsbs-recalls-and-nhtsa-complaints-apply-to-2018-durango-pdc-ignition-relays-orc-power-blower-camera-bsm-water-intrusion-harness-and-accessories">Q3. Which TSBs, recalls and NHTSA complaints apply to 2018 Durango PDC, ignition relays, ORC power, blower, camera, BSM, water intrusion, harness and accessories?<a class="headerlink" href="#q3-which-tsbs-recalls-and-nhtsa-complaints-apply-to-2018-durango-pdc-ignition-relays-orc-power-blower-camera-bsm-water-intrusion-harness-and-accessories" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway_2">Takeaway<a class="headerlink" href="#takeaway_2" title="Permanent link">&para;</a></h3>
+<p>No recall covers the PDC, RUN relays, ORC power, front blower, camera or BSM on a 2018 Durango. The relevant official documents are:
+- GPOP 9003816 (STAR preauthorization for PDC replacement, MY18 WD)
+- GPOP 9004386 (call FCA for a repair kit before replacing a body harness, MY14–20)
+- STAR S1623000034 (2018 Durango sunroof drain tubes missing or misrouted, causing water at the A-pillar/headliner — a water-intrusion route)
+- radio software TSBs for backup-camera behavior</p>
+<h3 id="cited-findings_2">Cited Findings<a class="headerlink" href="#cited-findings_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2018 Durango recalls from the NHTSA API: 18V280000 (transmission park lock rod), 18V332000 (cruise control cannot be cancelled, PCM flash), 18V524000 (PCM voltage-regulator chip, stall/no-start, FCA U87), 22V426000 and 24V838000 (ABS module). None involves the PDC, ORC feed, blower, camera or BSM. — <a href="https://api.nhtsa.gov/recalls/recallsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2018">NHTSA recalls API 2018 Durango</a></li>
+<li><strong>Recall 14V643000 / FCA P67</strong> (2014 Durango built 6/2/2013–6/28/2014; 2014 WK2 built 10/30/2012–4/30/2014): "a fault within the Occupant Restraint Control (OCR) module" may disable front airbags, pretensioners and side airbags; the remedy is ORC replacement. It is <strong>not applicable to MY2018</strong> but shows the WD and WK2 share the ORC family. — <a href="https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=14V643000">NHTSA recall 14V643000</a></li>
+<li><strong>GPOP 9003816 (MY18 WD), PDC.</strong> STAR Center preauthorization is required before replacement. — <a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">MC-10216108-9999.pdf</a></li>
+<li><strong>GPOP 9004386 (06/09/2021, MY14–20 All Makes/Models), "WIRING, Body".</strong> "Before replacing this harness, please contact FCA … to see if a repair kit is available"; if there is no response in 15 minutes, proceed; email photos of harness defects. — <a href="https://static.nhtsa.gov/odi/tsbs/2021/MC-10221228-9999.pdf">MC-10221228-9999.pdf</a>; <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-9004386.shtml">carcomplaints 9004386</a></li>
+<li><strong>STAR S1623000034 Rev A (Nov 2021, 2018 Durango): "Water Leak From Overhead Console, A Pillar And Or Headliner. Sunroof Drain Tube Inspection".</strong> Front and/or rear sunroof drain tubes were missing or misrouted, leaving the carpet wet. — <a href="https://static.nhtsa.gov/odi/tsbs/2021/MC-10204343-9999.pdf">MC-10204343-9999.pdf</a>; <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-s1623000034-rev.shtml">carcomplaints S1623000034</a></li>
+<li><strong>STAR S2008000093 (06/30/2020), "Blind Spot Or Park Assist Warnings, False Activation".</strong> Covers fascia paint thickness and body filler within 25 cm of the radar sensors. This is a false-alert issue, <strong>not</strong> a "Service BSM" or power-loss issue, so it does not explain this case. — <a href="https://static.nhtsa.gov/odi/tsbs/2020/MC-10223559-9999.pdf">MC-10223559-9999.pdf</a></li>
+<li>Backup camera: TSB 08-084-19 (radio software 1848.24, "radio and back-up camera enhancements") and TSB 08-017-21 (1848.34). These are software issues, not power-loss blue screens. — <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/">carcomplaints 2018 Durango TSB index</a></li>
+<li>HVAC: TSB 9003293 (A/C inoperative traced to the pressure transducer; call before replacing) and TSB 9004036 (call engineering before replacing an HVAC actuator). Neither is a blower power TSB. No 2018 Durango front-blower power TSB was found. — <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/">carcomplaints 2018 Durango TSB index</a></li>
+<li>Airbag-category TSBs listed for 2018 Durango concern Active Head Restraint inadvertent deployment (23-018-20 revisions), not ORC power. — <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/">carcomplaints 2018 Durango TSB index</a></li>
+<li>Third-party summary: the 2016–2026 Durango has had no large-scale recall for the PDC itself. — <a href="https://www.go-parts.com/garage/fuse-box-dodge-durango-2016-2026">go-parts guide</a></li>
+<li>NHTSA complaints: a filter over Durango 2014–2020 and GC 2014–2020 complaints found no 2018 Durango complaint describing airbag + BSM + blower + camera together. GC 2018–2020 complaints that pair camera and HVAC are Uconnect screen delamination or "ghost touch" cases, a different mechanism. — <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2018">NHTSA complaints API, Durango 2018</a>; <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=jeep&amp;model=grand%20cherokee&amp;modelYear=2018">GC 2018</a></li>
+<li>GC 2019, ODI 11615044: on the highway, "service air bag", stability lamps and CEL appeared, then a loss of power and no-start; the AC blower came on with the car off; a mechanic said the "electric systems stopped communicating". Root cause not reported. — <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=jeep&amp;model=grand%20cherokee&amp;modelYear=2019">NHTSA complaints API, GC 2019</a></li>
+<li>Aftermarket accessories: TSB 9004203 (WK/WD trailer tow lighting kit install instructions have the wrong wire pinout; use the cavity descriptions instead) is one documented accessory-wiring pitfall. No PDC failure linked to accessory installs was found. — <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/">carcomplaints 2018 Durango TSB index</a></li>
+</ul>
+<h3 id="inferences_2">Inferences<a class="headerlink" href="#inferences_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>With no recall covering this failure, repair cost depends on warranty or goodwill. The STAR-preauthorization GPOP means the dealer must document diagnostics, for example the F85 0 V on both sides, before a PDC claim.</li>
+<li>The sunroof drain-tube STAR case is the only 2018-Durango-specific official water-intrusion item found. It routes water down the A-pillar and onto the carpet. The PDC itself is underhood, so this matters for interior harness and connector corrosion rather than the PDC. Checking the PDC and its connectors for water or corrosion (cowl or battery-area leaks) remains a field check with no bulletin behind it.</li>
+</ul>
+<h3 id="gaps_2">Gaps<a class="headerlink" href="#gaps_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A VIN-specific open-recall check for 1C4SDJCT3JCXXXXXX was not run; it needs the interactive tools at nhtsa.gov/recalls or mopar.com. Open customer satisfaction or service campaigns cannot be seen without a VIN lookup.</li>
+<li>The carcomplaints TSB index (428 items) was read through its HTML text; individual GPOP and STAR PDFs other than those saved here were not opened. NHTSA's own TSB search was not queried directly.</li>
+<li>No STAR case was found for "B212D on WD/WK2 2014+". If one exists it would be in the dealer-only STAR/TechCONNECT system.</li>
+</ul>
+<hr />
+<h2 id="q4-does-each-sources-architecture-match-the-2018-durango-pdcrelay-design">Q4. Does each source's architecture match the 2018 Durango PDC/relay design?<a class="headerlink" href="#q4-does-each-sources-architecture-match-the-2018-durango-pdcrelay-design" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway_3">Takeaway<a class="headerlink" href="#takeaway_3" title="Permanent link">&para;</a></h3>
+<p>Only the 2014–2020+ WD and 2014–2021 WK2 sources share the 2018 Durango's PDC generation (underhood PDC with F85/F86 ORC, F95 camera, F13 blower and internal relays). The 2011–2013 WD/WK2 used a TIPM with different fuse numbering (e.g., M34). The 2005–2010 WK used an IPM plus a Junction Block with a non-replaceable RUN relay. Ram and TJ cases are architecture mismatches and are useful only as analogies.</p>
+<h3 id="cited-findings_3">Cited Findings<a class="headerlink" href="#cited-findings_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2014+ WK2 and WD fuse tables list F85/F86 for the ORC, F95 for camera/ParkSense, F13 for the front blower, a blower relay, and multiple ignition relays in the single underhood PDC ("Power Distribution Center as the only fuse box"). — <a href="https://www.startmycar.com/us/jeep/grand-cherokee/info/fusebox/2014">startmycar 2014 GC</a>; <a href="https://car-box.info/jeep/cherokee/grand-wk2-2010-2020.html">car-box WK2</a>; <a href="https://www.startmycar.com/dodge/durango/info/fusebox/2018">startmycar 2018 Durango</a></li>
+<li>2018 WD PDC part numbers are 68320920A$ and 68320923A$; neighboring WK2 numbers 68320918/19/21/22 appear in the vendor's WK2 PDC list. — <a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">MC-10216108-9999.pdf</a>; <a href="https://circuitboardmedics.com/2014-2022-jeep-grand-cherokee-power-distribution-center-repair/">Circuit Board Medics</a></li>
+<li>2011–2013 WD/WK2 cases refer to the TIPM and M-numbered fuses (M34 for camera/BSM/park assist/rear HVAC). — <a href="https://www.dodgedurango.net/threads/blind-spot-unavailable-and-other-issues-looking-for-help.21989/">dodgedurango.net 21989</a>; <a href="https://www.jeepgarage.org/threads/2012-no-power-to-blower-resistor.204817/">jeepgarage 204817</a></li>
+<li>2010 WK: the airbag run fuse 30 is in the IPM, the RUN relay is inside the Junction Block, and the procedure says "the relay is not replaceable". — <a href="https://charm.li/Jeep/2010/Grand%20Cherokee%204WD%20V8-5.7L/Repair%20and%20Diagnosis/A%20L%20L%20%20Diagnostic%20Trouble%20Codes%20%28%20DTC%20%29/Testing%20and%20Inspection/B%20Code%20Charts/B212D/">CHARM 2010 GC B212D</a></li>
+</ul>
+<h3 id="inferences_3">Inferences<a class="headerlink" href="#inferences_3" title="Permanent link">&para;</a></h3>
+<p>Weight the evidence by architecture match:
+1. <strong>WD 2016 / 2023 PDC replacement cases</strong> (dead HVAC output, dead fuse cavity) and <strong>GPOP 9003816</strong>: same family, highest relevance.
+2. <strong>WK 2005–2010 B212D + blower cases</strong>: same failure logic (one RUN source feeding ORC and HVAC), different box.
+3. <strong>TIPM-era 2011–2013 and TJ/Ram</strong>: analogy only.</p>
+<h3 id="gaps_3">Gaps<a class="headerlink" href="#gaps_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No public teardown or schematic shows which internal PDC relay feeds F85 on the 2018 WD, or whether it also feeds the blower relay coil and BSM/camera circuits. This is needed to confirm the "single internal RUN output failure" hypothesis.</li>
+</ul>
+<h3 id="saved-files-docssourcesfield-cases">Saved files (docs/sources/field-cases/)<a class="headerlink" href="#saved-files-docssourcesfield-cases" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>NHTSA_MC-10216108-9999_TSB9003816_2018WD_PDC_STAR.pdf</code>: GPOP 9003816, PDC STAR preauthorization, MY18 WD (original PDF)</li>
+<li><code>NHTSA_MC-10221228-9999_TSB9004386_body_wiring_harness_repair_kit.pdf</code>: GPOP 9004386, body harness repair kit (original PDF)</li>
+<li><code>NHTSA_MC-10204343-9999_TSB_S1623000034_sunroof_drain_water_leak.pdf</code>: STAR S1623000034 Rev A, sunroof drains (original PDF)</li>
+<li><code>NHTSA_MC-10223559-9999_STAR_S2008000093_BSM_ParkAssist_false_activation.pdf</code>: STAR S2008000093, BSM false activation (original PDF; judged not applicable)</li>
+<li><code>carcomplaints_2018Durango_tsb-*.md</code> (4 files): index-page text with source URLs</li>
+<li><code>charm_2010WK_B212D_ORC_run_input_procedure.md</code>: full B212D procedure text, 2010 WK</li>
+<li><code>scannerdanner_4804_2006WK_B212D_ORC_runinput_FIXED.md</code>: confirmed-fix thread digest (WebFetch rendering; curl returned 403)</li>
+<li><code>forum_threads_blocked_snippet_digest.md</code>: all TollBit/403-blocked threads with URLs, marked as search-snippet-derived</li>
+<li><code>NHTSA_complaints_and_recalls_excerpts.md</code>, plus raw API JSON (<code>NHTSA_api_recalls_2018_Dodge_Durango.json</code>, <code>NHTSA_api_complaints_2018_Dodge_Durango.json</code>, <code>NHTSA_api_recall_14V643000_P67_2014_ORC.json</code>)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="../connectors-orc-dtc/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Разъёмы PDC C6, ORC и DTC">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Разъёмы PDC C6, ORC и DTC
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../power-distribution-f85-f86/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Путь питания F85 и F86">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Путь питания F85 и F86
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

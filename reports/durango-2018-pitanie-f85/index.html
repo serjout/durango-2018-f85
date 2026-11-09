@@ -1,0 +1,2380 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Диагностика одновременного отказа SRS, BSM, камеры и вентилятора на Dodge Durango R/T 2018">
+      
+      
+      
+        <link rel="canonical" href="https://serjout.github.io/durango-2018-f85/reports/durango-2018-pitanie-f85/">
+      
+      
+        <link rel="prev" href="../../diagrams/">
+      
+      
+        <link rel="next" href="../../notes/durango-2018-pitanie-f85/blower-bsm-camera-power/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Цепочка реле K15→K12 объясняет все четыре отказа - Durango 2018 · питание F85</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#k15k12" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Durango 2018 · питание F85" class="md-header__button md-logo" aria-label="Durango 2018 · питание F85" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.96 16.45c.01-.15.04-.3.04-.45v.5zM11 16c0 .71.15 1.39.42 2H6v1c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-8l2.08-6c.2-.58.76-1 1.42-1h11c.66 0 1.22.42 1.42 1L21 11v5c0-2.76-2.24-5-5-5s-5 2.24-5 5m-3-2.5c0-.83-.67-1.5-1.5-1.5S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10l-1.5-4.5h-11L5 10zm3.87 11.19-4.11-4.11c.41-1.04.18-2.26-.68-3.11-.9-.91-2.25-1.09-3.34-.59l1.94 1.94-1.35 1.36-1.99-1.95c-.54 1.09-.29 2.44.59 3.35a2.91 2.91 0 0 0 3.12.68l4.11 4.1c.18.19.45.19.63 0l1.04-1.03c.22-.18.22-.5.04-.64"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Durango 2018 · питание F85
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Цепочка реле K15→K12 объясняет все четыре отказа
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Тёмная тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Светлая тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Durango 2018 · питание F85" class="md-nav__button md-logo" aria-label="Durango 2018 · питание F85" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.96 16.45c.01-.15.04-.3.04-.45v.5zM11 16c0 .71.15 1.39.42 2H6v1c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-8l2.08-6c.2-.58.76-1 1.42-1h11c.66 0 1.22.42 1.42 1L21 11v5c0-2.76-2.24-5-5-5s-5 2.24-5 5m-3-2.5c0-.83-.67-1.5-1.5-1.5S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10l-1.5-4.5h-11L5 10zm3.87 11.19-4.11-4.11c.41-1.04.18-2.26-.68-3.11-.9-.91-2.25-1.09-3.34-.59l1.94 1.94-1.35 1.36-1.99-1.95c-.54 1.09-.29 2.44.59 3.35a2.91 2.91 0 0 0 3.12.68l4.11 4.1c.18.19.45.19.63 0l1.04-1.03c.22-.18.22-.5.04-.64"/></svg>
+
+    </a>
+    Durango 2018 · питание F85
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../diagrams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Схемы цепей
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Отчёты
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Отчёты
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Цепочка реле K15→K12 объясняет все четыре отказа
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Цепочка реле K15→K12 объясняет все четыре отказа
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-f85-k12-k12-k15" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Электрическая схема: F85 включает K12, а катушку K12 включает K15
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-k15" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Матрица питания: из девяти общих точек только K15 даёт все четыре симптома
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Почему это отказ питания, а не CAN-сети
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdc-pdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Полевые случаи: прямого совпадения нет, но «мёртвые» гнёзда PDC лечат заменой PDC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-f95" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Диагностика мультиметром: сначала нагрузить F95, потом искать звено
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C. Диагностика мультиметром: сначала нагрузить F95, потом искать звено">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 0. Опорное напряжение и проверка без приборов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-f95" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 1. F95 под нагрузкой — снять главное противоречие
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаги 2–4. Соседние предохранители: кто ещё обесточен
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-k15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 5. Гнездо K15 без реле: питание, управление, масса, выход
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-run-k619-bcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 6. Если в RUN нет K619: провод или BCM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 7. Подмена реле
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-k12-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 8. Гнездо K12 (только при картине C)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 9. Путь переднего вентилятора
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-bsm-f95" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 10. Питание BSM и камеры (если F95 держит нагрузку)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 11. Когда появится сканер
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-f85" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 12. Только после того, как F85 ожил
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-pdc-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      D. План ремонта: реле — своими руками, PDC — через STAR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      E. Источники, недоступные документы и ошибки заводской документации
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Заключение
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Заметки исследования
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Заметки исследования
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Durango 2018 питание F85
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Durango 2018 питание F85
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/durango-2018-pitanie-f85/blower-bsm-camera-power/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Питание вентилятора, BSM и камеры
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/durango-2018-pitanie-f85/can-network-gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сеть CAN и шлюз
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/durango-2018-pitanie-f85/connectors-orc-dtc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Разъёмы PDC C6, ORC и DTC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/durango-2018-pitanie-f85/field-cases-tsb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Реальные случаи и TSB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/durango-2018-pitanie-f85/power-distribution-f85-f86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Путь питания F85 и F86
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    История автомобиля
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            История автомобиля
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/istoriya-avtomobilya/vehicle-history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    История автомобиля: факты от владельца
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Источники
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-f85-k12-k12-k15" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Электрическая схема: F85 включает K12, а катушку K12 включает K15
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-k15" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Матрица питания: из девяти общих точек только K15 даёт все четыре симптома
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Почему это отказ питания, а не CAN-сети
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdc-pdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Полевые случаи: прямого совпадения нет, но «мёртвые» гнёзда PDC лечат заменой PDC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-f95" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Диагностика мультиметром: сначала нагрузить F95, потом искать звено
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C. Диагностика мультиметром: сначала нагрузить F95, потом искать звено">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 0. Опорное напряжение и проверка без приборов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-f95" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 1. F95 под нагрузкой — снять главное противоречие
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаги 2–4. Соседние предохранители: кто ещё обесточен
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-k15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 5. Гнездо K15 без реле: питание, управление, масса, выход
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-run-k619-bcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 6. Если в RUN нет K619: провод или BCM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 7. Подмена реле
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-k12-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 8. Гнездо K12 (только при картине C)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 9. Путь переднего вентилятора
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-bsm-f95" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 10. Питание BSM и камеры (если F95 держит нагрузку)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 11. Когда появится сканер
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-f85" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаг 12. Только после того, как F85 ожил
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-pdc-star" class="md-nav__link">
+    <span class="md-ellipsis">
+      D. План ремонта: реле — своими руками, PDC — через STAR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      E. Источники, недоступные документы и ошибки заводской документации
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Заключение
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="k15k12">Цепочка реле K15→K12 объясняет все четыре отказа<a class="headerlink" href="#k15k12" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Локальные копии документов</p>
+<p>Пути вида <code>docs/sources/...</code> указывают на копии документов в приватном репозитории, на сайте их нет. Пользуйтесь ссылками на оригинальные страницы или <a href="/durango-2018-f85/sources/">указателем источников</a>.</p>
+</div>
+<p><strong>Предохранитель F85 (10 A, ORC) в подкапотном PDC питается от реле K12 «Run 2» (D842B): шина B+ PDC → контакты 30/87 реле K12 → внутренняя шина RUN 2 → F85 → PDC C6, контакт 15 → цепь F929 PK/YE 0,50 мм² → ORC C2, контакт 104 (вход «Ignition Run Only»)</strong> (<a href="https://lemon-manuals.la/images25/VA582314/">SRS 1/3</a>, <a href="https://lemon-manuals.la/images25/VA586498/">Power Distribution 1/4</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">PDC C6</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Occupant%20Restraint%20Controller%20C2%20%28Standard%29%20Connector%20End%20View%20%28D3834B%29/">ORC C2</a>). Отказ самого K12 объясняет только лампу SRS. BSM и камера питаются от F95, а катушка реле переднего вентилятора K16 — от выхода другого реле, <strong>K15 «Run 1» (D842A)</strong>, которым управляет BCM по цепи K619 (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>). Но и катушку K12 питает именно выход K15. Поэтому <strong>потеря выхода K15 одновременно обесточивает F85 (SRS), F95 (BSM и камера) и катушку K16 (вентилятор), а F86 и F99 на реле K08 «Run/Start» остаются живыми.</strong> Это единственная точка схемы, которая совпадает со всеми четырьмя симптомами и с 0 В на обеих сторонах F85. Противоречит этому только ваш замер «F95 в норме». Мультиметр с входом 10 МОм показывает почти полное напряжение даже через подгоревший контакт или трещину пайки, поэтому F95 нужно перемерить под нагрузкой (лампа ~2 A). Заодно проверьте соседей: F96/F97/F98 и F13 на выходе K15, F40/F101/F103/F100 на выходе K12. Если вся эта группа мертва или «проседает» под лампой, виноваты K15, его управление (BCM C5/E-36 → PDC C7-12) или внутренности PDC. Тогда ремонт сводится к реле (если оно съёмное и гнездо исправно) или к замене PDC в сборе, а для 2018 Durango дилер обязан заранее согласовать такую замену со STAR Center (<a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">GPOP 9003816</a>). Если F95 держит нагрузку, неисправностей минимум две независимые: цепочка K12 и обрыв F923/S2442 у правого переднего порога, плюс отдельно путь вентилятора. Отказ CAN-сети исключён: эти четыре функции висят на CAN-C, CAN-IHS, LIN/видео и силовой проводке, а соседние модули на тех же «звёздах» работают. Точного публичного совпадения такого набора симптомов не найдено. Ближайшие аналоги — замены PDC на Durango WD из-за «мёртвых» гнёзд и случаи «B212D + вентилятор» на старых Grand Cherokee WK.</p>
+<h2 id="a-f85-k12-k12-k15">A. Электрическая схема: F85 включает K12, а катушку K12 включает K15<a class="headerlink" href="#a-f85-k12-k12-k15" title="Permanent link">&para;</a></h2>
+<p>Все схемы ниже взяты из заводской сервисной информации FCA для 2018 Durango 5.7L AWD (зеркало LEMON Manuals). Руководство Citadel 5.7 AWD заявлено идентичным руководству R/T AWD. Ключевые страницы (таблицы PDC C6 и ORC C2, тексты B212C/B212D) сверены и в ветке R/T AWD — они совпадают (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/">индекс автомобиля</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20R%2FT%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">R/T PDC C6</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20R%2FT%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Occupant%20Restraint%20Controller%20C2%20%28Standard%29%20Connector%20End%20View%20%28D3834B%29/">R/T ORC C2</a>). NHTSA декодирует VIN 1C4SDJCT3JCXXXXXX чисто: 2018 Durango R/T, AWD, 5.7 V8, завод в Детройте (<a href="https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/1C4SDJCT3JCXXXXXX?format=json">vPIC</a>). Опции, которые видны на схемах (Start/Stop с дополнительной АКБ, варианты PDC), путь K12 → F85 не меняют (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>).</p>
+<p><strong>Силовой путь F85 (VERIFIED, 2018 Durango).</strong> Красный кабель от плюса АКБ подходит к внутренней шине B+ PDC. На схеме A/C эта шина подписана <strong>«HOT AT ALL TIMES»</strong>, и между АКБ и клеммой 30 реле K12/K15 предохранителя нет (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>). Когда катушка K12 под током, его контакты 30→87 подают плюс на внутреннюю шину RUN 2. С этой шины питаются <strong>F40 10A, F103 10A, F85 10A, F101 15A и F100 10A</strong>. Схема A/C отдельно подписывает F101 и F103 как <strong>«HOT W/ RUN 2 RELAY ENERGIZED»</strong> (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>). Выход F85 уходит через <strong>PDC C6 (D6630F), контакт 15</strong>, по цепи <strong>F929 PK/YE 0,50 мм² «FUSED IGNITION SWITCH OUTPUT (RUN)»</strong> на <strong>ORC C2 (D3834B), контакт 104</strong>. Ни промежуточного разъёма, ни сращивания на этом проводе схема не показывает (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">PDC C6</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Occupant%20Restraint%20Controller%20C2%20%28Standard%29%20Connector%20End%20View%20%28D3834B%29/">ORC C2</a>, <a href="https://lemon-manuals.la/images25/VA582314/">SRS 1/3</a>). Сама процедура ORC по коду B212D-13 называет среди причин «(F929) RUN RELAY CIRCUIT OPEN» и «POWER DISTRIBUTION CENTER FUSE F85 OPEN» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Possible%20Causes/">B212D-13 Possible Causes</a>).</p>
+<p><strong>Цепь управления (VERIFIED).</strong> RF Hub передаёт по сети запрос режима RUN, и BCM выдаёт напряжение в цепь управления реле RUN (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Theory%20Of%20Operation/">B2121-15 Theory</a>). Путь сигнала: <strong>BCM C5/E, контакт 36 → K619 BN/OG 0,50 мм² → PDC C7 (D6630G), контакт 12 → вывод 85 катушки K15</strong> (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%284%20Of%2010%29/Module-Body%20Control%20C5%2FE%20%28Standard%29%20Connector%20End%20View%20%28D3806E%29/">BCM C5/E</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C7%20%28Standard%29%20Connector%20End%20View%20%28D6630G%29/">PDC C7</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%201%20%28Standard%29%20Connector%20End%20View%20%28D842A%29/">Run 1 D842A</a>). Выход 87 реле K15 питает внутреннюю шину RUN 1. От неё запитаны F95, F96, F98, F97, катушка реле вентилятора K16 (вывод 85) и <strong>катушка K12 (вывод 85)</strong>. <strong>Собственного выхода BCM для K12 нет: K12 работает как ведомое реле от K15</strong> (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>; локальная вырезка <code>docs/sources/power-distribution/renders/s1_run2.png</code>). Выводы 86 катушек K15, K12, K08, Run/Acc 1 и Run/Acc 2 сходятся в общую внутреннюю линию массы. Она выходит через <strong>PDC C1 (D6630A), контакт 12, цепь Z909 BK 1,0 мм²</strong>, далее идёт через сращивание S2547 и XY8120A-6 на массу <strong>G909A</strong> (правая задняя часть моторного отсека) (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C1%20%28Standard%29%20Connector%20End%20View%20%28D6630A%29/">PDC C1</a>, <a href="https://lemon-manuals.la/images25/VA586554/">Ground Distribution 1/4</a>).</p>
+<div class="highlight"><pre><span></span><code>УПРАВЛЕНИЕ КАТУШКАМИ
+RF Hub ──(сеть)──► BCM
+BCM C5/E-36 ── K619 BN/OG 0,50 ──► PDC C7-12 ──► K15 «Run 1», вывод 85
+K15, вывод 86 ──► общая линия массы катушек ──► PDC C1-12 ── Z909 BK 1,0 ──► S2547 ──► G909A
+K15, вывод 30 ◄── внутренняя шина B+ PDC («HOT AT ALL TIMES»)
+K15, вывод 87 ──► шина RUN 1 ──┬─► F95 10A ─► C7-13 ─ F923 PK/YE ─► S2442 ─► BSM L/R (конт. 5) и камера
+                                ├─► F96 10A ─► C7-15 (F928)
+                                ├─► F98 20A ─► C7-19 (F921)
+                                ├─► K16 «Blower Motor», вывод 85 (вентилятор)
+                                ├─► F97 20A ─► C7-17 (F919)
+                                └─► K12 «Run 2», вывод 85
+СИЛОВОЙ ПУТЬ F85
+АКБ (+) ── RED ──► шина B+ PDC ──► K12, вывод 30 ─(контакты)─► K12, вывод 87 ──► шина RUN 2
+   шина RUN 2 ─┬─► F40 10A  ─► C1-10 (F927)
+               ├─► F103 10A ─► C6-28 (F931) ─► петля в C7-8 ─► катушка K13 (задний вентилятор)
+               ├─► F85 10A  ─► C6-15 ── F929 PK/YE 0,50 ──► ORC C2-104 (Run only)
+               ├─► F101 15A ─► C6-32 (F925)
+               └─► F100 10A ─► C6-34 (F938)
+K12, вывод 86 ──► та же общая линия массы (Z909 → C1-12 → G909A)
+ПУТЬ F86 (для сравнения)
+шина B+ ─(линия «B»)─► K08 «Run/Start», вывод 30 ─► 87 ─► шина RUN/START ─► F86 10A ─► C6-13 ── F945 PK/GN 0,50 ──► ORC C2-103
+BCM C1/A-18 ── K617 BN 0,50 ──► PDC C6-10 ──► катушка K08 ──► общая масса Z909
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>№</th>
+<th>Звено</th>
+<th>Обозначение, контакт</th>
+<th>Цепь, цвет, сечение</th>
+<th>Номинал, тип</th>
+<th>Где физически</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>АКБ (+) → шина B+ PDC</td>
+<td>красный кабель → внутренняя шина «HOT AT ALL TIMES»</td>
+<td>RED</td>
+<td>без предохранителя до клемм 30 K12/K15</td>
+<td>PDC в моторном отсеке «около АКБ» (<a href="https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2018/Durango/8598.pdf">руководство владельца</a>)</td>
+<td>Топология VERIFIED; конструкция ввода (шпилька, шина) НЕИЗВЕСТНА</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Реле K12 «Run 2»</td>
+<td>D842B, «Relay_Micro», семейство PDC_Underhood; 30 = B+, 87 = выход, 85 = от K15-87, 86 = Z909</td>
+<td>внутренние</td>
+<td>ток в таблице «N/A»</td>
+<td>нижний (передний) ряд реле PDC, крайнее левое из K12–K16 (<a href="https://lemon-manuals.la/images25/G00621551/">схема PDC</a>)</td>
+<td>VERIFIED; каталожный номер НЕИЗВЕСТЕН</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Шина RUN 2</td>
+<td>F40, F103, F85, F101, F100</td>
+<td>внутренняя</td>
+<td>—</td>
+<td>внутри PDC</td>
+<td>Логика VERIFIED; конструкция (шина или печатная плата) НЕИЗВЕСТНА</td>
+</tr>
+<tr>
+<td>4</td>
+<td>F85</td>
+<td>альт. F0085U, «Airbag Module», «HOT W/ RUN 2 RELAY ENERGIZED»</td>
+<td>—</td>
+<td>10 A, красный, micro</td>
+<td>PDC</td>
+<td>VERIFIED (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Maintenance/Schedule/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">спецификация</a>, <a href="https://lemon-manuals.la/images25/VA582314/">SRS 1/3</a>)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Выход PDC</td>
+<td>C6 (D6630F), контакт 15</td>
+<td>F929 PK/YE 0,50 мм²</td>
+<td>—</td>
+<td>C6: светло-серый, female, 42 гнезда, жгут Body, PN 7287-8882-40</td>
+<td>VERIFIED; положение гнезда 15 на торце колодки НЕИЗВЕСТНО (смотреть цифры на колодке)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Провод PDC → салон</td>
+<td>промежуточных разъёмов и сращиваний на схеме нет</td>
+<td>F929 PK/YE 0,50</td>
+<td>—</td>
+<td>трасса и проход через моторный щит НЕИЗВЕСТНЫ</td>
+<td>STRONG INFERENCE (сплошной провод жгута Body)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Вход ORC</td>
+<td>C2 (D3834B), контакт 104</td>
+<td>F929 PK/YE 0,50</td>
+<td>—</td>
+<td>ORC на тоннеле под задней частью центральной консоли; колодки сзади, с рычажными замками (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Module%2C%20Occupant%20Restraint%20Controller/Removal/">снятие ORC</a>)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Масса ORC</td>
+<td>C2-101</td>
+<td>Z913 BK 0,50 → G913A</td>
+<td>—</td>
+<td>под задней частью консоли, отдельный наконечник (<a href="https://lemon-manuals.la/images25/VA586556/">Ground 3/4</a>)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Шина данных ORC</td>
+<td>C2-54 (+), C2-53 (−)</td>
+<td>D11 YE/DB, D12 YE → XY5020A 11/12 → звезда CAN-C IP, ветка C2</td>
+<td>—</td>
+<td>—</td>
+<td>Контакты VERIFIED; ветка звезды STRONG INFERENCE (<a href="https://lemon-manuals.la/images25/VA586594/">CDL-3</a>)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Управление K15</td>
+<td>BCM C5/E-36 → PDC C7-12</td>
+<td>K619 BN/OG 0,50 «IGNITION RUN CONTROL OUTPUT»</td>
+<td>—</td>
+<td>BCM у правой кик-панели (подпись на <a href="https://lemon-manuals.la/images25/VA586595/">CDL-4</a>)</td>
+<td>VERIFIED</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Реле K15 «Run 1»</td>
+<td>D842A, «Relay_Micro»; 85 = K619, 86 = Z909, 30 = B+</td>
+<td>внутренние</td>
+<td>—</td>
+<td>тот же ряд, четвёртое слева (K12, K13, K14, <strong>K15</strong>, K16)</td>
+<td>VERIFIED (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%201%20%28Standard%29%20Connector%20End%20View%20%28D842A%29/">D842A</a>, <a href="https://lemon-manuals.la/images25/G00621551/">схема PDC</a>)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Масса катушек</td>
+<td>общая линия → PDC C1-12</td>
+<td>Z909 BK 1,0 → S2547 → XY8120A-6 → G909A</td>
+<td>—</td>
+<td>G909A: правая задняя часть моторного отсека</td>
+<td>VERIFIED</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Путь F86 (VERIFIED, кроме отмеченного).</strong> F86 сидит на отдельной шине реле K08 «Run/Start» (D893). Выход F86 идёт через PDC C6, контакт 13, по цепи <strong>F945 PK/GN 0,50 мм² «IGNITION RUN/START CONTROL OUTPUT»</strong> на <strong>ORC C2-103</strong>. Катушкой K08 BCM управляет отдельно: <strong>C1/A, контакт 18 → K617 BN 0,50 → PDC C6-10</strong>. Масса катушки общая, Z909 (<a href="https://lemon-manuals.la/images25/VA586500/">PD-3</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">PDC C6</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%284%20Of%2010%29/Module-Body%20Control%20C1%2FA%20%28Standard%29%20Connector%20End%20View%20%28D3806A%29/">BCM C1/A</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%2FStart%20%28Standard%29%20Connector%20End%20View%20%28D893%29/">Run/Start D893</a>). Клемма 30 реле K08 питается с той же шины B+ по линии «B». На схеме PD-3 этот ввод подписан «FROM FUSE 25», но по нарисованным соединениям F25 30A — лишь ответвление, а не элемент в цепи (STRONG INFERENCE, <a href="https://lemon-manuals.la/images25/VA586499/">PD-2</a>, <a href="https://lemon-manuals.la/images25/VA586500/">PD-3</a>). Отсюда важный вывод: <strong>раз F86 у вас в норме, то шина B+ PDC, внешняя масса катушек Z909 (C1-12 → S2547 → G909A) и выход BCM на K08 исправны.</strong> Значит, внешний обрыв массы катушек исключён. Остаются только внутренняя ветка массы к K15/K12, сами реле и их управление.</p>
+<p><strong>Что по документам установить нельзя.</strong> Перечень приведён явно, чтобы не путать пробелы с фактами:</p>
+<table>
+<thead>
+<tr>
+<th>Неизвестно</th>
+<th>Почему важно</th>
+<th>Как закрыть</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Внутренняя конструкция PDC (шины, печатная плата, пайка) и физический порядок отводов на шине RUN 1. Порядок F95 → F96 → F98 → K16 → F97 → K12 на схеме — условный (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>)</td>
+<td>По документам нельзя локализовать «внутренний обрыв»</td>
+<td>Только измерениями (шаги 5 и 8 раздела C)</td>
+</tr>
+<tr>
+<td>Нумерация гнёзд реле K12/K15/K16 в PDC (в таблицах есть только логические выводы 30/85/86/87)</td>
+<td>Нужна для замеров в гнезде</td>
+<td>Определить измерением или по маркировке выводов на корпусе реле</td>
+</tr>
+<tr>
+<td>Каталожный номер реле K12/K15</td>
+<td>Нужен для заказа</td>
+<td>Прочитать на самом реле. Каталог дилера даёт 68603769AA (micro ISO, заменяет 68200229AA/68298547AA), 4692139AA и 4727370AA без привязки к позиции (UNVERIFIED, <a href="https://www.jeeppartsgiant.com/parts-select/2018-dodge-durango-relay">каталог</a>)</td>
+</tr>
+<tr>
+<td>Съёмные ли K12/K15/K16. В описании PDC сказано «solid state relays» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Body%20Electrical/Power%20Distribution/Center%2C%20Power%20Distribution%20%28PDC%29/Description/">описание PDC</a>), но заводская процедура B2121 прямо вынимает реле Run (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>), а в названиях их страниц нет пометки «(On PCB)», которая есть у впаянных реле</td>
+<td>Можно ли подменить реле</td>
+<td>Осмотр</td>
+</tr>
+<tr>
+<td>Трасса F929 от PDC до консоли</td>
+<td>Важна, если после восстановления F85 лампа SRS не погаснет</td>
+<td>Проверка по процедуре B212D (шаг 12)</td>
+</tr>
+<tr>
+<td>Сторона установки PDC: в описании «left center», на схемах «right side / right rear of engine compt», в руководстве владельца «около АКБ». На 3-D рисунке разъёма C7 PDC, по моему прочтению, слева спереди (STRONG INFERENCE) (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Body%20Electrical/Power%20Distribution/Center%2C%20Power%20Distribution%20%28PDC%29/Description/">описание PDC</a>, <a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2018/Durango/8598.pdf">руководство</a>)</td>
+<td>Ориентирование</td>
+<td>Вы уже нашли F85, поэтому ориентируйтесь по месту и по легенде на крышке</td>
+</tr>
+<tr>
+<td>Вариант PDC (со Start/Stop или без) и его номер для этого VIN</td>
+<td>Нужен при заказе PDC</td>
+<td>Этикетка на PDC или запрос дилеру по VIN</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-k15">B. Матрица питания: из девяти общих точек только K15 даёт все четыре симптома<a class="headerlink" href="#b-k15" title="Permanent link">&para;</a></h2>
+<p>Таблица ниже сводит все цепи, через которые могут проходить четыре отказа. Все строки — <strong>VERIFIED</strong> по схемам 2018 Durango (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://lemon-manuals.la/images25/VA586500/">PD-3</a>, <a href="https://lemon-manuals.la/images25/VA586501/">PD-4</a>, <a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>, <a href="https://lemon-manuals.la/images25/VA585298/">A/C 2/4</a>, <a href="https://lemon-manuals.la/images25/VA584193/">BSM</a>, <a href="https://lemon-manuals.la/images25/VA584199/">камера</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C1%20%28Standard%29%20Connector%20End%20View%20%28D6630A%29/">PDC C1</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">PDC C6</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C7%20%28Standard%29%20Connector%20End%20View%20%28D6630G%29/">PDC C7</a>). Номиналы и цвета предохранителей взяты из заводской спецификации и руководства владельца (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Maintenance/Schedule/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">спецификация</a>, <a href="https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2018/Durango/8598.pdf">руководство</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Реле (позиция, альт.)</th>
+<th>Питание катушки</th>
+<th>Предохранитель</th>
+<th>Вывод PDC → цепь → потребитель</th>
+<th>Функция</th>
+<th>Связь с вашими симптомами</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>K15 «Run 1» (D842A)</strong></td>
+<td>BCM C5/E-36 → K619 → C7-12; масса Z909</td>
+<td><strong>F95 10A</strong></td>
+<td>C7-13 → <strong>F923</strong> PK/YE → <strong>S2442</strong> (правый передний порог, «W/ BLIND SPOT») → XY4000A-12 → I701-J → S04A → контакт 5 датчиков BSM L/R; второй отвод XY2120A-6 → I6742A-1 (RED) → камера</td>
+<td>BSM, камера</td>
+<td><strong>✔ BSM, ✔ камера</strong></td>
+</tr>
+<tr>
+<td>K15</td>
+<td>то же</td>
+<td>F96 10A</td>
+<td>C7-15 → F928 → выключатели обогрева задних сидений</td>
+<td>обогрев задних сидений, зарядка фонаря</td>
+<td>косвенная проверка</td>
+</tr>
+<tr>
+<td>K15</td>
+<td>то же</td>
+<td>F97 20A</td>
+<td>C7-17 → F919 PNK/TAN → модуль обогрева сидений C3-6/C4-2</td>
+<td>обогрев задних сидений и руля</td>
+<td>косвенная проверка</td>
+</tr>
+<tr>
+<td>K15</td>
+<td>то же</td>
+<td>F98 20A</td>
+<td>C7-19 → F921 → моторы вентиляции сидений, модуль обогрева C1-5</td>
+<td>вентиляция и обогрев передних сидений</td>
+<td>косвенная проверка</td>
+</tr>
+<tr>
+<td>K15</td>
+<td>то же</td>
+<td>без предохранителя</td>
+<td>внутренняя линия → <strong>катушка K16</strong> (вывод 85)</td>
+<td>передний вентилятор</td>
+<td><strong>✔ вентилятор</strong></td>
+</tr>
+<tr>
+<td>K15</td>
+<td>то же</td>
+<td>без предохранителя</td>
+<td>внутренняя линия → <strong>катушка K12</strong> (вывод 85)</td>
+<td>всё на RUN 2</td>
+<td><strong>✔ SRS (через K12)</strong></td>
+</tr>
+<tr>
+<td><strong>K12 «Run 2» (D842B)</strong></td>
+<td>от шины K15-87; масса Z909</td>
+<td><strong>F85 10A</strong></td>
+<td>C6-15 → <strong>F929</strong> → ORC C2-104</td>
+<td>вход ORC «Run only»</td>
+<td><strong>✔ SRS</strong></td>
+</tr>
+<tr>
+<td>K12</td>
+<td>то же</td>
+<td>F40 10A</td>
+<td>C1-10 → F927 PK/YE → S2526 → правый передний фонарь C2-11; корректоры фар</td>
+<td>ДХО, корректор фар</td>
+<td>косвенная проверка</td>
+</tr>
+<tr>
+<td>K12</td>
+<td>то же</td>
+<td>F101 15A</td>
+<td>C6-32 → F925 → XY5020A-7 → S2443 → датчики температуры салона и влажности (контакт 3)</td>
+<td>датчики автоклимата; по таблице предохранителей — электрохромное зеркало и «умный» дальний</td>
+<td>косвенная проверка</td>
+</tr>
+<tr>
+<td>K12</td>
+<td>то же</td>
+<td>F103 10A</td>
+<td>C6-28 → F931 → петля в C7-8 → катушка K13</td>
+<td>задний вентилятор</td>
+<td>косвенная проверка</td>
+</tr>
+<tr>
+<td>K12</td>
+<td>то же</td>
+<td>F100 10A</td>
+<td>C6-34 → F938 → модуль активной подвески C2-14/C2-47</td>
+<td>только если оборудован</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>K16 «Blower Motor» (D876)</strong></td>
+<td>от шины K15-87; масса Z919 → C7-16 → S2505 → G919A</td>
+<td><strong>F13 40A</strong> (зелёный, картридж) на выходе 87</td>
+<td>C7-21 → цепь C7 DB 4,0 мм² → XY5020A-29 → силовой модуль вентилятора C1-6 → мотор</td>
+<td>передний вентилятор</td>
+<td><strong>✔ вентилятор</strong></td>
+</tr>
+<tr>
+<td><strong>K08 «Run/Start» (D893)</strong></td>
+<td>BCM C1/A-18 → K617 → C6-10; масса Z909</td>
+<td><strong>F86 10A</strong></td>
+<td>C6-13 → F945 PK/GN → ORC C2-103</td>
+<td>вход ORC «Run/Start»</td>
+<td>✘ (у вас жив)</td>
+</tr>
+<tr>
+<td>K08</td>
+<td>то же</td>
+<td><strong>F99 10A</strong></td>
+<td>C6-36 → F948 PK/GN → S2448 → модуль A/C C1-1, ParkSense, фронтальная камера, задний блок A/C, ACC</td>
+<td>интерфейс климата, ParkSense</td>
+<td>✘ (жив)</td>
+</tr>
+<tr>
+<td>K08</td>
+<td>то же</td>
+<td>F77, F78, F76, F75 по 10A; F88 15A</td>
+<td>DTCM/ELSD; PCM и EPS; ABS; Dual Batt/PCR; F88 → C6-7 → SGW и щиток</td>
+<td>двигатель, ABS, щиток</td>
+<td>✘ (живы)</td>
+</tr>
+<tr>
+<td>— (B+, без реле)</td>
+<td>—</td>
+<td>F49 10A</td>
+<td>C5-25 → A937 → модуль A/C C1-2, центральная панель переключателей</td>
+<td>интерфейс климата</td>
+<td>✘ (жив)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Общие точки.</strong> Таблица отвечает на вопрос, какой единичный отказ даёт какие симптомы и совместим ли он с вашими замерами. Оценки «совместимости» — STRONG INFERENCE на основе таблицы выше.</p>
+<table>
+<thead>
+<tr>
+<th>Общая точка</th>
+<th>SRS</th>
+<th>BSM</th>
+<th>Камера</th>
+<th>Вентилятор</th>
+<th>Совместимо с вашими фактами?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Реле K15: контакты, катушка, гнездо</strong></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td><strong>Да, кроме замера «F95 в норме»</strong> (вероятно, замер без нагрузки)</td>
+</tr>
+<tr>
+<td><strong>Выход BCM C5/E-36 и провод K619 до C7-12</strong></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>Да, с той же оговоркой</td>
+</tr>
+<tr>
+<td>Внутренняя ветка массы к K15</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>Да, с той же оговоркой</td>
+</tr>
+<tr>
+<td>Внешняя масса Z909 (C1-12 → S2547 → G909A)</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td><strong>Нет</strong>: погас бы и K08, а F86 у вас жив</td>
+</tr>
+<tr>
+<td>Шина B+ PDC</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td><strong>Нет</strong>: пропали бы F86 и постоянные цепи</td>
+</tr>
+<tr>
+<td>Колодка PDC C7 (C7-12 K619, C7-13 F923, C7-16 масса K16, C7-21 питание вентилятора)</td>
+<td>✔ через C7-12</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>Проверить осмотром: это единственный общий физический разъём для вентилятора и BSM/камеры</td>
+</tr>
+<tr>
+<td>Внутренний обрыв шины RUN 1 за отводом F95 (к катушкам K16 и K12)</td>
+<td>✔</td>
+<td>✘</td>
+<td>✘</td>
+<td>✔</td>
+<td>Да, но BSM и камера остаются без объяснения</td>
+</tr>
+<tr>
+<td>Реле K12, его гнездо или шина RUN 2</td>
+<td>✔</td>
+<td>✘</td>
+<td>✘</td>
+<td>✘</td>
+<td>Да, но объясняет только SRS</td>
+</tr>
+<tr>
+<td>Гнездо F85 или внутренняя дорожка к нему</td>
+<td>✔</td>
+<td>✘</td>
+<td>✘</td>
+<td>✘</td>
+<td>Да, только SRS</td>
+</tr>
+<tr>
+<td>C7-13 → S2442 → XY2120A / XY4000A</td>
+<td>✘</td>
+<td>✔</td>
+<td>✔</td>
+<td>✘</td>
+<td>Да, только пара BSM + камера</td>
+</tr>
+<tr>
+<td>K16 / F13 / C7-21 / силовой модуль</td>
+<td>✘</td>
+<td>✘</td>
+<td>✘</td>
+<td>✔</td>
+<td>Да, только вентилятор</td>
+</tr>
+<tr>
+<td>CAN-сеть</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>Нет</strong> (см. следующий раздел)</td>
+</tr>
+<tr>
+<td>Сам ORC</td>
+<td>✔</td>
+<td>✘</td>
+<td>✘</td>
+<td>✘</td>
+<td><strong>Нет</strong>: ORC не может обнулить питающую сторону F85</td>
+</tr>
+</tbody>
+</table>
+<p>Отсюда главный ответ на исходный вопрос. <strong>Реле, которое непосредственно питает F85 (K12), объясняет только SRS. Реле, которое питает катушку K12 (K15), объясняет всё.</strong> Без K15 остаётся одно объяснение: минимум две независимые и одновременные неисправности. Для «внезапно и навсегда» это маловероятно, но исключить такой вариант можно только измерением.</p>
+<h2 id="can-">Почему это отказ питания, а не CAN-сети<a class="headerlink" href="#can-" title="Permanent link">&para;</a></h2>
+<p>Сеть 2018 Durango построена на четырёх «звёздах»: две для CAN-C (500 кбит/с) и две для CAN-IHS (125 кбит/с). Оконечные резисторы стоят внутри звёзд, а <strong>BCM служит центральным шлюзом между CAN-C и CAN-IHS</strong> (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Electronic%20Control%20Modules%20%28Service%20Information%29/Communication/Operation/">Communication – Operation</a>). Дополнительно есть <strong>Security Gateway (SGW)</strong>: через него к сети подключены диагностический разъём и радио (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/DTC%20Index/Module%2C%20Security%20Gateway%20%28SGW%29/">SGW DTC index</a>, <a href="https://lemon-manuals.la/images25/VA586592/">CDL-1</a>). Четыре отказавшие функции разнесены по разным носителям, а их соседи по звёздам работают:</p>
+<table>
+<thead>
+<tr>
+<th>Функция</th>
+<th>Подключение</th>
+<th>Соседи на той же звезде или линии, которые у вас работают</th>
+<th>Вывод</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRS (ORC)</td>
+<td>CAN-C, звезда IP, ветка C2</td>
+<td>щиток (C5), RF Hub (C12, бесключевой пуск), SGW (C6)</td>
+<td>общий отказ CAN-C исключён</td>
+</tr>
+<tr>
+<td>BSM (LBSS ведущий, RBSS ведомый)</td>
+<td>CAN-IHS, звезда Body, ветки C4/C5</td>
+<td>модуль электропривода двери багажника (C2)</td>
+<td>отказ звезды Body маловероятен*</td>
+</tr>
+<tr>
+<td>Модуль климата A/C</td>
+<td>CAN-IHS, звезда IP, ветка C3</td>
+<td>модули дверей (C2/C10): стёкла, замки, зеркала</td>
+<td>шина жива</td>
+</tr>
+<tr>
+<td>Передний вентилятор</td>
+<td><strong>сети нет</strong>: ШИМ по проводу C56 от модуля A/C плюс силовое питание K16/F13/C7</td>
+<td>—</td>
+<td>возможен только отказ питания</td>
+</tr>
+<tr>
+<td>Камера</td>
+<td><strong>CAN нет</strong>: LIN «CBC 3» от BCM и аналоговое видео NTSC в радио C1-31/32/33</td>
+<td>радио переключается на камеру, значит путь CAN-C → SGW → радио работает</td>
+<td>только питание, масса или видео</td>
+</tr>
+</tbody>
+</table>
+<p>Источники: <a href="https://lemon-manuals.la/images25/VA586593/">CDL-2</a>, <a href="https://lemon-manuals.la/images25/VA586594/">CDL-3</a>, <a href="https://lemon-manuals.la/images25/VA586595/">CDL-4</a>, <a href="https://lemon-manuals.la/images25/VA586596/">CDL-5</a>, <a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>, <a href="https://lemon-manuals.la/images25/VA585298/">A/C 2/4</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%2FEntertainment%2FConnectivity%20%28Service%20Information%29/Camera%2C%20Rear/Operation/">работа камеры</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Sensor%2C%20Blind%20Spot/Operation/">работа BSM</a>. Раскладка модулей по веткам звёзд восстановлена по координатам текста в SVG-схемах, поэтому это STRONG INFERENCE. Для проверки метода: найденные ветки совпали с заводским перечнем разъёмов звёзд (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%282%20Of%2010%29/">перечень звёзд</a>).</p>
+<p>*Оговорка из заметок по сети: если дверь багажника проверялась только своей кнопкой, это CAN-IHS не доказывает. Индикация скоростей вентилятора на экране тоже может быть эхом команды радио. Окончательно вопрос закроет топологический скан.</p>
+<p>Три симптома в принципе не укладываются в сетевую версию. <strong>Мотор вентилятора питается по силовой цепи K16 → F13 → C7 → силовой модуль, а модуль A/C лишь задаёт скорость проводным ШИМ-сигналом.</strong> Поэтому «экран работает, мотор молчит» — признак отказа силовой части (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Heating%2C%20Ventilation%20%26%20A%2FC%20%28HVAC%29/HVAC%20Control%20Systems/Heating%20%26%20Air%20Conditioning%20%28Service%20Information%29/Controls/Module%2C%20Power%2C%20Blower%20Motor/Operation/">работа силового модуля</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Power-Blower%20Motor-Front%20C1%20%28Standard%29%20Connector%20End%20View%20%28D3881A%29/">силовой модуль C1</a>). <strong>Синий экран камеры при работающем переключении в радио</strong> означает, что сообщение о задней передаче доходит, а видеосигнала нет. Заводская процедура «Rear Camera Inoperative» первой причиной называет именно цепь «FUSED RUN RELAY OUTPUT» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Possible%20Causes/">причины</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Theory%20Of%20Operation/">теория</a>). Заметка: цвет «синего экрана» в сервисной информации не описан (UNVERIFIED). Наконец, <strong>0 В на обеих сторонах F85</strong> — это отсутствие питания выше предохранителя, к сети отношения не имеющее. Заводская процедура «No Response From ECU» тоже велит сначала проверять питание и массу и только потом CAN (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Communication%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/No%20Response%20From%20Ecu/Diagnostic%20Test/">No Response From ECU</a>).</p>
+<p>Отсюда прогноз для сканера (STRONG INFERENCE). ORC продолжит получать питание по F86 через C2-103, поскольку его описание говорит о двух цепях питания — run и run-start (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Module%2C%20Occupant%20Restraint%20Controller/Operation/">работа ORC</a>). Значит, <strong>ORC должен отвечать сканеру и хранить активный B212D-13 или B212D-16, но не B212C</strong>. Код B212D-13 ставится, если на входе меньше 6 В дольше 15 с при нормальном напряжении второй цепи (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Set%20Condition/">B212D-13 Set Condition</a>). Датчики BSM при обесточенном F923 на опрос не ответят, и щиток покажет «SERVICE BLIND SPOT SYSTEM» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20-%20Blind%20Spot%20Monitor%20System/">D&amp;T BSM</a>). Если ORC вообще не отвечает, это указывает на <strong>вторую</strong> неисправность: массу G913A, путь F86 или сам модуль.</p>
+<h2 id="pdc-pdc">Полевые случаи: прямого совпадения нет, но «мёртвые» гнёзда PDC лечат заменой PDC<a class="headerlink" href="#pdc-pdc" title="Permanent link">&para;</a></h2>
+<p>Публичного случая с полным набором (SRS + BSM + передний вентилятор + синий экран камеры, постоянно, 0 В на F85) и подтверждённым ремонтом на Durango 2014–2020 или Grand Cherokee WK2 2014+ не найдено. Большинство форумов (dodgedurango.net, jeepgarage, jeepforum, allpar) отдают автоматическим запросам HTTP 402, JustAnswer и CarGurus — 403 и 406. Поэтому сведения из них взяты по поисковым выдержкам и помечены <strong>UNVERIFIED</strong> (дайджест: <code>docs/sources/field-cases/forum_threads_blocked_snippet_digest.md</code>). Ближе всех <strong>Durango R/T 2017</strong>: одновременно отказали передний и задний вентиляторы, камера и индикация ремня. Эксперт предложил проверить подкапотные предохранители, а при отсутствии питания на гнезде заподозрить блок PDC. Чем закончилось, неизвестно (<a href="https://www.justanswer.com/dodge/p4q1d-2017-dodge-durango-r-t-ac-blower-motors-front-rear-not.html">JustAnswer</a>). В похожих темах BSM, затем лампа подушек и камера отказывают по очереди, но решения нет (<a href="https://www.dodgedurango.net/threads/wiring-problem.76353">dodgedurango 76353</a>, <a href="https://cargurus.ca/Cars/Discussion-t40402_ds916891">CarGurus</a>).</p>
+<p>Ближайшие <strong>подтверждённые ремонты на той же архитектуре PDC</strong> — замены PDC целиком. На Durango Citadel 2016 дилер нашёл неисправный PDC после сбоев заднего вентилятора; второй владелец указывает $75 за диагностику и $615 за замену (<a href="https://www.dodgedurango.net/threads/bad-power-distribution-center-2016-citidal.70202/">dodgedurango 70202</a>). На Durango 2023 гнездо предохранителя A/C было без питания, замена предохранителей не помогла, и сервис заменил PDC (<a href="https://www.dodgedurango.net/threads/a-c-fuse-port-no-power-has-anyone-encountered-this-issue.91668/">dodgedurango 91668</a>). Это тот же механизм, что у вас на F85: гнездо мертво из-за внутренней неисправности блока. Однако год другой, и идентичность ревизии PDC не доказана. По переднему вентилятору на Durango 2014 есть два сюжета: мотор оживал после пересадки F13, а у другого владельца жгут вентилятора «оплавился под блоком предохранителей» (оценка ~$3000). Это повод осмотреть контакт C7-21 (<a href="https://www.dodgedurango.net/threads/front-blower-motor-intermittently-not-working.74490/">dodgedurango 74490</a>, <a href="https://www.dodgedurango.net/threads/front-blower-motor-intermittently-not-working.74490/page-2">стр. 2</a>).</p>
+<p>Пара «B212D + мёртвый вентилятор» хорошо описана <strong>на старых Grand Cherokee WK (2005–2010)</strong>, где ORC и реле вентилятора питались от одного неразборного реле RUN в Junction Block. В ветке на ScannerDanner (2006 WK, помечена [FIXED]) напряжение на входе ORC падало до 0 В вместе с отказом вентилятора. Окончательным ремонтом стала замена ORC, но в той же ветке у 2005 WK новый ORC не помог (<a href="https://www.scannerdanner.com/forum/post-your-repair-questions-here/4804-fixed-2006-jeep-grand-cherokee-laredo-3-7l.html">ScannerDanner</a>). Есть и случаи с ремонтом Junction Block (<a href="https://www.allpar.com/threads/ok-got-another-wk-jeep-electronic-issue-question-update-solved.247088/">allpar</a>), и обход «перемычкой с fuse tap» (<a href="https://www.jeepgarage.org/threads/air-bag-light-going-on-and-off.48675/">jeepgarage 48675</a>). <strong>Этот обход повторять нельзя: подробности — в разделе D.</strong> Заводская процедура 2010 WK по B212D при отсутствии напряжения на питающей стороне предохранителя предписывает заменить блок, «реле не заменяемое» (<a href="https://charm.li/Jeep/2010/Grand%20Cherokee%204WD%20V8-5.7L/Repair%20and%20Diagnosis/A%20L%20L%20%20Diagnostic%20Trouble%20Codes%20%28%20DTC%20%29/Testing%20and%20Inspection/B%20Code%20Charts/B212D/">CHARM 2010 WK B212D</a>). Это аналог по логике, но не по железу.</p>
+<p>Из официальных документов к 2018 Durango относятся следующие. <strong>GPOP 9003816 (01.11.2017, MY18 WD):</strong> перед заменой PDC с номерами 68320920A$/68320923A$ дилер обязан обратиться в STAR Center за диагностической помощью и предварительным согласованием, иначе гарантийную заявку отклонят. Симптомов документ не описывает (<a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">NHTSA PDF</a>, <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-9003816.shtml">индекс</a>). <strong>GPOP 9004386:</strong> перед заменой жгута Body нужно запросить у FCA ремкомплект (<a href="https://static.nhtsa.gov/odi/tsbs/2021/MC-10221228-9999.pdf">NHTSA PDF</a>). <strong>STAR S1623000034:</strong> у 2018 Durango дренажи люка бывают отсоединены или проложены неправильно, вода течёт по стойке A и на ковёр. Это известный путь воды в салон, хотя к S2442 у порога он не привязан (<a href="https://static.nhtsa.gov/odi/tsbs/2021/MC-10204343-9999.pdf">NHTSA PDF</a>). Отзывных кампаний (recall) на PDC, реле RUN, питание ORC, вентилятор, камеру или BSM у 2018 Durango нет (<a href="https://api.nhtsa.gov/recalls/recallsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2018">NHTSA recalls</a>). Бюллетени по камере (08-084-19, 08-017-21) касаются программы радио, а не потери питания (<a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/">индекс TSB</a>). Бюллетень о ложных срабатываниях BSM (S2008000093) к вашему случаю не относится (<a href="https://static.nhtsa.gov/odi/tsbs/2020/MC-10223559-9999.pdf">NHTSA PDF</a>).</p>
+<h2 id="c-f95">C. Диагностика мультиметром: сначала нагрузить F95, потом искать звено<a class="headerlink" href="#c-f95" title="Permanent link">&para;</a></h2>
+<p><strong>Отправная точка — ваши данные.</strong> Двигатель работает, зарядка 14,6 В. Стёкла, замки, зеркала, дверь багажника, интерфейс климата и реакция радио на заднюю передачу в порядке. F85 показывает 0 В на обеих контрольных точках в RUN и при работающем двигателе, в том числе после пересадки колодки F85/F86. F86 и F95 в норме с обеих сторон (замер мультиметром). F13 и F99 визуально целы. Сканера пока нет.</p>
+<p><strong>Безопасность SRS — обязательно.</strong> Все проверки ниже, кроме шага 12, выполняются <strong>на стороне PDC</strong>: гнёзда предохранителей и реле, колодка C7. Цепи подушек они не затрагивают. Действуют строгие запреты. <strong>Никаких перемычек</strong> (например, с F86 на F85), никаких внешних реле, fuse tap и <strong>никакой принудительной подачи питания на ORC C2-104/103</strong>. <strong>Контрольную лампу к цепям F85/F86 и к разъёмам ORC не подключать</strong>: заводская процедура прямо запрещает «load test air bag/restraint circuits» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Communication%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/No%20Response%20From%20Ecu/Diagnostic%20Test/">No Response From ECU</a>). Для работы с разъёмами ORC порядок такой:</p>
+<ul>
+<li>сначала отсоединить разъём IBS, затем минусовую клемму, изолировать её и <strong>ждать 2 минуты</strong> для разряда конденсатора ORC (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Warning/">предупреждение SRS</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Module%2C%20Occupant%20Restraint%20Controller/Removal/">снятие ORC</a>);</li>
+<li>использовать только мультиметр с током измерения <strong>не более 20 мА</strong> и щупы Miller 10159-6 (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Diagnostic%20Test/">B212D-13 тест</a>);</li>
+<li>не трогать колодку C1 (пиропатроны) и R-цепи колодки C2;</li>
+<li>ORC не ронять: упавший модуль подлежит замене;</li>
+<li>провода SRS ремонтировать только ремкомплектами Mopar (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Warning/">предупреждение SRS</a>).</li>
+</ul>
+<p>Порядок включения зажигания при отключённом ORC на бесключевом автомобиле: отключить АКБ, ждать 2 мин, вынуть предохранители ORC, подключить АКБ, ждать 2 мин, включить зажигание, вставить предохранители, ждать 2 мин (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212C-13-Ignition%20Run%2FStart%20Input-Circuit%20Open/Diagnostic%20Test/">B212C-13 тест</a>). <strong>Реле в PDC вынимать и вставлять только при выключенном зажигании.</strong></p>
+<p><strong>Инструмент.</strong> Нужны цифровой мультиметр, контрольная лампа накаливания примерно на 2 A (сам завод для нагрузочной проверки питания берёт лампу 3156, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Communication%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/No%20Response%20From%20Ecu/Diagnostic%20Test/">No Response From ECU</a>), тонкие щупы для обратного прокалывания колодок со стороны проводов и щупы-ножи под гнёзда micro-реле. Ответные клеммы не разгибать: завод требует проверять их натяжение (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>).</p>
+<p><strong>Как читать показания.</strong> Во всех шагах чёрный щуп ставится на <strong>минусовой вывод АКБ</strong> (саму клемму, не корпус датчика IBS). Не используйте массу G909A у PDC: через неё же идёт масса катушек, и её дефект замаскирует результат. Норма — равенство напряжению АКБ, измеренному в тот же момент. Допуски «±0,3 В» и «падение не больше 0,5 В под лампой» — практические, а не заводские.</p>
+<table>
+<thead>
+<tr>
+<th>Показание</th>
+<th>Двигатель заглушён, RUN (АКБ ≈12,2–12,8 В)</th>
+<th>Двигатель работает (у вас АКБ ≈14,6 В)</th>
+<th>Что значит</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≈ U_АКБ (±0,3 В)</td>
+<td>≈12,5 В</td>
+<td>≈14,6 В</td>
+<td>Питание есть, падение мало</td>
+</tr>
+<tr>
+<td>Около 12 В при работающем двигателе</td>
+<td>—</td>
+<td>на ~2,5 В ниже U_АКБ</td>
+<td>В цепи сопротивление (подгоревший контакт) или точка не в RUN</td>
+</tr>
+<tr>
+<td>1–11 В, или «норма» без нагрузки, но провал под лампой</td>
+<td>промежуточное</td>
+<td>промежуточное</td>
+<td>Обратное или паразитное питание, высокое сопротивление. <strong>Мультиметр 10 МОм показывает ~99,5 % напряжения даже через 50 кОм</strong>, поэтому без нагрузки такая цепь выглядит исправной (STRONG INFERENCE)</td>
+</tr>
+<tr>
+<td>0 В</td>
+<td>0</td>
+<td>0</td>
+<td>Реле не замкнуто или обрыв выше точки замера</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0">Шаг 0. Опорное напряжение и проверка без приборов<a class="headerlink" href="#0" title="Permanent link">&para;</a></h3>
+<p>Замерьте U_АКБ на выводах АКБ в положениях RUN (двигатель заглушён) и при работающем двигателе. Это опорные цифры для всех шагов. Затем проверьте функции, которые по схеме висят на тех же реле (если оборудованы). <strong>На RUN 1:</strong> обогрев и вентиляция передних сидений, обогрев задних сидений и руля. <strong>На RUN 2:</strong> задний вентилятор, ДХО и корректор фар, автозатемнение зеркала. Если всё это тоже не работает, гипотеза K15 получает сильную поддержку ещё до замеров. Если работает, внимание переносится на K12 и отдельные цепи (<a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Maintenance/Schedule/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">спецификация</a>).</p>
+<h3 id="1-f95">Шаг 1. F95 под нагрузкой — снять главное противоречие<a class="headerlink" href="#1-f95" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Где</td>
+<td>PDC, F95 10A (красный, micro), «Rear Camera/ParkSense» (<a href="https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2018/Durango/8598.pdf">руководство</a>)</td>
+</tr>
+<tr>
+<td>Доступ</td>
+<td>Снять крышку PDC. Номер гнезда сверить по легенде на крышке и по рисунку раскладки (<a href="https://lemon-manuals.la/images25/G00621551/">схема PDC</a>; локально <code>docs/sources/power-distribution/renders/G00621551_PDC_relay_positions_zoom.png</code>)</td>
+</tr>
+<tr>
+<td>Чёрный щуп</td>
+<td>Минус АКБ</td>
+</tr>
+<tr>
+<td>Красный щуп</td>
+<td>Поочерёдно обе контрольные точки F95</td>
+</tr>
+<tr>
+<td>Зажигание</td>
+<td>OFF → ACC → RUN (двигатель заглушён) → двигатель работает</td>
+</tr>
+<tr>
+<td>Норма</td>
+<td>OFF и ACC: <strong>0 В</strong> (в ACC реле RUN выключено — завод проверяет в ACC отсутствие напряжения на K619, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>). RUN и работа двигателя: U_АКБ на обеих точках</td>
+</tr>
+<tr>
+<td>Нагрузка</td>
+<td>Лампу ~2 A подключить между контрольной точкой F95 и минусом АКБ, одновременно мерить напряжение на этой же точке. Лампа должна гореть полностью, падение — не больше ~0,5 В</td>
+</tr>
+<tr>
+<td>Если под лампой U_АКБ</td>
+<td>F95 действительно жив, K15 замыкается. Перейти к шагу 2 и далее к шагам 8–10: нужно искать отдельные дефекты</td>
+</tr>
+<tr>
+<td>Если напряжение проваливается или лампа тусклая</td>
+<td>Высокое сопротивление между B+ и F95: контакты K15, гнездо или внутренняя шина. Это и есть объяснение вашего замера «норма». Перейти к шагам 2–3, затем 5–7</td>
+</tr>
+<tr>
+<td>Если 0 В даже без нагрузки</td>
+<td>Прежний замер сделан не на том гнезде или не в RUN. Цепочка K15 обесточена, перейти к шагу 5</td>
+</tr>
+<tr>
+<td>Если напряжение есть в OFF или ACC</td>
+<td>Это не шина RUN 1 (ошибка гнезда) или обратная подпитка. Сверить номер гнезда</td>
+</tr>
+</tbody>
+</table>
+<p>Лампа на F95 нагружает и цепь F923 (BSM и камера). Это безопасно: цепь не относится к SRS.</p>
+<h3 id="24">Шаги 2–4. Соседние предохранители: кто ещё обесточен<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Шаг</th>
+<th>Группа (реле)</th>
+<th>Предохранители</th>
+<th>Чёрный / красный щуп</th>
+<th>Зажигание</th>
+<th>Норма в RUN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>RUN 1 (K15)</td>
+<td><strong>F96 10A, F97 20A, F98 20A</strong> (F97/F98 — если гнёзда заняты) и <strong>F13 40A</strong> (выход K16, картридж с контрольными точками сверху)</td>
+<td>минус АКБ / обе контрольные точки</td>
+<td>RUN, затем работа двигателя</td>
+<td>U_АКБ. Для F13 — только при включённом K16</td>
+</tr>
+<tr>
+<td>3</td>
+<td>RUN 2 (K12)</td>
+<td><strong>F40 10A, F101 15A, F103 10A, F100 10A</strong> (F100 — если оборудован). <strong>F85 — только мультиметром, без лампы</strong></td>
+<td>то же</td>
+<td>то же</td>
+<td>U_АКБ</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Контроль, RUN/START (K08)</td>
+<td>F86, F99, F77, F78, F76, F88</td>
+<td>то же</td>
+<td>то же</td>
+<td>U_АКБ (по вашим данным F86 уже в норме)</td>
+</tr>
+</tbody>
+</table>
+<p>Источники групп: <a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://lemon-manuals.la/images25/VA586500/">PD-3</a>, <a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>. Лампу можно подключать к F96, F40 и F101 (это не цепи SRS). К F85 и F86 — нельзя.</p>
+<p><strong>Матрица интерпретации (STRONG INFERENCE по схемам):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Картина</th>
+<th>F95 под лампой</th>
+<th>F96/F97/F98</th>
+<th>F13 в RUN</th>
+<th>F40/F101/F103/F100</th>
+<th>F85</th>
+<th>Вывод</th>
+<th>Дальше</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>0 или провал</td>
+<td>0 или провал</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong>Выход K15 не даёт тока</strong>: реле, катушка, управление K619, внутренняя масса или шина</td>
+<td>Шаги 5 → 6 → 7</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>норма</td>
+<td>F96 норма, F97/F98 0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Внутренний обрыв шины RUN 1 после отвода F95/F96 (к K16 и K12). BSM и камера тогда — отдельный дефект</td>
+<td>Шаг 5 (прозвонка 87), затем 10</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>норма</td>
+<td>норма</td>
+<td>норма</td>
+<td>0</td>
+<td>0</td>
+<td><strong>K12 не замыкается.</strong> Вентилятор: дефект ниже F13. BSM и камера: дефект ниже C7-13. Итого три отдельных дефекта</td>
+<td>Шаги 8, 9, 10</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>норма</td>
+<td>норма</td>
+<td>норма или 0</td>
+<td><strong>норма</strong></td>
+<td>0</td>
+<td>Дефект <strong>гнезда F85 или внутренней дорожки</strong> к нему, то есть PDC. Остальное — отдельно</td>
+<td>Раздел D (PDC), шаги 9–10</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-k15">Шаг 5. Гнездо K15 без реле: питание, управление, масса, выход<a class="headerlink" href="#5-k15" title="Permanent link">&para;</a></h3>
+<p>Реле K15 стоит в нижнем (переднем) ряду PDC, четвёртым слева: K12, K13, K14, <strong>K15</strong>, K16 (<a href="https://lemon-manuals.la/images25/G00621551/">схема PDC</a>). Позицию сверьте по легенде крышки. Зажигание OFF, реле вынуть. Нумерация гнёзд не опубликована, поэтому гнёзда определяются измерением или по номерам выводов на корпусе реле.</p>
+<table>
+<thead>
+<tr>
+<th>Гнездо (как найти)</th>
+<th>Чёрный щуп</th>
+<th>Красный щуп</th>
+<th>Зажигание</th>
+<th>Норма</th>
+<th>Отклонение означает</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>30</strong> — напряжение есть всегда</td>
+<td>минус АКБ</td>
+<td>гнездо</td>
+<td>OFF</td>
+<td>U_АКБ</td>
+<td>0 В: внутренний обрыв подвода B+ к K15, то есть PDC</td>
+</tr>
+<tr>
+<td><strong>85</strong> (K619) — напряжение только в RUN</td>
+<td>минус АКБ</td>
+<td>гнездо</td>
+<td>ACC, затем RUN</td>
+<td>ACC: &lt; 3,5 В (больше — замыкание на плюс, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>). RUN: ≈U_АКБ (STRONG INFERENCE: BCM — ключ на плюсе)</td>
+<td>0 В в RUN: перепроверить на колодке C7-12 со вставленным реле (BCM может отключать выход при обрыве нагрузки — UNVERIFIED), затем шаг 6</td>
+</tr>
+<tr>
+<td><strong>86</strong> (масса Z909) — прозвонка</td>
+<td>минус АКБ</td>
+<td>гнездо (режим Ом)</td>
+<td>OFF</td>
+<td><strong>&lt; 3,0 Ом</strong> (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>)</td>
+<td>&gt; 3,0 Ом при живом F86 (внешняя Z909 исправна) — внутренняя ветка массы, то есть PDC</td>
+</tr>
+<tr>
+<td><strong>87</strong> (шина RUN 1) — прозвонка</td>
+<td>гнездо 87</td>
+<td>контрольные точки F95, F96, F97, F98, а также гнёзда 85 реле K12 и K16</td>
+<td>OFF</td>
+<td>≈0 Ом до каждой точки</td>
+<td>Обрыв до части точек — внутренний разрыв шины RUN 1, то есть PDC (заводская логика «CHECK THE PDC ASSEMBLY FOR AN INTERNAL OPEN», <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Если все четыре гнезда в норме, а с реле на месте выход не появляется, неисправно само реле (шаг 7). Заводская процедура B2121-15 тоже начинает с подмены реле Run заведомо исправным (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>).</p>
+<h3 id="6-run-k619-bcm">Шаг 6. Если в RUN нет K619: провод или BCM<a class="headerlink" href="#6-run-k619-bcm" title="Permanent link">&para;</a></h3>
+<p>Подключите щуп обратным прокалыванием со стороны проводов к <strong>PDC C7-12 (BN/OG 0,50)</strong>, реле на месте, зажигание RUN. Если там 0 В, сделайте то же на <strong>BCM C5/E-36</strong> (BCM у правой кик-панели). Напряжение на BCM есть, а на PDC нет — обрыв K619. Подтвердите его при снятых колодках: сопротивление между C5/E-36 и C7-12 больше 3,0 Ом (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%284%20Of%2010%29/Module-Body%20Control%20C5%2FE%20%28Standard%29%20Connector%20End%20View%20%28D3806E%29/">BCM C5/E</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C7%20%28Standard%29%20Connector%20End%20View%20%28D6630G%29/">PDC C7</a>). На BCM тоже 0 В — BCM не выдаёт команду. Это работа для сканера: DTC BCM и запрос RUN от RF Hub (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Theory%20Of%20Operation/">B2121-15 Theory</a>). При осмотре колодки C7 ищите коррозию, следы воды, перегрев и утопленные клеммы, особенно C7-12, C7-13, C7-16 и C7-21. Эта колодка — общий физический узел для управления K15, питания BSM и камеры, массы K16 и питания вентилятора (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C7%20%28Standard%29%20Connector%20End%20View%20%28D6630G%29/">PDC C7</a>).</p>
+<h3 id="7">Шаг 7. Подмена реле<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<p>Сначала убедитесь, что реле физически съёмные. K12, K15, K16 и K08 в документации описаны как «Relay_Micro» с одинаковым рисунком выводов (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%201%20%28Standard%29%20Connector%20End%20View%20%28D842A%29/">D842A</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%202%20%28Standard%29%20Connector%20End%20View%20%28D842B%29/">D842B</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%286%20Of%2010%29/Relay-Blower%20Motor%20%28Standard%29%20Connector%20End%20View%20%28D876%29/">D876</a>, <a href="https://lemon-manuals.la/images25/GCWD1006402/">рисунок выводов</a>). Зажигание OFF. Удобный донор — <strong>K13 (реле заднего вентилятора)</strong>: его катушка питается от F103, то есть от уже мёртвого RUN 2, и его временное отсутствие ничего не меняет. Поставьте K13 в гнездо K15, только если номера на корпусах совпадают. Если K13 нет (нет заднего блока A/C), подойдёт K14 «Run/Acc 2». Включите RUN и повторите шаги 1–3.</p>
+<p>Ожило всё (F95 под лампой, F13, F40…F85) — <strong>неисправно реле K15</strong>. После восстановления напряжения ORC через 5 с переведёт B212D в «stored» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Set%20Condition/">B212D-13 Set Condition</a>). Погасить лампу и стереть коды можно будет только сканером (см. раздел D).</p>
+<h3 id="8-k12-c">Шаг 8. Гнездо K12 (только при картине C)<a class="headerlink" href="#8-k12-c" title="Permanent link">&para;</a></h3>
+<p>Логика та же, что в шаге 5. Гнездо 30 — U_АКБ всегда. Гнездо 85 — U_АКБ в RUN: здесь нет внешнего провода, питание идёт с шины K15-87. Гнездо 86 — меньше 3,0 Ом на массу. Гнездо 87 — около 0 Ом до контрольных точек F40, F101, F103, F100 и F85. Гнездо 85 обесточено при живом F95 — внутренний обрыв в PDC. Все гнёзда в норме — подменить K12 донором K13. RUN 2 ожил — неисправно реле, нет — гнездо или PDC.</p>
+<h3 id="9">Шаг 9. Путь переднего вентилятора<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Точка</th>
+<th>Щупы</th>
+<th>Зажигание</th>
+<th>Норма</th>
+<th>Отклонение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F13 40A, обе контрольные точки</td>
+<td>минус АКБ / точка</td>
+<td>RUN</td>
+<td>U_АКБ</td>
+<td>0 В на обеих точках при живом RUN 1 — K16 не включается: проверить его гнездо (85 — U_АКБ в RUN, 86 — масса Z919 через C7-16 → S2505 → G919A, 30 — всегда U_АКБ) и подменить реле</td>
+</tr>
+<tr>
+<td>Силовой модуль вентилятора C1-6 (DB, цепь C7, 4,0 мм²), обратное прокалывание</td>
+<td>минус АКБ / C1-6</td>
+<td>RUN</td>
+<td>U_АКБ</td>
+<td>0 В при живом F13 — контакт C7-21, провод C7 или XY5020A-29. Осмотреть C7-21 на перегрев</td>
+</tr>
+<tr>
+<td>C1-5, масса Z911 → G911A (под передней частью консоли)</td>
+<td>C1-5 / минус АКБ</td>
+<td>RUN, вентилятор на максимуме</td>
+<td>падение около 0,1–0,2 В (практика)</td>
+<td>Большое падение — масса G911A</td>
+</tr>
+<tr>
+<td>C1-3, сигнал C56 от модуля A/C C1-15</td>
+<td>минус АКБ / C1-3</td>
+<td>RUN, менять скорость</td>
+<td>среднее напряжение меняется со скоростью (практика)</td>
+<td>Не меняется — модуль A/C или провод C56</td>
+</tr>
+</tbody>
+</table>
+<p>Источники: <a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>, <a href="https://lemon-manuals.la/images25/VA585298/">A/C 2/4</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Power-Blower%20Motor-Front%20C1%20%28Standard%29%20Connector%20End%20View%20%28D3881A%29/">силовой модуль C1</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%286%20Of%2010%29/Relay-Blower%20Motor%20%28Standard%29%20Connector%20End%20View%20%28D876%29/">D876</a>. Местоположение силового модуля и G919A по фото не проверено. Подпись G919A «behind front of right quarterpanel» для массы реле в моторном отсеке выглядит странно, поэтому подтвердите её на рисунке <a href="https://lemon-manuals.la/images25/GCWD1242919/">G919A</a>.</p>
+<h3 id="10-bsm-f95">Шаг 10. Питание BSM и камеры (если F95 держит нагрузку)<a class="headerlink" href="#10-bsm-f95" title="Permanent link">&para;</a></h3>
+<p><strong>Камера</strong> стоит в левой нижней части двери багажника. Отсоедините её колодку, включите RUN и найдите провод F923 по цвету: <strong>RED</strong> в перемычке камеры, PK/YE в жгуте Body. По номеру контакта искать нельзя: таблица разъёма даёт питание на контакте 1, а схема — на контакте 3 (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Camera-Rear%20%28Standard%29%20Connector%20End%20View%20%28D6742A%29/">разъём камеры</a>, <a href="https://lemon-manuals.la/images25/VA584199/">схема камеры</a>). Норма — U_АКБ; масса Z923 должна быть меньше 5 Ом на минус (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Diagnostic%20Test/">тест камеры</a>). <strong>BSM:</strong> контакт 5 (F923 PK/YE) на левом и правом датчиках за краями заднего бампера даёт U_АКБ в RUN; масса Z917 идёт на G917A (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%288%20Of%2010%29/Sensor-Blind%20Spot-Left%20%28Standard%29%20Connector%20End%20View%20%28D2481A%29/">LBSS</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%288%20Of%2010%29/Sensor-Blind%20Spot-Right%20Rear%20%28Standard%29%20Connector%20End%20View%20%28D2480A%29/">RBSS</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%283%20Of%2010%29/G917A%20%28Standard%29%20Connector%20End%20View%20%28G917A%29/">G917A</a>). Если оба потребителя обесточены, а F95 жив, ищите дефект между <strong>C7-13 и S2442 (правый передний порог)</strong>. Проверьте XY4000A-12 и XY2120A-6, осмотрите S2442 на воду и коррозию (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/S2442%20%28Standard%29%20Connector%20End%20View%20%28S2442%29/">S2442</a>, <a href="https://lemon-manuals.la/images25/VA584193/">схема BSM</a>).</p>
+<h3 id="11">Шаг 11. Когда появится сканер<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>Порядок такой:</p>
+<ol>
+<li><strong>Топологический скан.</strong> Ожидается: ORC отвечает (у него остаётся F86), оба датчика BSM не отвечают, модуль A/C, BCM и модули дверей отвечают.</li>
+<li><strong>ORC.</strong> Ожидается активный <strong>B212D-13 или B212D-16</strong>, B212C отсутствует (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Possible%20Causes/">B212D-13 причины</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-16-Ignition%20Run%20Only%20Input-Circuit%20Voltage%20Below%20Threshold/Set%20Condition/">B212D-16</a>).</li>
+<li><strong>BCM.</strong> <strong>B2121-15</strong> означает обрыв или замыкание на плюс в цепи управления K15: катушка, гнездо, K619, масса PDC или сам PDC (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Possible%20Causes/">B2121-15 причины</a>).</li>
+<li><strong>LBSS.</strong> Коды потери связи и низкого напряжения (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/%28Left%20Blind%20Spot%20Sensor%20Module%20%28BSM%29%20%28LBSS%29%20-%20Electrical%20Diagnostics%29/">диагностика LBSS</a>).</li>
+<li><strong>Стирание кодов.</strong> SGW читать коды не мешает, но для стирания и двунаправленных тестов нужен авторизованный (AutoAuth) сканер или обходной кабель (<a href="https://www.repairerdrivennews.com/2020/01/20/cic-emerging-tech-head-explains-fca-sgw-says-other-oem-firewalls-coming/">Repairer Driven News</a>).</li>
+</ol>
+<h3 id="12-f85">Шаг 12. Только после того, как F85 ожил<a class="headerlink" href="#12-f85" title="Permanent link">&para;</a></h3>
+<p>Если лампа SRS горит и при живом F85, проверьте цепь F929 до ORC по процедуре B212D-13 с поправками на 2018 год: <strong>F85 вместо «F6», подкапотный PDC вместо «Rear PDC», ORC C2-104 вместо «C1»</strong> (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Diagnostic%20Test/">B212D-13 тест</a>). Порядок: соблюдая все меры SRS выше, при отключённом ORC и вставленном предохранителе замерить напряжение на C2-104 со стороны жгута. Больше 6,0 В — заменить ORC. Меньше — обрыв F929. Шаг лучше доверить мастерской со щупами Miller 10159.</p>
+<h2 id="d-pdc-star">D. План ремонта: реле — своими руками, PDC — через STAR<a class="headerlink" href="#d-pdc-star" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Причина</th>
+<th>Как подтвердить</th>
+<th>Ремонтопригодно?</th>
+<th>Что менять</th>
+<th>Программирование / после ремонта</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Реле K15</strong> (D842A)</td>
+<td>Картина A; K619 есть в гнезде в RUN; гнёзда 30/86/87 в норме; подмена оживляет всё</td>
+<td>Да, если реле съёмное (подтвердить осмотром)</td>
+<td>Реле. Номер читать на корпусе (каталожные кандидаты не привязаны к позиции, UNVERIFIED, <a href="https://www.jeeppartsgiant.com/parts-select/2018-dodge-durango-relay">каталог</a>)</td>
+<td>Программирование не описано. Стереть DTC во всех модулях, выполнить Restraints System Verification Test (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20Restraints%20System%20Intermittent%20Test%2C%20Pre-Diagnostic%20Procedure%20%26%20Verification%20Test/Standard%20Procedure/Restraints%20System%20Verification%20Test/Diagnostic%20Verification%20Test/">verification</a>)</td>
+</tr>
+<tr>
+<td><strong>Реле K12</strong> (D842B)</td>
+<td>Картина C; гнездо 85 под напряжением в RUN; подмена оживляет RUN 2</td>
+<td>Да</td>
+<td>Реле</td>
+<td>То же</td>
+</tr>
+<tr>
+<td><strong>Реле K16</strong></td>
+<td>F13 мёртв при живом RUN 1; гнёзда в норме; подмена</td>
+<td>Да</td>
+<td>Реле</td>
+<td>Не требуется</td>
+</tr>
+<tr>
+<td><strong>Обрыв K619</strong> (BCM C5/E-36 ↔ PDC C7-12)</td>
+<td>U_АКБ на BCM, 0 В на C7-12; сопротивление больше 3,0 Ом (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>)</td>
+<td>Да (провод не относится к SRS)</td>
+<td>Ремонт провода или клеммы</td>
+<td>Не требуется</td>
+</tr>
+<tr>
+<td><strong>Выход BCM</strong></td>
+<td>0 В на C5/E-36 в RUN при запросе RUN; DTC BCM</td>
+<td>Только заменой BCM</td>
+<td>BCM</td>
+<td>В собранных источниках не описано. Конфигурация BCM дилерским сканером — UNVERIFIED</td>
+</tr>
+<tr>
+<td><strong>Клеммы колодки C7</strong> (C7-12, C7-13, C7-16, C7-21)</td>
+<td>Осмотр, проверка натяжения клемм (заводской шаг 8 B2121)</td>
+<td>Да</td>
+<td>Клеммы. Перед заменой жгута запросить ремкомплект у FCA (<a href="https://static.nhtsa.gov/odi/tsbs/2021/MC-10221228-9999.pdf">GPOP 9004386</a>)</td>
+<td>Не требуется</td>
+</tr>
+<tr>
+<td><strong>Внутренний дефект PDC</strong>: гнездо реле, шина RUN 1/RUN 2, гнездо F85, внутренняя ветка массы</td>
+<td>Шаги 5 и 8 не проходят при исправной внешней проводке; картина D</td>
+<td><strong>Нет</strong>: PDC «обслуживается как часть жгута моторного отсека» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Body%20Electrical/Power%20Distribution/Description/">описание Power Distribution</a>); заводской итог — «Replace the PDC» (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">B2121-15 тест</a>)</td>
+<td>PDC в сборе. Для MY18 WD (68320920A$/68320923A$) <strong>нужно предварительное согласование STAR</strong>, иначе гарантийную заявку отклонят (<a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">GPOP 9003816</a>). Каталог дилера продаёт PDC отдельно: 68320920AE → 68425212AB со Start/Stop, 68425215AB без (UNVERIFIED, <a href="https://www.jeeppartsgiant.com/parts-select/2018-dodge-durango-relay">каталог</a>). Поставляется ли PDC с жгутом или без для этого VIN, решает дилер</td>
+<td>Требование программирования PDC в источниках не найдено (UNVERIFIED). Проверить все предохранители, стереть DTC, выполнить Battery Reconnection procedure, если АКБ отключалась, и Verification Test (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20Restraints%20System%20Intermittent%20Test%2C%20Pre-Diagnostic%20Procedure%20%26%20Verification%20Test/Standard%20Procedure/Restraints%20System%20Verification%20Test/Diagnostic%20Verification%20Test/">verification</a>)</td>
+</tr>
+<tr>
+<td><strong>S2442 / F923</strong> у правого переднего порога</td>
+<td>F95 жив под нагрузкой, F923 мёртв и на камере, и на BSM</td>
+<td>Да</td>
+<td>Сращивание или провод</td>
+<td>Не требуется. Нужна ли калибровка BSM, в источниках не найдено (UNVERIFIED)</td>
+</tr>
+<tr>
+<td><strong>Путь вентилятора</strong> (C7-21, провод C7, силовой модуль, мотор, G911A)</td>
+<td>Шаг 9</td>
+<td>Да</td>
+<td>Клемма, провод, модуль или мотор</td>
+<td>Не описано</td>
+</tr>
+<tr>
+<td><strong>ORC</strong></td>
+<td>Только после восстановления F85: больше 6,0 В на C2-104, а B212D всё ещё активен (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Diagnostic%20Test/">B212D-13 тест</a>)</td>
+<td>Нет, только замена</td>
+<td>ORC (первопричиной 0 В на питающей стороне F85 быть не может)</td>
+<td><strong>Инициализация ORC, при необходимости повторная инициализация ESC</strong> (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20Restraints%20System%20Intermittent%20Test%2C%20Pre-Diagnostic%20Procedure%20%26%20Verification%20Test/Standard%20Procedure/Restraints%20System%20Verification%20Test/Diagnostic%20Verification%20Test/">verification</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Почему нельзя ставить перемычку с F86 на F85 или внешнее реле, хотя на форумах WK такое советуют (<a href="https://www.jeepgarage.org/threads/air-bag-light-going-on-and-off.48675/">jeepgarage 48675</a>).</strong> Во-первых, это вмешательство в цепь питания SRS, а производитель запрещает даже нагрузочную проверку таких цепей (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Communication%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/No%20Response%20From%20Ecu/Diagnostic%20Test/">No Response From ECU</a>) и ремонт SRS-цепей без комплектов Mopar (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Warning/">предупреждение SRS</a>). Во-вторых, перемычка «вылечит» только лампу SRS. BSM, камера и вентилятор останутся мёртвыми, а неисправный K15 или PDC будет скрыт. Третья сторона ремонтирует PDC Grand Cherokee WK2 2014–2022 с соседними номерами (68320918/19/21/22), но заявляет только отказ реле бензонасоса (<a href="https://circuitboardmedics.com/2014-2022-jeep-grand-cherokee-power-distribution-center-repair/">Circuit Board Medics</a>). Для блока, питающего вход ORC, разумнее заводская деталь (это вывод, а не факт из источника).</p>
+<h2 id="e">E. Источники, недоступные документы и ошибки заводской документации<a class="headerlink" href="#e" title="Permanent link">&para;</a></h2>
+<p><strong>Метки.</strong> <strong>VERIFIED (2018 Durango)</strong> — прочитано в документе 2018 Durango по указанному адресу. <strong>STRONG INFERENCE</strong> — выведено из проверенных документов, другого года или реконструкции SVG. <strong>UNVERIFIED</strong> — вторичные источники, выдержки поиска, каталоги. Локальные копии лежат в <code>docs/sources/</code> (пути относительно корня рабочей папки).</p>
+<table>
+<thead>
+<tr>
+<th>Документ</th>
+<th>Ссылка</th>
+<th>Метка</th>
+<th>Локальная копия</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Индекс руководства 2018 Durango Citadel 5.7 AWD («идентично R/T AWD»)</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/">veh</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/power-distribution/INDEX.md</code></td>
+</tr>
+<tr>
+<td>Power Distribution 1/4–4/4 (VA586498–501), страница схем</td>
+<td><a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>, <a href="https://lemon-manuals.la/images25/VA586499/">PD-2</a>, <a href="https://lemon-manuals.la/images25/VA586500/">PD-3</a>, <a href="https://lemon-manuals.la/images25/VA586501/">PD-4</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/System%20Wiring%20Diagrams/Power%20Distribution/">страница</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/power-distribution/originals/*.svg</code>, <code>renders/s1_*.png</code>; <code>docs/sources/connectors-orc/renders/2018_Durango_PD1of4_crop_RUN1_RUN2_relay_coils.png</code></td>
+</tr>
+<tr>
+<td>Automatic A/C 1/4–3/4 (VA585297–299), страница</td>
+<td><a href="https://lemon-manuals.la/images25/VA585297/">A/C 1/4</a>, <a href="https://lemon-manuals.la/images25/VA585298/">A/C 2/4</a>, <a href="https://lemon-manuals.la/images25/VA585299/">A/C 3/4</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/System%20Wiring%20Diagrams/Air%20Conditioning/">страница</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/blower-bsm-camera/diagram_VA585297.md</code>, <code>diagram_VA585298.md</code></td>
+</tr>
+<tr>
+<td>Supplemental Restraints 1/3 (VA582314), страница</td>
+<td><a href="https://lemon-manuals.la/images25/VA582314/">SRS 1/3</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Supplemental%20Restraints/">страница</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/connectors-orc/2018_Durango_WD_Supplemental_Restraints.md</code></td>
+</tr>
+<tr>
+<td>Ground Distribution 1/4, 3/4</td>
+<td><a href="https://lemon-manuals.la/images25/VA586554/">GD-1</a>, <a href="https://lemon-manuals.la/images25/VA586556/">GD-3</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Electrical/Wiring%20Diagrams/System%20Wiring%20Diagrams/Ground%20Distribution/">страница</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/connectors-orc/2018_Durango_WD_Ground_Distribution.md</code></td>
+</tr>
+<tr>
+<td>BSM (VA584193), камера (VA584199), Park Assist (VA584200), радио (VA584344), страница Navigation</td>
+<td><a href="https://lemon-manuals.la/images25/VA584193/">BSM</a>, <a href="https://lemon-manuals.la/images25/VA584199/">камера</a>, <a href="https://lemon-manuals.la/images25/VA584200/">PAM</a>, <a href="https://lemon-manuals.la/images25/VA584344/">радио</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Navigation/">Navigation</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/blower-bsm-camera/diagram_VA584193.md</code>, <code>diagram_VA584199.md</code></td>
+</tr>
+<tr>
+<td>Разъёмы PDC C1/C6/C7/C10</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C1%20%28Standard%29%20Connector%20End%20View%20%28D6630A%29/">C1</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">C6</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C7%20%28Standard%29%20Connector%20End%20View%20%28D6630G%29/">C7</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C10%20%285.7L%206.4L%29%20Connector%20End%20View%20%28D6630J%29/">C10</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/connectors-orc/2018_Durango_PDC_C*_end_view.md</code></td>
+</tr>
+<tr>
+<td>ORC C1/C2/C3</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Occupant%20Restraint%20Controller%20C1%20%28Standard%29%20Connector%20End%20View%20%28D3834A%29/">C1</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Occupant%20Restraint%20Controller%20C2%20%28Standard%29%20Connector%20End%20View%20%28D3834B%29/">C2</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Occupant%20Restraint%20Controller%20C3%20%28Standard%29%20Connector%20End%20View%20%28D3834C%29/">C3</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/connectors-orc/2018_Durango_ORC_C*_end_view.md</code></td>
+</tr>
+<tr>
+<td>BCM C1/A, C5/E</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%284%20Of%2010%29/Module-Body%20Control%20C1%2FA%20%28Standard%29%20Connector%20End%20View%20%28D3806A%29/">C1/A</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%284%20Of%2010%29/Module-Body%20Control%20C5%2FE%20%28Standard%29%20Connector%20End%20View%20%28D3806E%29/">C5/E</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/power-distribution/2018_Durango_CEV_Module_Body_Control_*.md</code></td>
+</tr>
+<tr>
+<td>Реле K15/K12/K08/K16, сращивание S2442, масса G917A</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%201%20%28Standard%29%20Connector%20End%20View%20%28D842A%29/">D842A</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%202%20%28Standard%29%20Connector%20End%20View%20%28D842B%29/">D842B</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%2FStart%20%28Standard%29%20Connector%20End%20View%20%28D893%29/">D893</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%286%20Of%2010%29/Relay-Blower%20Motor%20%28Standard%29%20Connector%20End%20View%20%28D876%29/">D876</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/S2442%20%28Standard%29%20Connector%20End%20View%20%28S2442%29/">S2442</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%283%20Of%2010%29/G917A%20%28Standard%29%20Connector%20End%20View%20%28G917A%29/">G917A</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/blower-bsm-camera/cev_relay_*.md</code>, <code>cev_s2442.md</code></td>
+</tr>
+<tr>
+<td>Датчики BSM, камера, силовой модуль вентилятора</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%288%20Of%2010%29/Sensor-Blind%20Spot-Left%20%28Standard%29%20Connector%20End%20View%20%28D2481A%29/">LBSS</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%288%20Of%2010%29/Sensor-Blind%20Spot-Right%20Rear%20%28Standard%29%20Connector%20End%20View%20%28D2480A%29/">RBSS</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Camera-Rear%20%28Standard%29%20Connector%20End%20View%20%28D6742A%29/">камера</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Power-Blower%20Motor-Front%20C1%20%28Standard%29%20Connector%20End%20View%20%28D3881A%29/">модуль C1</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Heating%2C%20Ventilation%20%26%20A%2FC%20%28HVAC%29/HVAC%20Control%20Systems/Heating%20%26%20Air%20Conditioning%20%28Service%20Information%29/Controls/Module%2C%20Power%2C%20Blower%20Motor/Operation/">работа модуля</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/blower-bsm-camera/cev_bsm_*.md</code>, <code>cev_camera_rear.md</code>, <code>blower_pm_oper.md</code></td>
+</tr>
+<tr>
+<td>Раскладка PDC и таблица реле (G00621551, низкое разрешение)</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%286%20Of%2010%29/Power%20Distribution%20Center%20%28PDC%29%20Layout%20And%20Connector%20Identification/">страница</a>, <a href="https://lemon-manuals.la/images25/G00621551/">изображение</a></td>
+<td>VERIFIED (альтернативные коды K13/K16 читаются плохо)</td>
+<td><code>docs/sources/power-distribution/originals/2018_Durango_G00621551_PDC_layout_relay_fuse_tables.jpg</code></td>
+</tr>
+<tr>
+<td>Спецификация предохранителей и реле; руководство владельца 2018 (стр. ~377–385)</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Maintenance/Schedule/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">спецификация</a>, <a href="https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2018/Durango/8598.pdf">руководство</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/power-distribution/2018_Durango_Owners_Manual_PDC_fuse_table_pages_379-385.md</code>, <code>originals/2018_Dodge_Durango_Owners_Manual_8598.pdf</code></td>
+</tr>
+<tr>
+<td>Описание PDC и Power Distribution</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Body%20Electrical/Power%20Distribution/Center%2C%20Power%20Distribution%20%28PDC%29/Description/">PDC</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Body%20Electrical/Power%20Distribution/Description/">Power Distribution</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/power-distribution/2018_Durango_PDC_Description.md</code></td>
+</tr>
+<tr>
+<td>ORC B212D-13 (причины, условие, тест, мониторинг), B212D-16, B212C-13, копия R/T</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Possible%20Causes/">причины</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Set%20Condition/">условие</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Diagnostic%20Test/">тест</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/When%20Monitored/">мониторинг</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-16-Ignition%20Run%20Only%20Input-Circuit%20Voltage%20Below%20Threshold/Set%20Condition/">B212D-16</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212C-13-Ignition%20Run%2FStart%20Input-Circuit%20Open/Possible%20Causes/">B212C причины</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212C-13-Ignition%20Run%2FStart%20Input-Circuit%20Open/Diagnostic%20Test/">B212C тест</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20R%2FT%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Diagnostic%20Test/">R/T B212D тест</a></td>
+<td>VERIFIED (тексты тестов с ошибками, см. ниже)</td>
+<td><code>docs/sources/connectors-orc/2018_Durango_ORC_B212*.md</code></td>
+</tr>
+<tr>
+<td>BCM B2121-15 (теория, причины, тест)</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Theory%20Of%20Operation/">теория</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Possible%20Causes/">причины</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Body%20Control%20Module%20%28BCM%29%20-%20DTCS%20B2119-11%20To%20U1433-24/DTC%20Troubleshooting/B2121-15-Ignition%20Run%20Control%201-Circuit%20Short%20To%20Battery%20Or%20Open/Diagnostic%20Test/">тест</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/power-distribution/2018_Durango_DTC_BCM_B2121-15_*.md</code></td>
+</tr>
+<tr>
+<td>SRS: предупреждение, снятие, работа и описание ORC, D&amp;T, Verification Test</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Warning/">предупреждение</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Module%2C%20Occupant%20Restraint%20Controller/Removal/">снятие</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Module%2C%20Occupant%20Restraint%20Controller/Operation/">работа</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Module%2C%20Occupant%20Restraint%20Controller/Description/">описание</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20-%20Supplemental%20Restraint%20System/">D&amp;T</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20Restraints%20System%20Intermittent%20Test%2C%20Pre-Diagnostic%20Procedure%20%26%20Verification%20Test/Standard%20Procedure/Restraints%20System%20Verification%20Test/Diagnostic%20Verification%20Test/">verification</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/connectors-orc/2018_Durango_SRS_*.md</code>, <code>2018_Durango_ORC_Module_*.md</code></td>
+</tr>
+<tr>
+<td>Камера: работа, «Inoperative» (теория, причины, тест), таблица D&amp;T</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%2FEntertainment%2FConnectivity%20%28Service%20Information%29/Camera%2C%20Rear/Operation/">работа</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Theory%20Of%20Operation/">теория</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Possible%20Causes/">причины</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Diagnostic%20Test/">тест</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20With%20RRM%20Display/Diagnosis%20And%20Testing%20-%20Rear%20Camera/">D&amp;T</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/blower-bsm-camera/rvc_*.md</code></td>
+</tr>
+<tr>
+<td>BSM: работа датчика, описание системы, D&amp;T, диагностика LBSS</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Sensor%2C%20Blind%20Spot/Operation/">работа</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Description/Blind%20Spot%20Monitor%20System/">система</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20-%20Blind%20Spot%20Monitor%20System/">D&amp;T</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/%28Left%20Blind%20Spot%20Sensor%20Module%20%28BSM%29%20%28LBSS%29%20-%20Electrical%20Diagnostics%29/">LBSS</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/blower-bsm-camera/bsm_*.md</code></td>
+</tr>
+<tr>
+<td>Communication – Operation; No Response From ECU; Scan Tool…CAN Bus</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Electronic%20Control%20Modules%20%28Service%20Information%29/Communication/Operation/">Communication</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Communication%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/No%20Response%20From%20Ecu/Diagnostic%20Test/">No Response</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Communication%20Devices/Communication%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Scan%20Tool%20Will%20Not%20Communicate%20With%20Can%20Bus/">Scan Tool</a></td>
+<td>VERIFIED (через WebFetch, пересказ)</td>
+<td><code>docs/sources/can-network/01_*.md</code>, <code>03_*.md</code></td>
+</tr>
+<tr>
+<td>Computer Data Lines 1–5, перечень звёзд, C1 звёзд D2600A/D2601A/D2602A</td>
+<td><a href="https://lemon-manuals.la/images25/VA586592/">CDL-1</a>, <a href="https://lemon-manuals.la/images25/VA586593/">CDL-2</a>, <a href="https://lemon-manuals.la/images25/VA586594/">CDL-3</a>, <a href="https://lemon-manuals.la/images25/VA586595/">CDL-4</a>, <a href="https://lemon-manuals.la/images25/VA586596/">CDL-5</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/System%20Wiring%20Diagrams/Computer%20Data%20Lines/">страница</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%282%20Of%2010%29/">перечень</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%282%20Of%2010%29/Connector-Star%20Can%20C%20Dash%20C1%20%28Standard%29%20Connector%20End%20View%20%28D2600A%29/">D2600A</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%282%20Of%2010%29/Connector-Star%20Can%20IHS%20IP%20C1%20%28Standard%29%20Connector%20End%20View%20%28D2601A%29/">D2601A</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%282%20Of%2010%29/Connector-Star%20Can%20IHS%20Body%20C1%20%28Standard%29%20Connector%20End%20View%20%28D2602A%29/">D2602A</a></td>
+<td>Распиновки C1 — VERIFIED; раскладка веток — STRONG INFERENCE</td>
+<td><code>docs/sources/can-network/04_*.md</code>, <code>05_*.md</code></td>
+</tr>
+<tr>
+<td>SGW: индекс DTC, электродиагностика, U0001, U0011</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/DTC%20Index/Module%2C%20Security%20Gateway%20%28SGW%29/">индекс</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/General%20Information/OEM%20General%20Information/%28Security%20Gateway%20Module%20%28SGW%29%20-%20Electrical%20Diagnostics%29/">диагностика</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/General%20Information/OEM%20General%20Information/%28Security%20Gateway%20Module%20%28SGW%29%20-%20Electrical%20Diagnostics%29/DTC%20Troubleshooting/U0001-00-Can%20C%20Bus/Diagnostic%20Test/">U0001</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/General%20Information/OEM%20General%20Information/%28Security%20Gateway%20Module%20%28SGW%29%20-%20Electrical%20Diagnostics%29/DTC%20Troubleshooting/U0011-00-Can%20Interior%20Bus%20Off%20Performance/Diagnostic%20Test/">U0011</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/can-network/02_*.md</code></td>
+</tr>
+<tr>
+<td>Копии 2015/2017 R/T AWD (C6, SRS)</td>
+<td><a href="https://lemon-manuals.la/Dodge%20and%20Ram/2015/Durango%20R%2FT%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%204%29/Assembly-Power%20Distribution%20Center%20C6%20%28D6630F%29/">C6 2015</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2015/Durango%20R%2FT%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Supplemental%20Restraints/">SRS 2015</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2017/Durango%20R%2FT%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%209%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">C6 2017</a></td>
+<td>STRONG INFERENCE (другой год)</td>
+<td><code>docs/sources/connectors-orc/INFERENCE_*.md</code></td>
+</tr>
+<tr>
+<td>Декодирование VIN NHTSA vPIC</td>
+<td><a href="https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/1C4SDJCT3JCXXXXXX?format=json">vPIC</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/power-distribution/NHTSA_vPIC_VIN_decode_1C4SDJCT3JCXXXXXX.md</code></td>
+</tr>
+<tr>
+<td>GPOP 9003816 (STAR для PDC, MY18 WD)</td>
+<td><a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">PDF</a>, <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-9003816.shtml">индекс</a></td>
+<td>VERIFIED</td>
+<td><code>docs/sources/field-cases/NHTSA_MC-10216108-9999_TSB9003816_2018WD_PDC_STAR.pdf</code></td>
+</tr>
+<tr>
+<td>GPOP 9004386; STAR S1623000034; STAR S2008000093</td>
+<td><a href="https://static.nhtsa.gov/odi/tsbs/2021/MC-10221228-9999.pdf">9004386</a>, <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-9004386.shtml">индекс 9004386</a>, <a href="https://static.nhtsa.gov/odi/tsbs/2021/MC-10204343-9999.pdf">S1623000034</a>, <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-s1623000034-rev.shtml">индекс</a>, <a href="https://static.nhtsa.gov/odi/tsbs/2020/MC-10223559-9999.pdf">S2008000093</a></td>
+<td>VERIFIED (применимость: только S1623000034 и 9004386)</td>
+<td><code>docs/sources/field-cases/NHTSA_MC-*.pdf</code></td>
+</tr>
+<tr>
+<td>NHTSA: отзывы 2018, 14V643000, жалобы 2014/2016/2018, GC 2018/2019</td>
+<td><a href="https://api.nhtsa.gov/recalls/recallsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2018">отзывы</a>, <a href="https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=14V643000">14V643000</a>, <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2014">2014</a>, <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2016">2016</a>, <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=dodge&amp;model=durango&amp;modelYear=2018">2018</a>, <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=jeep&amp;model=grand%20cherokee&amp;modelYear=2018">GC 2018</a>, <a href="https://api.nhtsa.gov/complaints/complaintsByVehicle?make=jeep&amp;model=grand%20cherokee&amp;modelYear=2019">GC 2019</a></td>
+<td>VERIFIED (данные API)</td>
+<td><code>docs/sources/field-cases/NHTSA_api_*.json</code></td>
+</tr>
+<tr>
+<td>Индекс TSB carcomplaints 2018 Durango</td>
+<td><a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/">индекс</a></td>
+<td>STRONG INFERENCE (прочитано ~100 из 182 тыс. знаков)</td>
+<td><code>docs/sources/field-cases/carcomplaints_*.md</code></td>
+</tr>
+<tr>
+<td>CHARM 2010 WK B212D</td>
+<td><a href="https://charm.li/Jeep/2010/Grand%20Cherokee%204WD%20V8-5.7L/Repair%20and%20Diagnosis/A%20L%20L%20%20Diagnostic%20Trouble%20Codes%20%28%20DTC%20%29/Testing%20and%20Inspection/B%20Code%20Charts/B212D/">CHARM</a></td>
+<td>STRONG INFERENCE (аналог по логике, другая архитектура)</td>
+<td><code>docs/sources/field-cases/charm_2010WK_B212D_ORC_run_input_procedure.md</code></td>
+</tr>
+<tr>
+<td>ScannerDanner 4804 (2006 WK, [FIXED])</td>
+<td><a href="https://www.scannerdanner.com/forum/post-your-repair-questions-here/4804-fixed-2006-jeep-grand-cherokee-laredo-3-7l.html">ScannerDanner</a></td>
+<td>UNVERIFIED для 2018 (другая архитектура)</td>
+<td><code>docs/sources/field-cases/scannerdanner_4804_2006WK_B212D_ORC_runinput_FIXED.md</code></td>
+</tr>
+<tr>
+<td>Форумы (по выдержкам поиска)</td>
+<td><a href="https://www.dodgedurango.net/threads/bad-power-distribution-center-2016-citidal.70202/">dd70202</a>, <a href="https://www.dodgedurango.net/threads/a-c-fuse-port-no-power-has-anyone-encountered-this-issue.91668/">dd91668</a>, <a href="https://www.dodgedurango.net/threads/front-blower-motor-intermittently-not-working.74490/">dd74490</a>, <a href="https://www.dodgedurango.net/threads/front-blower-motor-intermittently-not-working.74490/page-2">стр. 2</a>, <a href="https://www.dodgedurango.net/threads/wiring-problem.76353">dd76353</a>, <a href="https://www.dodgedurango.net/threads/blind-spot-unavailable-and-other-issues-looking-for-help.21989/">dd21989</a>, <a href="https://dodgeforum.com/forum/3rd-gen-durango/413008-service-park-assist-system.html">df413008</a>, <a href="https://www.jeepgarage.org/threads/2012-grand-cherokee-no-power-to-blower-motor-resistor.235255/">jg235255</a>, <a href="https://www.jeepgarage.org/threads/2012-no-power-to-blower-resistor.204817/">jg204817</a>, <a href="https://www.jeepgarage.org/threads/2014-grand-cherokee-ac-blower-intermittent.89693/">jg89693</a>, <a href="https://www.jeepgarage.org/threads/air-bag-light-going-on-and-off.48675/">jg48675</a>, <a href="https://www.allpar.com/threads/ok-got-another-wk-jeep-electronic-issue-question-update-solved.247088/">ap247088</a>, <a href="https://www.jeepforum.com/threads/very-very-odd-issue-airbag-light-no-hvac.4364927/">jf4364927</a>, <a href="https://www.jeepforum.com/threads/heater-blower-back-up-lights-rear-wiper-and-airbag-lights-not-working.1494186/">jf1494186</a>, <a href="https://www.justanswer.com/dodge/p4q1d-2017-dodge-durango-r-t-ac-blower-motors-front-rear-not.html">JustAnswer p4q1d</a>, <a href="https://www.justanswer.com/dodge/guhug-no-a-c-clutch-no-power-62-fuse-2014-dodge-durango-check.html">JustAnswer guhug</a>, <a href="https://cargurus.ca/Cars/Discussion-t40402_ds916891">CarGurus</a>, <a href="https://www.ecodieselram.com/forum/goto/post?id=45833">EcoDiesel</a></td>
+<td>UNVERIFIED</td>
+<td><code>docs/sources/field-cases/forum_threads_blocked_snippet_digest.md</code></td>
+</tr>
+<tr>
+<td>Каталоги и ремонт PDC</td>
+<td><a href="https://www.jeeppartsgiant.com/parts-select/2018-dodge-durango-relay">jeeppartsgiant</a>, <a href="https://parts.chryslerjeepdodgecityofmckinney.com/p/Dodge_2016_Durango/POWER-DISTRIBUTION-CENTER-Intelligent-Power-Stop-Start-Dual-Battery-System/78262716/68251629AD.html">PDC 2016</a>, <a href="https://circuitboardmedics.com/2014-2022-jeep-grand-cherokee-power-distribution-center-repair/">Circuit Board Medics</a>, <a href="https://www.go-parts.com/garage/fuse-box-dodge-durango-2016-2026">go-parts</a>, <a href="https://www.startmycar.com/dodge/durango/info/fusebox/2018">startmycar</a></td>
+<td>UNVERIFIED</td>
+<td><code>docs/sources/power-distribution/Parts_catalog_jeeppartsgiant_2018_Durango_fuse_relay_excerpt.md</code>; <code>docs/sources/connectors-orc/SECONDARY_startmycar_2018_Durango_fusebox_extract.md</code></td>
+</tr>
+<tr>
+<td>Статьи о SGW</td>
+<td><a href="https://www.repairerdrivennews.com/2020/01/20/cic-emerging-tech-head-explains-fca-sgw-says-other-oem-firewalls-coming/">Repairer Driven News</a>, <a href="https://www.vehicleservicepros.com/in-the-bay/diagnostic-repair-info/diagnostic-test-equipment/scan-tools/blog/21026530/having-trouble-communicating-with-certain-2018-vehicles">VehicleServicePros</a></td>
+<td>STRONG INFERENCE (отраслевая пресса, не по Durango)</td>
+<td><code>docs/sources/can-network/07_sgw_coverage_articles.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Недоступные или недочитанные документы:</strong></p>
+<ul>
+<li><strong>Mopar Store</strong>, страница PDC и реле для 2018 Durango R/T 5.7: HTTP 403 (<a href="https://store.mopar.com/v-2018-dodge-durango--r-t--5-7l-v8-gas/electrical--power-distribution-center-fuse-block-junction-block-relays-and-fuses">Mopar Store</a>).</li>
+<li><strong>LEMON «Single Page»</strong>: при «голом» User-Agent отдавал ловушку из 20 ГБ нулевых байтов; страницы прочитаны другими способами, частично через пересказ WebFetch.</li>
+<li><strong>LEMON, прочее</strong>: подстраницы BCM B2103-15 — 404 из-за кодировки слэша; папка «Fuses &amp; Circuit Breakers» — 404.</li>
+<li><strong>Форумы и сервисы вопросов</strong>: CarGurus — 406, JustAnswer — 403, форумы VerticalScope — 402 TollBit, bolidenforum — 403 (<a href="https://www.bolidenforum.de/portal/fuse-box/dodge/durango/2018/">bolidenforum</a>).</li>
+<li><strong>TSB</strong>: индекс carcomplaints прочитан примерно наполовину; поиск TSB на NHTSA не использовался. Дилерская база STAR/TechCONNECT недоступна.</li>
+<li><strong>Проверки по VIN</strong>: открытые отзывы и сервисные кампании по VIN не проверялись; лист комплектации (build sheet) не получен.</li>
+<li><strong>Не выгружено</strong>: торцевые виды веток звёзд C2–C13 и звезды CAN-C IP, разъёмы SGW; схемы A/C 2/4–4/4 разобраны не полностью; рисунок места G919A не просмотрен.</li>
+<li><strong>Не использовались</strong> (нужна подписка): ALLDATA, Mitchell, TechAuthority, iATN.</li>
+</ul>
+<p><strong>Ошибки и противоречия заводской документации</strong> (все — VERIFIED как наличие ошибки):</p>
+<table>
+<thead>
+<tr>
+<th>Документ</th>
+<th>Что написано</th>
+<th>Как читать для 2018 Durango</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B212D-13 Diagnostic Test (и копия R/T) (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Diagnostic%20Test/">тест</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20R%2FT%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-13-Ignition%20Run%20Only%20Input-Circuit%20Open/Diagnostic%20Test/">R/T</a>)</td>
+<td>«Airbag Run Circuit Fuse No. <strong>F6</strong>», «<strong>Rear</strong> Power Distribution Center», «ORC module <strong>C1</strong> body harness connector»</td>
+<td><strong>F85</strong>, подкапотный PDC, <strong>ORC C2-104</strong>. Раздел Possible Causes той же страницы, схема и таблица C6 называют F85</td>
+</tr>
+<tr>
+<td>B212D-13, шаг 4</td>
+<td>Ветви «меньше 100 Ом → шаг 5 / иначе заменить ORC» выглядят перевёрнутыми</td>
+<td>Малое сопротивление F929 на массу при отключённом ORC считать замыканием жгута</td>
+</tr>
+<tr>
+<td>B212C-13 Diagnostic Test (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212C-13-Ignition%20Run%2FStart%20Input-Circuit%20Open/Diagnostic%20Test/">тест</a>)</td>
+<td>«fuse <strong>F24</strong>», «C1»</td>
+<td><strong>F86</strong>, <strong>ORC C2-103</strong></td>
+</tr>
+<tr>
+<td>B212D-16 Set Condition (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Occupant%20Restraint%20Controller%20%28Orc%29%20-%20DTCS%20B007E-95%20To%20B2734-13/DTC%20Troubleshooting/B212D-16-Ignition%20Run%20Only%20Input-Circuit%20Voltage%20Below%20Threshold/Set%20Condition/">B212D-16</a>)</td>
+<td>«less than <strong>16</strong> volts»</td>
+<td>Опечатка, по смыслу 6 В</td>
+</tr>
+<tr>
+<td>Камера: разъём D6742A и схема VA584199 (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Camera-Rear%20%28Standard%29%20Connector%20End%20View%20%28D6742A%29/">разъём</a>, <a href="https://lemon-manuals.la/images25/VA584199/">схема</a>)</td>
+<td>Таблица: контакт 1 — F923 RD, контакт 3 — X971. Схема: контакт 3 — RUN RLY CTRL, контакт 1 — GND</td>
+<td>Номера контактов не совпадают; провод искать по цвету и коду цепи</td>
+</tr>
+<tr>
+<td>Реле K08 (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%2FStart%20%28Standard%29%20Connector%20End%20View%20%28D893%29/">D893</a>, <a href="https://lemon-manuals.la/images25/VA586500/">PD-3</a>)</td>
+<td>Таблица: 85 — масса. Схема: 85 — управление</td>
+<td>Мелкое расхождение меток выводов</td>
+</tr>
+<tr>
+<td>Описание PDC и схемы (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Body%20Electrical/Power%20Distribution/Center%2C%20Power%20Distribution%20%28PDC%29/Description/">описание</a>, <a href="https://lemon-manuals.la/images25/VA586498/">PD-1</a>)</td>
+<td>«left center» и «right side / right rear of engine compt»</td>
+<td>Сторона определяется на месте</td>
+</tr>
+<tr>
+<td>ORC Operation (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis%20%28Single%20Page%29/Restraints/Air%20Bag%2C%20SRS/Restraints%20System%20%28Service%20Information%29/Module%2C%20Occupant%20Restraint%20Controller/Operation/">работа</a>)</td>
+<td>Масса через ответвление жгута панели приборов</td>
+<td>Таблица C2 даёт Z913 на колодке жгута Body (C2-101)</td>
+</tr>
+<tr>
+<td>B212C/B212D Theory</td>
+<td>«battery and ignition feed»</td>
+<td>Постоянного плюса у ORC по таблицам нет: только C2-104 (F85) и C2-103 (F86)</td>
+</tr>
+<tr>
+<td>Таблица предохранителей (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Maintenance/Schedule/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">спецификация</a>)</td>
+<td>F95 «Rear Camera/ParkSense»; F101 «Electrochromatic Mirror/Smart High Beams»; F103 «Cabin Heater (Diesel)/Rear HVAC»</td>
+<td>По схемам ParkSense питается от F99 (<a href="https://lemon-manuals.la/images25/VA584200/">PAM</a>), F101 — датчики температуры и влажности, F103 — катушка реле заднего вентилятора</td>
+</tr>
+<tr>
+<td>Таблица реле G00621551 (<a href="https://lemon-manuals.la/images25/G00621551/">изображение</a>)</td>
+<td>Альтернативные коды K13/K16 при низком разрешении читаются как «D876(?)/D874(?)/D816»</td>
+<td>Отдельная страница реле вентилятора даёт <strong>D876</strong> для K16 (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%286%20Of%2010%29/Relay-Blower%20Motor%20%28Standard%29%20Connector%20End%20View%20%28D876%29/">D876</a>)</td>
+</tr>
+<tr>
+<td>Схема PD-3 (<a href="https://lemon-manuals.la/images25/VA586500/">PD-3</a>)</td>
+<td>Подпись «FROM FUSE 25» на клемме 30 реле K08</td>
+<td>Это метка-якорь; F25 не стоит последовательно (STRONG INFERENCE)</td>
+</tr>
+<tr>
+<td>Вторичный источник startmycar (<a href="https://www.startmycar.com/dodge/durango/info/fusebox/2018">startmycar</a>)</td>
+<td>F100 15A, F103 20A</td>
+<td>Завод: оба по 10A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">Заключение<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>На вопрос «какое реле питает F85» есть два ответа. <strong>Коммутирует F85 реле K12 «Run 2», а разрешает работу K12 реле K15 «Run 1».</strong> Ваш набор отказов совпадает именно с этим вторым звеном, поэтому искать надо на уровень выше F85. Отказ одного реле или его управления даёт ровно такую картину: «всё на RUN 1 и RUN 2 погасло, а всё на RUN/START и B+ живо». Внезапный и постоянный характер отказа тоже указывает на жёсткий отказ одного узла, а не на коррозию в трёх местах сразу.</p>
+<p>Самое слабое место в имеющихся данных — замер F95 без нагрузки. Одна лампа на F95 и замеры F13, F97 и F40 в RUN за десять минут разделят версии «одно реле K15 или PDC» и «три независимых дефекта». От этого зависит и цена ремонта: в первом случае это реле или PDC через согласование STAR, во втором — отдельная работа по порогу S2442, вентилятору и K12. Перемычки на цепь ORC не нужны ни на одном шаге. Если F85 всё ещё мёртв, когда F40, F101 и F103 уже живы, ремонт — только замена PDC.</p>
+<!-- Определения ссылок (полные URL источников) -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="../../diagrams/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Схемы цепей">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Схемы цепей
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../notes/durango-2018-pitanie-f85/blower-bsm-camera-power/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Питание вентилятора, BSM и камеры">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Питание вентилятора, BSM и камеры
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "toc.follow", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

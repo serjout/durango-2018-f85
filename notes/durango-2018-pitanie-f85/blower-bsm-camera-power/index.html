@@ -1,0 +1,1465 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Диагностика одновременного отказа SRS, BSM, камеры и вентилятора на Dodge Durango R/T 2018">
+      
+      
+      
+        <link rel="canonical" href="https://serjout.github.io/durango-2018-f85/notes/durango-2018-pitanie-f85/blower-bsm-camera-power/">
+      
+      
+        <link rel="prev" href="../../../reports/durango-2018-pitanie-f85/">
+      
+      
+        <link rel="next" href="../can-network-gateway/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Питание вентилятора, BSM и камеры - Durango 2018 · питание F85</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#power-circuits-for-the-front-blower-bsm-radars-and-rear-camera-2018-dodge-durango-rt-57l-awd-vin-1c4sdjct3jcxxxxxx-and-whether-they-share-f85s-relay" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../.." title="Durango 2018 · питание F85" class="md-header__button md-logo" aria-label="Durango 2018 · питание F85" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.96 16.45c.01-.15.04-.3.04-.45v.5zM11 16c0 .71.15 1.39.42 2H6v1c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-8l2.08-6c.2-.58.76-1 1.42-1h11c.66 0 1.22.42 1.42 1L21 11v5c0-2.76-2.24-5-5-5s-5 2.24-5 5m-3-2.5c0-.83-.67-1.5-1.5-1.5S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10l-1.5-4.5h-11L5 10zm3.87 11.19-4.11-4.11c.41-1.04.18-2.26-.68-3.11-.9-.91-2.25-1.09-3.34-.59l1.94 1.94-1.35 1.36-1.99-1.95c-.54 1.09-.29 2.44.59 3.35a2.91 2.91 0 0 0 3.12.68l4.11 4.1c.18.19.45.19.63 0l1.04-1.03c.22-.18.22-.5.04-.64"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Durango 2018 · питание F85
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Питание вентилятора, BSM и камеры
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Тёмная тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="amber"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Светлая тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Durango 2018 · питание F85" class="md-nav__button md-logo" aria-label="Durango 2018 · питание F85" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.96 16.45c.01-.15.04-.3.04-.45v.5zM11 16c0 .71.15 1.39.42 2H6v1c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-8l2.08-6c.2-.58.76-1 1.42-1h11c.66 0 1.22.42 1.42 1L21 11v5c0-2.76-2.24-5-5-5s-5 2.24-5 5m-3-2.5c0-.83-.67-1.5-1.5-1.5S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10l-1.5-4.5h-11L5 10zm3.87 11.19-4.11-4.11c.41-1.04.18-2.26-.68-3.11-.9-.91-2.25-1.09-3.34-.59l1.94 1.94-1.35 1.36-1.99-1.95c-.54 1.09-.29 2.44.59 3.35a2.91 2.91 0 0 0 3.12.68l4.11 4.1c.18.19.45.19.63 0l1.04-1.03c.22-.18.22-.5.04-.64"/></svg>
+
+    </a>
+    Durango 2018 · питание F85
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../diagrams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Схемы цепей
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Отчёты
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Отчёты
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reports/durango-2018-pitanie-f85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Цепочка реле K15→K12 объясняет все четыре отказа
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Заметки исследования
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Заметки исследования
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Durango 2018 питание F85
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Durango 2018 питание F85
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Питание вентилятора, BSM и камеры
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Питание вентилятора, BSM и камеры
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-front-blower-power-path-which-relay-drives-the-motor-what-feeds-it-what-energises-the-coil-and-what-roles-do-the-power-module-and-f99-play" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 1: Front blower power path. Which relay drives the motor, what feeds it, what energises the coil, and what roles do the power module and F99 play?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Front blower power path. Which relay drives the motor, what feeds it, what energises the coil, and what roles do the power module and F99 play?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-bsm-power-fuse-relay-and-grounds-for-the-left-and-right-rear-radar-sensors-which-can-bus-they-use-and-the-masterslave-arrangement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 2: BSM power. Fuse, relay and grounds for the left and right rear radar sensors, which CAN bus they use, and the master/slave arrangement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: BSM power. Fuse, relay and grounds for the left and right rear radar sensors, which CAN bus they use, and the master/slave arrangement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-rear-camera-power-source-video-receiver-and-what-causes-the-blue-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 3: Rear camera. Power source, video receiver, and what causes the blue screen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Rear camera. Power source, video receiver, and what causes the blue screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-do-the-bsm-camera-or-blower-share-a-relay-or-fuse-with-f85-concrete-list-of-fuses-and-circuits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 4: Do the BSM, camera or blower share a relay or fuse with F85? Concrete list of fuses and circuits
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Do the BSM, camera or blower share a relay or fuse with F85? Concrete list of fuses and circuits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../can-network-gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сеть CAN и шлюз
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connectors-orc-dtc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Разъёмы PDC C6, ORC и DTC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../field-cases-tsb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Реальные случаи и TSB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power-distribution-f85-f86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Путь питания F85 и F86
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    История автомобиля
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            История автомобиля
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../istoriya-avtomobilya/vehicle-history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    История автомобиля: факты от владельца
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Источники
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-front-blower-power-path-which-relay-drives-the-motor-what-feeds-it-what-energises-the-coil-and-what-roles-do-the-power-module-and-f99-play" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 1: Front blower power path. Which relay drives the motor, what feeds it, what energises the coil, and what roles do the power module and F99 play?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Front blower power path. Which relay drives the motor, what feeds it, what energises the coil, and what roles do the power module and F99 play?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-bsm-power-fuse-relay-and-grounds-for-the-left-and-right-rear-radar-sensors-which-can-bus-they-use-and-the-masterslave-arrangement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 2: BSM power. Fuse, relay and grounds for the left and right rear radar sensors, which CAN bus they use, and the master/slave arrangement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: BSM power. Fuse, relay and grounds for the left and right rear radar sensors, which CAN bus they use, and the master/slave arrangement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-rear-camera-power-source-video-receiver-and-what-causes-the-blue-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 3: Rear camera. Power source, video receiver, and what causes the blue screen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Rear camera. Power source, video receiver, and what causes the blue screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-do-the-bsm-camera-or-blower-share-a-relay-or-fuse-with-f85-concrete-list-of-fuses-and-circuits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 4: Do the BSM, camera or blower share a relay or fuse with F85? Concrete list of fuses and circuits
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Do the BSM, camera or blower share a relay or fuse with F85? Concrete list of fuses and circuits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#takeaway_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cited-findings_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cited Findings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inferences_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaps_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="power-circuits-for-the-front-blower-bsm-radars-and-rear-camera-2018-dodge-durango-rt-57l-awd-vin-1c4sdjct3jcxxxxxx-and-whether-they-share-f85s-relay">Power circuits for the front blower, BSM radars and rear camera: 2018 Dodge Durango R/T 5.7L AWD (VIN 1C4SDJCT3JCXXXXXX), and whether they share F85's relay<a class="headerlink" href="#power-circuits-for-the-front-blower-bsm-radars-and-rear-camera-2018-dodge-durango-rt-57l-awd-vin-1c4sdjct3jcxxxxxx-and-whether-they-share-f85s-relay" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Локальные копии документов</p>
+<p>Пути вида <code>docs/sources/...</code> указывают на копии документов в приватном репозитории, на сайте их нет. Пользуйтесь ссылками на оригинальные страницы или <a href="/durango-2018-f85/sources/">указателем источников</a>.</p>
+</div>
+<p>Primary source: the LEMON manual for the 2018 Durango Citadel 5.7L VIN T AWD. That site states the manual is identical to the "Durango R/T, AWD" manual except for labor times, fluids and tire fitment (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/">vehicle page</a>). Wiring diagrams on lemon-manuals are vector SVG files. I read them by rendering them to PNG and by extracting their text labels. Pin, circuit and colour data below come from the diagrams and from the factory connector end-view tables. Labels:
+- <strong>VERIFIED</strong>: read directly in a 2018 Durango document at the URL given.
+- <strong>STRONG INFERENCE</strong>: deduced from verified documents.
+- <strong>UNVERIFIED</strong>: not confirmed.</p>
+<p>Local copies of every source are in <code>docs/sources/blower-bsm-camera/</code>. The index and the log of inaccessible sources are in <code>_INDEX_and_inaccessible_log.md</code>.</p>
+<h2 id="question-1-front-blower-power-path-which-relay-drives-the-motor-what-feeds-it-what-energises-the-coil-and-what-roles-do-the-power-module-and-f99-play">Question 1: Front blower power path. Which relay drives the motor, what feeds it, what energises the coil, and what roles do the power module and F99 play?<a class="headerlink" href="#question-1-front-blower-power-path-which-relay-drives-the-motor-what-feeds-it-what-energises-the-coil-and-what-roles-do-the-power-module-and-f99-play" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway">Takeaway<a class="headerlink" href="#takeaway" title="Permanent link">&para;</a></h3>
+<p>The front blower runs through PDC relay <strong>K16 "Blower Motor" (connector D876)</strong>:
+- Terminal 30 is battery (B+, hot at all times).
+- Terminal 87 feeds <strong>F13 40A</strong>, then PDC C7-21 (circuit C7, DB), then the front blower power module.
+- The coil is energised by <strong>no module at all</strong>. Coil terminal 85 is fed directly from the output of the <strong>RUN 1 relay (K15)</strong>. Coil terminal 86 is grounded through PDC C7-16 (circuit Z919) to G919A.</p>
+<p>Blower speed is controlled separately: the A/C heater module (ATC) sends a PWM signal on C56 to power module C1-3. F99 is the A/C heater module's RUN/START ignition feed, not part of the motor's power path. <strong>K16 therefore closes whenever K15 RUN 1 is energised.</strong></p>
+<h3 id="cited-findings">Cited Findings<a class="headerlink" href="#cited-findings" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>VERIFIED.</strong> PDC relay designations: K16 = D876 "Blower Motor", K15 = D842A "Run 1", K12 = D842B "Run 2", K08 = D893 "Run / Start", K13 = D816 "Blower Motor - Rear", K06/K14 = Run/Accessory 1/2. Source: the PDC table image ("Dodge Durango (WD)", Underhood PDC). <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%201%20%28Standard%29%20Connector%20End%20View%20%28D842A%29/">Run 1 relay location page</a> — image <a href="https://lemon-manuals.la/images25/GCWD1243624/">GCWD1243624</a>; <a href="https://lemon-manuals.la/images25/G00621551/">PDC layout</a></li>
+<li><strong>VERIFIED (layout image).</strong> K12, K13, K14, K15 and K16 sit side by side in the front row of the PDC's lower relay field, at the "Front" edge. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%286%20Of%2010%29/Power%20Distribution%20Center%20%28PDC%29%20Layout%20And%20Connector%20Identification/">PDC layout page</a></li>
+<li><strong>VERIFIED.</strong> K16 Blower Motor Relay wiring:</li>
+<li>30 = "HOT AT ALL TIMES".</li>
+<li>87 → FUSE 13 40A → PDC C7 pin 21, DK BLU.</li>
+<li>86 → PDC C7 pin 16, BLK → S2505 → G919A. The diagram's location note for G919A is "behind front of right quarterpanel".</li>
+<li>85 ← a wire inside the PDC from the RUN 1 RELAY's 87 output.</li>
+<li>Source: Automatic A/C Circuit 1/4, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Air%20Conditioning/">page</a>, <a href="https://lemon-manuals.la/images25/VA585297/">SVG VA585297</a></li>
+<li><strong>VERIFIED, cross-check from a second diagram.</strong> In Power Distribution Circuit 1/4, Blower Motor Relay terminal 85 ties into the RUN 1 relay output bus at the F98 node. That bus also feeds F95, F96, F97, F98 and the RUN 2 relay coil (85). <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Power%20Distribution/">Power Distribution page</a>, <a href="https://lemon-manuals.la/images25/VA586498/">SVG VA586498</a></li>
+<li><strong>VERIFIED.</strong> End view of K16 (D876): "Relay_Micro", harness family PDC_Underhood, pin 86 = Z919 internal GROUND. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%286%20Of%2010%29/Relay-Blower%20Motor%20%28Standard%29%20Connector%20End%20View%20%28D876%29/">Relay-Blower Motor D876</a></li>
+<li><strong>VERIFIED.</strong> PDC C7 pinout (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C7%20%28Standard%29%20Connector%20End%20View%20%28D6630G%29/">PDC C7 end view</a>):</li>
+<li>pin 21 = C7, DB, 4.0 mm², "BLOWER MOTOR SUPPLY"</li>
+<li>pins 4, 16, 39 = Z919, BK, "GROUND"</li>
+<li>pin 12 = K619, BN/OG, "IGNITION RUN CONTROL OUTPUT"</li>
+<li>pin 13 = F923, PK/YE, "RUN RELAY CONTROL"</li>
+<li><strong>VERIFIED.</strong> Front blower path downstream of the PDC:</li>
+<li>DK BLU circuit C7 → XY5020A pin 29 → front blower power module C1 pin 6 "BLOWER MTR SPLY".</li>
+<li>Module C1-5 GND → BLK Z911 → G911A ("under front of center console").</li>
+<li>Module C1-3 "BLOWER CTRL" ← DK BLU/BLU C56, from A/C heater module C1 pin 15.</li>
+<li>Module C2-1 → DK BLU/WHT (C7) → blower motor pin 1 "BLOWER MTR SPLY".</li>
+<li>Module C2-2 ↔ DK BLU/BRN Z134 ↔ blower motor pin 2 "BLOWER MTR CTRL". This pair is shielded, with an NCA drain (S000).</li>
+<li>Source: Automatic A/C Circuit 2/4, <a href="https://lemon-manuals.la/images25/VA585298/">SVG VA585298</a>, on the <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Air%20Conditioning/">A/C diagrams page</a></li>
+<li><strong>VERIFIED.</strong> End view of blower power module C1: 3 = C56 DB/BU "BLOWER CONTROL"; 5 = Z911 BK 4.0 "GROUND"; 6 = C7 DB 4.0 "BLOWER MOTOR SUPPLY". <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%285%20Of%2010%29/Module-Power-Blower%20Motor-Front%20C1%20%28Standard%29%20Connector%20End%20View%20%28D3881A%29/">Module-Power-Blower Motor-Front C1</a></li>
+<li><strong>VERIFIED.</strong> The blower power module runs on PWM. The A/C-heater control's PWM signal goes to a comparator that compares it with blower motor feedback, and the module outputs a linear voltage that sets the speed. The module is diagnosed with a scan tool. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Heating%2C%20Ventilation%20%26%20A%2FC%20%28HVAC%29/HVAC%20Control%20Systems/Heating%20%26%20Air%20Conditioning%20%28Service%20Information%29/Controls/Module%2C%20Power%2C%20Blower%20Motor/Operation/">Blower motor power module operation</a></li>
+<li><strong>VERIFIED.</strong> A/C heater module power and bus (<a href="https://lemon-manuals.la/images25/VA585297/">VA585297</a>):</li>
+<li>C1-2 "FSD B(+)": RED A937 ← F49 10A (hot at all times) via PDC C5-25 / S2426.</li>
+<li>C1-1 "FUSED IGN RUN/START CTRL OUTPUT": PNK/GRN F948, via S2449 / XY5020A-15 / S2448 ← PDC C6-36 ← F99 10A. Per Power Distribution 3/4 (<a href="https://lemon-manuals.la/images25/VA586500/">VA586500</a>) and Automatic A/C 3/4 (<a href="https://lemon-manuals.la/images25/VA585299/">VA585299</a>), F99 is "HOT W/ RUN/START RELAY ENERGIZED".</li>
+<li>C1-6 ground: BLK Z912 → G912A.</li>
+<li>C1-4 / C1-5: CAN IHS (+/−), circuits D101 / D102.</li>
+<li><strong>VERIFIED.</strong> PDC C6 pin 36 = F948, PK/GN, "FUSED IGNITION RUN/START CONTROL OUTPUT" (F99 output). <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">PDC C6 end view</a></li>
+<li><strong>VERIFIED.</strong> Factory fuse table:</li>
+<li>F13 40A "Blower Motor Front"</li>
+<li>F49 10A "Integrated Central Stack/Climate Control"</li>
+<li>F99 10A "Climate Control/Driver Assistance Systems Module/DSRC"</li>
+<li>F37 25A "Rear Blower Motor"</li>
+<li>F103 10A "Cabin Heater (Diesel)/Rear HVAC"</li>
+<li>Sources: <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Fuses%20%26%20Circuit%20Breakers/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">Fuse - Relay Locations And Types</a>. The owner's manual has the same entries (<a href="https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2018/Durango/8598.pdf">2018 Durango OM PDF</a>).</li>
+<li><strong>VERIFIED.</strong> The rear blower (for comparison) is a separate chain:</li>
+<li>K13 Rear Blower Motor Relay: 30 = B+; 87 → F37 25A → PDC C7-3 (BLU/BRN C51) → rear blower power module pin 3.</li>
+<li>K13 coil 85 ← PDC C7-8 ← external loop from C6-28 ← F103, which is on <strong>RUN 2</strong>.</li>
+<li>K13 coil 86 → PDC C7-4 → G919A.</li>
+<li>Source: <a href="https://lemon-manuals.la/images25/VA585297/">VA585297</a>, <a href="https://lemon-manuals.la/images25/VA586498/">VA586498</a></li>
+</ul>
+<h3 id="inferences">Inferences<a class="headerlink" href="#inferences" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>STRONG INFERENCE.</strong> The front blower motor needs all of the following:</li>
+<li>(a) K15 RUN 1 energised and its 87 output live (this energises the K16 coil);</li>
+<li>(b) K16 contacts and F13;</li>
+<li>(c) circuit C7 continuous through PDC C7-21 and XY5020A-29 to module C1-6;</li>
+<li>(d) G911A ground at module C1-5;</li>
+<li>(e) a PWM command from the A/C heater module on C56, which in turn needs F49 + F99 + CAN;</li>
+<li>(f) a healthy module and motor.</li>
+</ul>
+<p>The climate UI works and the speed bars change, which points to (e) being alive. A dead K15 output, a dead K16, or a break in the F13/C7 path would each leave the motor still.
+- <strong>STRONG INFERENCE.</strong> No module switches K16. It follows RUN 1. Checking 12 V at power module C1-6 (DB, circuit C7) with ignition RUN would show directly whether the power side is alive, which separates PDC-side faults from module/motor faults.
+- <strong>STRONG INFERENCE.</strong> K16, K15, K12 and K13 are all "Relay_Micro" parts. Their end-view pages share the same pin-face image (<a href="https://lemon-manuals.la/images25/GCWD1006402/">GCWD1006402</a>), and their titles lack the "(On PCB)" tag given to the soldered relays (A/C clutch, fuel pump, horn, wipers). That suggests they are plug-in micro relays. There is a conflict, however: the PDC description says the PDC "houses the maxi-type cartridge fuses and solid state relays" (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Body%20Electrical/Power%20Distribution/Center%2C%20Power%20Distribution%20%28PDC%29/Description/">PDC description</a>). Whether they are removable has to be confirmed visually.</p>
+<h3 id="gaps">Gaps<a class="headerlink" href="#gaps" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The wiring diagram does not state the internal resistance of the K16/K15 coils or the K16 contact rating.</li>
+<li>No 2018 Durango blower-specific TSB was found (see Q4).</li>
+<li>The diagram's location text "G919A (behind front of right quarterpanel)" for a ground of the engine-compartment PDC relays could not be checked against a photo; location image <a href="https://lemon-manuals.la/images25/GCWD1242919/">GCWD1242919</a> was not reviewed.</li>
+</ul>
+<h2 id="question-2-bsm-power-fuse-relay-and-grounds-for-the-left-and-right-rear-radar-sensors-which-can-bus-they-use-and-the-masterslave-arrangement">Question 2: BSM power. Fuse, relay and grounds for the left and right rear radar sensors, which CAN bus they use, and the master/slave arrangement<a class="headerlink" href="#question-2-bsm-power-fuse-relay-and-grounds-for-the-left-and-right-rear-radar-sensors-which-can-bus-they-use-and-the-masterslave-arrangement" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway_1">Takeaway<a class="headerlink" href="#takeaway_1" title="Permanent link">&para;</a></h3>
+<p>Both blind-spot radars (LBSS and RBSS) share the same supply chain:
+- Source: <strong>F95 10A, "HOT W/ RUN 1 RELAY ENERGIZED"</strong> (K15).
+- Path: PDC C7-13 → circuit <strong>F923</strong> PK/YE "RUN RELAY CONTROL" → splice <strong>S2442</strong> (right front door sill, "W/ BLIND SPOT") → XY4000A-12 → I701-J → S04A (rear fascia harness) → <strong>pin 5</strong> of each sensor.
+- Ground: circuit Z917 → S03A → I701-E → <strong>G917A</strong> (left front of cargo area).
+- Bus: both sit on <strong>CAN-IHS</strong>. The <strong>LBSS is the master</strong> and the RBSS the slave. The LBSS talks to the BCM (the CAN gateway), which relays to the cluster on CAN-C.</p>
+<h3 id="cited-findings_1">Cited Findings<a class="headerlink" href="#cited-findings_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>VERIFIED.</strong> BSM circuit (Navigation Fig 1, <a href="https://lemon-manuals.la/images25/VA584193/">VA584193</a> on the <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Navigation/">Navigation diagrams page</a>):</li>
+<li>Power: "HOT W/ RUN 1 RELAY ENERGIZED" FUSE 95 10A → C7-13 PNK/YEL → S2442 → XY4000A-12 → I701-J → S04A → LBSS pin 5 and RBSS pin 5, labelled "RUN RLY CTRL".</li>
+<li>LBSS: pin 6 DK BLU/WHT CAN IHS(+); pin 7 WHT CAN IHS(−); pin 8 BLK GND.</li>
+<li>RBSS: pins 8 and 3 BLK GND; pin 6 DK GRN/WHT CAN IHS(+); pin 7 WHT CAN IHS(−).</li>
+<li>Grounds: → S03A → I701-E → G917A "(left front of cargo area)".</li>
+<li>Mirror indicators: driven by the door modules (DDM C1-3 / C1-2, PDM C1-3 / C1-2).</li>
+<li><strong>VERIFIED.</strong> LBSS end view (harness Fascia_Rear): 5 = F923 PK/YE "RUN RELAY CONTROL"; 6 = D215 DB/WH CAN IHS(+); 7 = D216 WH CAN IHS(−); 8 = Z917 BK GROUND. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%288%20Of%2010%29/Sensor-Blind%20Spot-Left%20%28Standard%29%20Connector%20End%20View%20%28D2481A%29/">Sensor-Blind Spot-Left D2481A</a></li>
+<li><strong>VERIFIED.</strong> RBSS end view: 3 = Z917 BK GND; 5 = F923 PK/YE; 6 = D217 DG/WH CAN IHS(+); 7 = D218 WH CAN IHS(−); 8 = Z917 BK GND. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%288%20Of%2010%29/Sensor-Blind%20Spot-Right%20Rear%20%28Standard%29%20Connector%20End%20View%20%28D2480A%29/">Sensor-Blind Spot-Right Rear D2480A</a></li>
+<li><strong>VERIFIED.</strong> Splice S2442 (Body harness) carries circuit F923 PK/YE 0.35 "RUN RELAY CONTROL". <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/S2442%20%28Standard%29%20Connector%20End%20View%20%28S2442%29/">S2442 end view</a>. G917A is circuit Z917 in the Under_Body harness (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%283%20Of%2010%29/G917A%20%28Standard%29%20Connector%20End%20View%20%28G917A%29/">G917A</a>).</li>
+<li><strong>VERIFIED.</strong> Bus roles: "The LBSS is a master node, while the RBSS is a slave node. The two nodes communicate with each other over the … CAN-IHS data bus." The LBSS reports to the BCM, and "the BCM, which is a CAN-C gateway, relays the message to the IC over the CAN-C data bus". The LBSS also messages the DDM/PDM (mirror icons) and the radio (chimes). <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Sensor%2C%20Blind%20Spot/Operation/">Sensor, Blind Spot: Operation</a>; <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Description/Blind%20Spot%20Monitor%20System/">BSM System Description</a></li>
+<li><strong>VERIFIED.</strong> The cluster message "SERVICE BLIND SPOT SYSTEM" means the BSM system is unavailable due to a monitored system fault. "TEMPORARILY UNAVAILABLE" means blockage or misalignment. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Chime%2FBuzzer%2FDriver%20Assist%20%28Service%20Information%29/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20-%20Blind%20Spot%20Monitor%20System/">D&amp;T - Blind Spot Monitor System</a></li>
+<li><strong>VERIFIED.</strong> The LBSS DTC list includes B2199-16 (battery voltage below threshold), U0011-00 (CAN interior bus off), U0140-00 (lost communication with BCM), U0203/U0204 (lost communication with left/right door module) and U11FA-00 (lost communication with right blind spot sensor). <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/%28Left%20Blind%20Spot%20Sensor%20Module%20%28BSM%29%20%28LBSS%29%20-%20Electrical%20Diagnostics%29/">LBSS Electrical Diagnostics</a></li>
+<li><strong>VERIFIED.</strong> Power Distribution 1/4 confirms F95 → C7-13 → S2442 "(right front door sill)(w/ blind spot)", and that F95 hangs off the RUN 1 relay's 87 bus. <a href="https://lemon-manuals.la/images25/VA586498/">VA586498</a></li>
+</ul>
+<h3 id="inferences_1">Inferences<a class="headerlink" href="#inferences_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>STRONG INFERENCE.</strong> If both sensors lose F923, the master LBSS is silent on CAN-IHS. The BCM/cluster would then show the BSM fault ("SERVICE BLIND SPOT SYSTEM" or similar), and other modules would log lost-communication codes with the LBSS. No sensor DTCs can be read while the sensors are unpowered.</li>
+<li><strong>STRONG INFERENCE.</strong> Both sensors share one supply (F95 → C7-13 → S2442 → XY4000A → I701 → S04A) and one ground chain (S03A → I701-E → G917A). A simultaneous failure of both points upstream of S04A, or to a shared ground, rather than to the two sensors themselves.</li>
+</ul>
+<h3 id="gaps_1">Gaps<a class="headerlink" href="#gaps_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>I did not find the exact cluster text this vehicle shows, nor a CAN-IHS U-code for the BCM losing the LBSS (the BCM DTC lists were not opened).</li>
+<li>The sensors' current draw and whether they sleep on CAN were not found.</li>
+</ul>
+<h2 id="question-3-rear-camera-power-source-video-receiver-and-what-causes-the-blue-screen">Question 3: Rear camera. Power source, video receiver, and what causes the blue screen<a class="headerlink" href="#question-3-rear-camera-power-source-video-receiver-and-what-causes-the-blue-screen" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway_2">Takeaway<a class="headerlink" href="#takeaway_2" title="Permanent link">&para;</a></h3>
+<p>The rear camera has no fuse of its own:
+- Power: circuit <strong>F923</strong> from the <strong>same F95 / C7-13 / S2442</strong> feed as the BSM ("RUN RLY CTRL"), then XY2120A-6 → I6742A-1 → camera.
+- Ground: Z923 → G923A (base of left D-pillar).
+- Wake-up: the BCM sends the imager wake-up over <strong>LIN (CBC 3, circuit D403, BCM C5-45)</strong> in reverse.
+- Video: analog NTSC on X970 / X971 / X972 (signal / return / shield) to <strong>radio C1 pins 31 / 32 / 33</strong>.</p>
+<p>It does not go through the ParkSense module. The radio switching to the camera view proves that the reverse message is getting through. An empty or blue screen means no video arrives, and loss of the F923 run-relay feed is the first item in the factory list of possible causes.</p>
+<h3 id="cited-findings_2">Cited Findings<a class="headerlink" href="#cited-findings_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>VERIFIED.</strong> Rear View Camera circuit (Navigation Fig 8, <a href="https://lemon-manuals.la/images25/VA584199/">VA584199</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Navigation/">Navigation diagrams page</a>):</li>
+<li>Power: "HOT W/ RUN 1 RELAY ENERGIZED" FUSE 95 10A → C7-13 PNK/YEL → S2442 "(W/ BLIND SPOT)" → XY2120A-6 → I6742A-1 → RED F923 → camera "RUN RLY CTRL".</li>
+<li>Ground: camera GND BLK Z923 → I6742A-6 → XY2110A-14 → G923A ("base of left D pillar").</li>
+<li>LIN: camera LIN BUS CBC 3 BLU D403 → I6742A-5 → XY2120A-10 → S2433 (right front door sill) → BCM C5-45 (ORG/DK BLU D403).</li>
+<li>Video: CAMERA SIG X970 / RTN X971 / SHLD X972 → I6742A → XY2110A → XY5010A → Radio C1 pins 31 (SIG), 32 (RTN), 33 (SHLD).</li>
+<li><strong>VERIFIED.</strong> Radio side: premium radio C1-31 X970 "CAMERA SIG", C1-32 X971 "CAMERA RTN", C1-33 X972 "CAMERA SHIELD" (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Radio/">Radio diagrams</a>; e.g. <a href="https://lemon-manuals.la/images25/VA584344/">VA584344</a>).</li>
+<li><strong>VERIFIED, with a conflict.</strong> The camera end view (harness Rear_Camera_Jumper, D6742A) lists 1 = F923 RD "RUN RELAY CONTROL", 2 = X970 GN, 3 = X971 WH, 4 = X972 shield, 5 = D403 BL LIN, 6 = Z923 BK GND (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Camera-Rear%20%28Standard%29%20Connector%20End%20View%20%28D6742A%29/">Camera-Rear end view</a>). The wiring diagram <a href="https://lemon-manuals.la/images25/VA584199/">VA584199</a> instead numbers the camera pins 1 = GND, 2 = LIN, 3 = RUN RLY CTRL, 4 = SHLD, 5 = RTN, 6 = SIG. Circuit codes and colours agree between the two; <strong>pin numbers at the camera are UNVERIFIED</strong>. Identify wires by circuit/colour, not by pin number.</li>
+<li><strong>VERIFIED.</strong> "The Rear View Camera (RVC) receives power from a run relay control output circuit located in the Power Distribution Center (PDC)… When the transmission is shifted into the Reverse position, the BCM sends a signal over the LIN bus to the RVC that excites the imager." Video is NTSC-M composite. The shield is grounded only at the radio. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%2FEntertainment%2FConnectivity%20%28Service%20Information%29/Camera%2C%20Rear/Operation/">Camera, Rear: Operation</a></li>
+<li><strong>VERIFIED.</strong> "Rear Camera Inoperative With RRM Display":</li>
+<li>Theory: "The fused ignition circuit supplies power to the camera… in reverse, the rear camera has priority."</li>
+<li>Set condition: "No rear picture is displayed on Radio with the vehicle in reverse."</li>
+<li>Possible causes (in order): FUSED RUN RELAY OUTPUT CIRCUIT, GROUND CIRCUIT, CAMERA SIGNAL, RETURN, SHIELD, camera.</li>
+<li>Step 2: with the camera unplugged and ignition ON, measure F923 to ground for battery voltage. Step 3: Z923 ground below 5 Ω.</li>
+<li>Sources: <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Theory%20Of%20Operation/">Theory</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Possible%20Causes/">Possible Causes</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20Inoperative%20With%20RRM%20Display/Diagnostic%20Test/">Diagnostic Test</a></li>
+<li><strong>VERIFIED.</strong> The general rear-camera D&amp;T table separates two cases. "No camera image… and no backup lamps" points to BCM inputs and outputs and the reverse input. "No camera image… backup lamps do operate" points to the camera ground, feed, shield, return and signal, or the camera itself. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Accessories%20%26%20Equipment/Drivers%20Assistance%20Systems%20-%20ADAS/Audio%2FVideo%20-%20Non-DTC%20Based%20Diagnostics/Diagnosis%20And%20Testing/Diagnosis%20And%20Testing%20Rear%20Camera%20With%20RRM%20Display/Diagnosis%20And%20Testing%20-%20Rear%20Camera/">D&amp;T - Rear Camera</a></li>
+<li><strong>VERIFIED, with a discrepancy.</strong> The fuse table and owner's manual label F95 "Rear Camera/ParkSense" (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Fuses%20%26%20Circuit%20Breakers/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">fuse spec</a>; <a href="https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2018/Durango/8598.pdf">owner's manual</a>). In the wiring diagram, however, the Park Assist Module is fed from <strong>F99</strong> ("HOT W/ RUN/START RELAY ENERGIZED", C6-36 → S2448 → PAM C1-1), with ground C1-7 → G924A and CAN-C on C1-6 / C1-12 (<a href="https://lemon-manuals.la/images25/VA584200/">Parking Assistant Circuit VA584200</a>; <a href="https://lemon-manuals.la/images25/VA586500/">Power Distribution 3/4 VA586500</a>).</li>
+</ul>
+<h3 id="inferences_2">Inferences<a class="headerlink" href="#inferences_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>STRONG INFERENCE.</strong> The radio clearly receives the reverse status: it switches to the camera page. So the CAN reverse message and the radio's video input mode are working. The empty screen is consistent with <strong>no NTSC signal from the camera</strong>. The most likely cause is the missing F923 feed, because the BSM shares the same feed and is also dead.</li>
+<li><strong>UNVERIFIED.</strong> The service information does not say what colour the Uconnect screen shows when there is no video sync. The "blue screen" interpretation comes from general experience, not from the manual.</li>
+<li><strong>STRONG INFERENCE.</strong> If ParkSense (F99, RUN/START) still works while the camera does not, that supports a fault on the RUN 1 / F95 side rather than in RUN/START.</li>
+</ul>
+<h3 id="gaps_2">Gaps<a class="headerlink" href="#gaps_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Camera current draw and the LIN message content are not documented.</li>
+<li>The camera connector pin-number conflict (end view vs diagram) is unresolved.</li>
+<li>I found no 2018 Durango TSB on a camera with no image apart from the radio-software "Radio and Back-up Camera Enhancements" bulletins 08-084-19 and 08-017-21 (titles only, from the <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/">carcomplaints list</a>; not opened).</li>
+</ul>
+<h2 id="question-4-do-the-bsm-camera-or-blower-share-a-relay-or-fuse-with-f85-concrete-list-of-fuses-and-circuits">Question 4: Do the BSM, camera or blower share a relay or fuse with F85? Concrete list of fuses and circuits<a class="headerlink" href="#question-4-do-the-bsm-camera-or-blower-share-a-relay-or-fuse-with-f85-concrete-list-of-fuses-and-circuits" title="Permanent link">&para;</a></h2>
+<h3 id="takeaway_3">Takeaway<a class="headerlink" href="#takeaway_3" title="Permanent link">&para;</a></h3>
+<p><strong>Yes. All three failed systems and F85 hang off the RUN 1 relay (K15):</strong>
+- <strong>BSM and camera:</strong> F95, which is on RUN 1's 87 bus.
+- <strong>Front blower:</strong> K16's coil, which is fed from RUN 1's 87 bus.
+- <strong>F85 (ORC):</strong> on the <strong>RUN 2 relay (K12) output</strong>, and the <strong>K12 coil is itself powered from RUN 1's 87 bus</strong>.</p>
+<p>So one loss of K15's output kills all four symptoms at once. F86, the other ORC fuse, and F99 (HVAC/ParkSense) are on the separate <strong>RUN/START relay (K08)</strong>, which matches F86 being normal and the engine and HVAC UI working.</p>
+<p>The one item that does not fit is the reported "F95 normal" reading. If F95 really has 12 V under load with ignition RUN, K15 is working. In that case the four symptoms would need at least two separate faults: (a) C7-13/F923/S2442 for BSM + camera, and (b) the K12 RUN 2 relay for F85, plus a separate blower fault. F95 should be re-measured.</p>
+<h3 id="cited-findings_3">Cited Findings<a class="headerlink" href="#cited-findings_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>VERIFIED.</strong> Power Distribution 1/4 (<a href="https://lemon-manuals.la/images25/VA586498/">VA586498</a>, <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Power%20Distribution/">page</a>). I checked the crops at high resolution.</li>
+<li><strong>RUN 1 relay (K15):</strong> 30 = PDC internal B+ bus; 85 = PDC C7-12 BRN/ORG → <strong>BCM C5-36</strong>; 86 = internal ground bus → PDC C1-12 BLK → S2547 → G909A (right rear of engine compartment). Its 87 output bus feeds:<ul>
+<li><strong>F95 10A</strong> → C7-13</li>
+<li><strong>F96 10A</strong> → C7-15</li>
+<li><strong>F98 20A</strong> → C7-19</li>
+<li><strong>F97 20A</strong> → C7-17</li>
+<li>the <strong>Blower Motor Relay (K16) coil 85</strong></li>
+<li>the <strong>RUN 2 relay (K12) coil 85</strong></li>
+</ul>
+</li>
+<li><strong>RUN 2 relay (K12):</strong> 30 = B+; 85 ← RUN 1 output; 86 → the same ground bus. Its 87 output is a separate bus feeding:<ul>
+<li><strong>F40 10A</strong> → C1-10</li>
+<li><strong>F103 10A</strong> → C6-28</li>
+<li><strong>F85 10A</strong> → C6-15</li>
+<li><strong>F101 15A</strong> → C6-32</li>
+<li><strong>F100 10A</strong> → C6-34</li>
+</ul>
+</li>
+<li>The RUN 1 bus ends at the F97 / RUN 2 coil node. It is not connected to the RUN 2 output bus.</li>
+<li><strong>VERIFIED.</strong> The SRS diagram confirms:</li>
+<li>"HOT W/ RUN 2 RELAY ENERGIZED" <strong>FUSE 85 10A</strong> → PDC C6-15 PNK/YEL <strong>F929</strong> → ORC C2-104 "FUSED IGN SW OUTPUT (RUN)".</li>
+<li>"HOT W/ RUN/START RELAY ENERGIZED" <strong>FUSE 86 10A</strong> → PDC C6-13 PNK/GRN <strong>F945</strong> → ORC C2-103 "IGN RUN/START CONTROL OUTPUT".</li>
+<li>ORC ground C2-101 BLK Z913 → G913A; ORC on CAN-C (C2-54 / C2-53).</li>
+<li>Source: <a href="https://lemon-manuals.la/images25/VA582314/">Supplemental Restraints 1/3 VA582314</a> (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/System%20Wiring%20Diagrams/Supplemental%20Restraints/">page</a>)</li>
+<li><strong>VERIFIED.</strong> PDC C6 end view: 15 = F929 PK/YE "FUSED IGNITION SWITCH OUTPUT (RUN)"; 13 = F945 PK/GN "IGNITION RUN/START CONTROL OUTPUT"; 10 = K617 BN "RUN/START RELAY CONTROL"; 28 = F931; 32 = F925; 34 = F938; 36 = F948. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%281%20Of%2010%29/Assembly-Power%20Distribution%20Center%20C6%20%28Standard%29%20Connector%20End%20View%20%28D6630F%29/">PDC C6</a></li>
+<li><strong>VERIFIED.</strong> Relay end views:</li>
+<li><strong>K15 Run 1 (D842A):</strong> 85 = K619 "IGNITION RUN CONTROL OUTPUT", 86 = Z909 GROUND. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%201%20%28Standard%29%20Connector%20End%20View%20%28D842A%29/">Run 1</a></li>
+<li><strong>K12 Run 2 (D842B):</strong> 86 = Z909 GROUND. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%202%20%28Standard%29%20Connector%20End%20View%20%28D842B%29/">Run 2</a></li>
+<li><strong>K08 Run/Start (D893):</strong> 30 = A0 B(+), 85 = Z909 GROUND, 86 = K617 control. <a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Quick%20Lookups/Wiring%20Diagrams/Connector%20End%20Views%20%26%20Electrical%20Component%20Locations%20%287%20Of%2010%29/Relay-Run%2FStart%20%28Standard%29%20Connector%20End%20View%20%28D893%29/">Run/Start</a></li>
+<li>Note: the diagram draws the Run/Start coil with 85 = control, while the end view gives 85 = ground. This is a minor pin-label discrepancy.</li>
+<li><strong>VERIFIED.</strong> Power Distribution 3/4 (<a href="https://lemon-manuals.la/images25/VA586500/">VA586500</a>): RUN/START relay coil ← PDC C6-10 BRN → BCM C1-18; 30 ← "FROM FUSE 25"; output bus feeds <strong>F77, F86, F99, F75</strong>, the vacuum-pump relay coil, and further fuses including F78, F76 and F88. Loads on this bus include the ORC (F86 → C2-103), park assist, A/C heater module, FFCM, rear A/C control, ACC, PCM, EPS, ABS, SGW and cluster.</li>
+<li><strong>VERIFIED.</strong> Factory fuse descriptions for the RUN 1 and RUN 2 buses (<a href="https://lemon-manuals.la/Dodge%20and%20Ram/2018/Durango%20Citadel%2C%205.7L%20Eng%20VIN%20T%2C%20AWD/Repair%20and%20Diagnosis/Electrical/Fuses%20%26%20Circuit%20Breakers/Vehicle%20Quick%20Reference/Fuse%20-%20Relay%20Locations%20And%20Types/Specifications/">fuse spec</a>):</li>
+<li>F95 10A Rear Camera/ParkSense</li>
+<li>F96 10A Rear Seat Heater Switch/Flashlamp Charger</li>
+<li>F97 20A Rear Heated Seats &amp; Heated Steering Wheel</li>
+<li>F98 20A Ventilated Seats/Front Heated Seats</li>
+<li>F40 10A Daytime Running Lights/Headlamp Leveling</li>
+<li>F85 10A Airbag Module</li>
+<li>F86 10A Airbag Module</li>
+<li>F100 10A Active Damping</li>
+<li>F101 15A Electrochromatic Mirror/Smart High Beams</li>
+<li>F103 10A Rear HVAC</li>
+<li>F99 10A Climate Control/DASM/DSRC</li>
+<li><strong>VERIFIED.</strong> Downstream loads per <a href="https://lemon-manuals.la/images25/VA586498/">VA586498</a>:</li>
+<li>F96 → S02A F928 → rear heated-seat switches</li>
+<li>F98 → S2441 / SF921A → seat vent motors / heated seats module C1-5</li>
+<li>F97 → SF922A → heated seats module C3-6 / C4-2</li>
+<li>F40 → S2526 → right front lamp assembly and headlamp leveling motors (premium)</li>
+<li>F101 → XY5020A-7 → S2443 → in-car temperature sensor pin 3 and humidity sensor pin 3</li>
+<li>F100 → SP2589 → active damping module C2-14 / C2-47</li>
+<li>F103 → rear blower relay (K13) coil</li>
+<li><strong>VERIFIED.</strong> FCA GPOP tech tip 9003816 (11/01/2017, MY18 WD), PDC part numbers 68320920A / 68320923A: "For 2018 WD, prior to replacing the Power Distribution Center (PDC), you MUST contact the STAR Center … for diagnostic assistance and pre-authorization." It contains no symptom description. <a href="https://static.nhtsa.gov/odi/tsbs/2017/MC-10216108-9999.pdf">NHTSA PDF MC-10216108-9999</a>; <a href="https://www.carcomplaints.com/Dodge/Durango/2018/tsbs/tsb-9003816.shtml">carcomplaints listing</a></li>
+<li><strong>Field reports, weak quality and UNVERIFIED for this VIN.</strong> A WebSearch summary of owner posts mentions a CarGurus thread (blind spot, then airbag light, then backup camera failing) and a Ram EcoDiesel thread (airbag light plus A/C fan not working, fixed at the airbag fuses). I could not open the CarGurus page (HTTP 406); the Ram thread is a different platform. <a href="https://cargurus.ca/Cars/Discussion-t40402_ds916891">CarGurus thread</a>; <a href="https://www.ecodieselram.com/forum/goto/post?id=45833">ecodieselram</a></li>
+</ul>
+<h3 id="inferences_3">Inferences<a class="headerlink" href="#inferences_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>STRONG INFERENCE.</strong> All four failures (BSM, SRS warning, front blower, camera) are explained by <strong>one point: no output from RUN 1 relay K15</strong>. Candidate causes:</li>
+<li>the relay itself;</li>
+<li>its BCM drive, K619 BRN/ORG from BCM C5-36 to PDC C7-12;</li>
+<li>its coil ground Z909 → PDC C1-12 → G909A, which is shared with K08/K12 (and since K08 works, that ground is probably fine);</li>
+<li>its B+ feed;</li>
+<li>the PDC-internal 87 bus.</li>
+</ul>
+<p>With K15 off: F95 is dead (BSM + camera), K16 is not energised (front blower), and K12 is not energised, so F85 is dead (ORC C2-104 loses its RUN input and the SRS lamp comes on). F86 and F99 survive on K08.
+- <strong>STRONG INFERENCE.</strong> If K15 is the cause, these should <strong>also</strong> be dead (check them to confirm):
+  - F96 (rear heated-seat switches)
+  - F97 (rear heated seats, heated steering wheel)
+  - F98 (front heated/ventilated seats)
+  - F40 (DRL / headlamp leveling)
+  - F101 (auto-dim mirror / smart high beams, plus the ATC humidity and in-car temperature sensors)
+  - F103 (rear blower relay coil → rear blower)
+  - F100 (active damping, if equipped)</p>
+<p>These should <strong>still work</strong> because they are on Run/Start or Run/Acc: engine, ParkSense (F99), ABS/EPS, cluster, windows (Run/Acc 1 F66 / CB1), power outlets.
+- <strong>STRONG INFERENCE.</strong> How to read F95 and the other fuses:
+  - F95 live but F85 dead, with K15 good: K12 RUN 2 (or its output) is failing, but RUN 2 cannot explain the BSM, camera or front blower. Those would need F923/S2442 (BSM + camera) and K16/F13/C7 (blower) faults as well.
+  - F96/F97/F98 also dead: K15 is the culprit, and the F95 reading should be re-checked with a test light (loaded) on both fuse test points, ignition RUN.
+  - Direct check: about 12 V on K15's coil control (PDC C7-12, BN/OG, from BCM C5-36) in RUN, and on the K15 87 bus.
+- <strong>STRONG INFERENCE (practical, needs confirmation that the relays plug in).</strong> K12–K16 are the same "Relay_Micro" type in one row. If they are removable, a known-good relay from a less critical position, e.g. K13 Rear Blower, could be swapped into K15 as a test. The PDC description's "solid state relays" wording conflicts with this; inspect visually first.
+- Shared splice: S2442 (right front door sill) and connector C7-13 are common only to the <strong>BSM and the camera</strong>, not to the blower or F85. A fault there could explain only the BSM + camera pair.</p>
+<h3 id="gaps_3">Gaps<a class="headerlink" href="#gaps_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>I did not find how the BCM decides to drive K15 (K619), e.g. ignition RUN with engine running versus RUN only, or any BCM DTC for a K619 output fault. The BCM DTC pages were not opened.</li>
+<li>No 2018 Durango TSB or recall specifically about RUN 1/RUN 2 relay or PDC failure symptoms was found. Tech tip 9003816 only requires STAR pre-authorization before PDC replacement.</li>
+<li>Whether the K12/K15/K16 relays are removable or soldered could not be confirmed visually (see the Q1 conflict).</li>
+<li>Inaccessible sources:</li>
+<li>lemon-manuals "Repair and Diagnosis (Single Page)" returned a 21 GB null-byte tarpit when requested without an Accept header (split-tree pages worked with "Accept: text/html").</li>
+<li><code>.../Electrical/Fuses &amp; Circuit Breakers/</code> returned HTTP 404.</li>
+<li>The cargurus.ca thread returned HTTP 406.</li>
+<li>The second half of the carcomplaints 2018 Durango TSB list was not read.</li>
+<li>Full log: <code>docs/sources/blower-bsm-camera/_INDEX_and_inaccessible_log.md</code>.</li>
+<li>Adjacent-year and WK2 Grand Cherokee sources were not needed; every claim above comes from 2018 Durango documents.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="../../../reports/durango-2018-pitanie-f85/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Цепочка реле K15→K12 объясняет все четыре отказа">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Цепочка реле K15→K12 объясняет все четыре отказа
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../can-network-gateway/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Сеть CAN и шлюз">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Сеть CAN и шлюз
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
